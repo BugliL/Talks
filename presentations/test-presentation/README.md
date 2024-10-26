@@ -83,3 +83,41 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 This is an hidden text and the real text is not visible.
 <!-- .element: class="fragment" data-fragment-index="0" -->
+
+---
+
+# SVG with fragments
+
+<svg width="400" height="200">
+  <circle cx="50" cy="50" r="40" fill="red" />
+  <!-- .element: class="fragment" data-fragment-index="0" -->
+  
+  <rect x="100" y="10" width="30" height="30" fill="blue" />
+  <!-- .element: class="fragment" data-fragment-index="1" -->
+
+  <polygon points="200,10 250,190 150,190" fill="green" />
+  <!-- .element: class="fragment" data-fragment-index="2" -->
+</svg>
+
+---
+
+# Blur effect
+
+<style>
+  .fragment.blur {
+    filter: blur(5px);
+    opacity: 1 !important;
+  }
+  .fragment.blur.visible {
+    filter: none;
+  }
+</style>
+
+- Blurred text 1
+<!-- .element: class="fragment blur" -->
+
+- Blurred text 2
+<!-- .element: class="fragment blur" -->
+
+- Blurred text 3
+<!-- .element: class="fragment blur" -->
