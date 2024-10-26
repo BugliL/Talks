@@ -16,8 +16,8 @@ def hello_world():
 ---
 
 ## Sequence of Fragments
-- First Point { .fragment .fade-out }
-- Second Point { .fragment .shrink }
-- Third Point { .fragment .highlight-current-green }
+- First Point 
+- Second Point {.fragment}
+- Third Point {.fragment}
 
 ---
