@@ -55,13 +55,12 @@ def hello_world():
 
 ## Code with highlights
 
-```js [1-2|3|4]
+```js [3|4]
 let a = 1;
 let b = 2;
 let c = x => 1 + 2 + x;
 c(3);
 ```
-<!-- .element: class="fragment fade" data-fragment-index="0" -->
 
 ---
 
