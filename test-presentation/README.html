@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>reveal-md</title>
+    <title>Hello world presentation test§</title>
     <link rel="shortcut icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./dist/reset.css" />
     <link rel="stylesheet" href="./dist/reveal.css" />
@@ -17,7 +17,9 @@
       <div class="slides">
         <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
           <textarea data-template>
-            # Test presentation
+            
+
+# Test presentation
 ## This is a test presentation.
 
 This presentation is used to group templates and slides to
@@ -36,42 +38,23 @@ def hello_world():
 
 ## Sequence of Fragments
 
-####### "your text here" {.fragment .grow}
-
-####### "your text here" {.fragment .fade-up}
-
-####### "your text here" {.fragment .highlight-blue}
+- "First text here" {.fragment .grow}
+- "Second text here" {.fragment .fade-up}
+- "Third text here" {.fragment .highlight-blue .shrink}
 
 ---
 
-## Incremental list
-
-::: incremental
-
-- Eat spaghetti
-- Drink wine
-
-:::
-
----
-
-## cucumber
+## Cucumber
 
 <div class="fragment" data-fragment-index="2">
 - bread
 </div>
-
-\
-
 <div class="fragment" data-fragment-index="1">
 - cheese
      - cake
      - sandwich
      - ...
 </div>
-
-\
-
 <div class="fragment" data-fragment-index="3">
 - **eggs**
     - tomato
@@ -79,6 +62,15 @@ def hello_world():
 </div>
 
 ---
+
+## Code with highlights
+
+```js [1-2|3|4]
+let a = 1;
+let b = 2;
+let c = x => 1 + 2 + x;
+c(3);
+```
           </textarea>
         </section>
       </div>
@@ -130,7 +122,7 @@ def hello_world():
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"_":["presentations/test-presentation/README.md"],"static":"docs/test-presentation"}, queryOptions);
+      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"static":"docs/test-presentation"}, queryOptions);
     </script>
 
 
