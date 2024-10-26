@@ -1,3 +1,9 @@
+---
+title: Hello world presentation test§
+revealOptions:
+  transition: 'fade'
+---
+
 # Test presentation
 ## This is a test presentation.
 
@@ -17,42 +23,23 @@ def hello_world():
 
 ## Sequence of Fragments
 
-####### "your text here" {.fragment .grow}
-
-####### "your text here" {.fragment .fade-up}
-
-####### "your text here" {.fragment .highlight-blue}
+- "First text here" {.fragment .grow}
+- "Second text here" {.fragment .fade-up}
+- "Third text here" {.fragment .highlight-blue .shrink}
 
 ---
 
-## Incremental list
-
-::: incremental
-
-- Eat spaghetti
-- Drink wine
-
-:::
-
----
-
-## cucumber
+## Cucumber
 
 <div class="fragment" data-fragment-index="2">
 - bread
 </div>
-
-\
-
 <div class="fragment" data-fragment-index="1">
 - cheese
      - cake
      - sandwich
      - ...
 </div>
-
-\
-
 <div class="fragment" data-fragment-index="3">
 - **eggs**
     - tomato
@@ -60,3 +47,12 @@ def hello_world():
 </div>
 
 ---
+
+## Code with highlights
+
+```js [1-2|3|4]
+let a = 1;
+let b = 2;
+let c = x => 1 + 2 + x;
+c(3);
+```
