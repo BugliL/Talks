@@ -1,0 +1,12 @@
+{
+    "name": "talks",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "build": "for dir in presentations/*; do reveal-md $dir/*.md --static docs/$(basename $dir); done"
+    },
+    "author": "Lorenzo Bugli",
+    "dependencies": {
+        "reveal-md": "^6.1.3"
+    }
+}
