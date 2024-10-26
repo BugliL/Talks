@@ -12,3 +12,12 @@ do things
 def hello_world():
     print("Hello, world!")
 ```
+
+---
+
+## Sequence of Fragments
+- First Point {.fragment .fade-out }
+- Second Point {.fragment .shrink }
+- Third Point {.fragment .highlight-current-green }
+
+---
