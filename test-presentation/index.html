@@ -11,6 +11,35 @@
     <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
 
+
+    <style>
+        .reveal footer {
+            position: absolute;
+            bottom: 1em;
+            left: 1em;
+            z-index: 1000;
+          }
+
+          .reveal footer img {
+            height: 1.5em;
+            vertical-align: middle;
+            margin-right: 0.5em;
+          }
+
+          .reveal h1 {
+            font-size: 1.5em;
+          }
+
+          .reveal .right-col {
+            float: right;
+            width: 40%
+          }
+
+          .reveal left-col {
+            float: left;
+            width: 60%
+          }
+    </style>
   </head>
   <body>
     <div class="reveal">
@@ -140,6 +169,10 @@ This is an hidden text and the real text is not visible.
           </textarea>
         </section>
       </div>
+      <footer>
+          <img src=""/>
+          
+      </footer>
     </div>
 
     <script src="./dist/reveal.js"></script>
@@ -188,7 +221,7 @@ This is an hidden text and the real text is not visible.
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"static":"docs/test-presentation"}, queryOptions);
+      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"preprocessor":"preprocessors/hiddenTextPreprocessor.js","template":"template.html","static":"docs/test-presentation"}, queryOptions);
     </script>
 
 
@@ -212,5 +245,6 @@ This is an hidden text and the real text is not visible.
       Reveal.addEventListener('ready', cb);
       Reveal.addEventListener('slidetransitionend', cb);
     </script>
+
   </body>
 </html>
