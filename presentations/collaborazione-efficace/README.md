@@ -1,7 +1,7 @@
 ---
 title: Collaborazione Efficace tra Team di Sviluppo e Stakeholder
 author: Lorenzo Bugli
-theme: white
+css: themes/sh-black.css
 ---
 
 ## Collaborazione Efficace tra Team di Sviluppo e Stakeholder
