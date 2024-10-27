@@ -39,6 +39,19 @@
             float: left;
             width: 60%
           }
+
+          .mt-1 {
+            margin-top: 1em !important;
+          }
+
+          .reveal .align-left {
+            text-align: left;
+          }
+
+          .sources {
+            float: left;
+            text-align: left;
+          }
     </style>
   </head>
   <body>
@@ -48,7 +61,7 @@
           <textarea data-template>
             
 
-# Collaborazione Efficace tra Devs e Stakeholder
+# Collaborazione Efficace tra team di sviluppo e Stakeholder
 Costruire Software Funzionante  
 con approccio ATDD
 
@@ -84,10 +97,8 @@ business fin dalle prime iterazioni.
 
 ---
 
-# <span class="fragment highlight-current-blue" data-fragment-index="1">Collaborazione Efficace</span> tra Devs e <span class="fragment highlight-current-blue" data-fragment-index="2">Stakeholder</span>
-
-Costruire <span class="fragment highlight-current-blue" data-fragment-index="3">Software Funzionante</span>  
-con approccio <span class="fragment highlight-current-blue" data-fragment-index="4">ATDD</span>
+Collaborazione Efficace  
+tra team di sviluppo e <span class="fragment highlight-current-blue" data-fragment-index="2">Stakeholder</span>
 
 ---
 
@@ -95,28 +106,104 @@ con approccio <span class="fragment highlight-current-blue" data-fragment-index=
 
  
 
-In questo contesto gli stakeholder sono tutti coloro che possiedono la conoscenza
-del problema da risolvere dal software.
-<!-- .element: class="fragment" -->
+In questo contesto gli stakeholder sono tutti coloro che possiedono la
+conoscenza da inserire all'interno del software.  
+<!-- .element: class="fragment align-left" -->
+
+I detentori della conoscenza di dominio.
+<!-- .element: class="fragment align-left" -->
+
+---
+
+ 
+
+<span class="fragment highlight-current-blue" data-fragment-index="1">Collaborazione Efficace</span> 
+tra team di sviluppo e <span class="fragment highlight-current-blue" data-fragment-index="0">detentori della conoscenza di dominio</span>
 
 ---
 
 ## Collaborazione efficace?
 
+
+
 Lavorare insieme per un obiettivo comune minimizzando le energie utilizzate
+nello svolgere il proprio lavoro.
 <!-- .element: class="fragment" -->
 
+---
+
+ 
+
+
+<span class="fragment highlight-current-blue" data-fragment-index="0">
+Collaborazione </span> tra team di sviluppo e detentori della conoscenza di
+dominio 
+<span class="fragment highlight-current-blue" data-fragment-index="0">
+per sviluppare il software minimizzando le energie spese nello svolgere il
+proprio lavoro</span>
+
+
+ 
+
+---
+
+## Fasi di uno sviluppo software
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="25.7654 77.4812 554.5891 333.8141" width="554.589px" height="333.814px">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#FFF"/>
+    </marker>
+  </defs>
+  <g>
+  <circle cx="65.112" cy="217.001" r="50" fill="#4CAF50" transform="matrix(1.3855040073394775, 0, 0, 0.730679988861084, 4.827639102935791, 137.2889251708984)" style=""/>
+  <text x="65.112" y="217.001" text-anchor="middle" alignment-baseline="middle" fill="white" font-size="18" style="white-space: pre; font-size: 18px;" transform="matrix(1.3855040073394775, 0, 0, 1.4667739868164062, 4.3534369468688965, -18.83134651184082)">Specifiche</text>
+  </g>
+    <!-- .element: class="fragment" -->
+  <line x1="120.188" y1="254.137" x2="165.873" y2="164.013" stroke-width="2" marker-end="url(#arrow)" style="stroke: rgb(255, 255, 255);"/>
+    <!-- .element: class="fragment" -->
+    <g>
+    <circle cx="179.391" cy="90.891" r="50" fill="#2196F3" style="" transform="matrix(1.804677963256836, 0, 0, 0.6837040185928345, -84.07099151611328, 49.52389907836914)"/>
+    <text x="179.391" y="90.891" text-anchor="middle" alignment-baseline="middle" fill="white" font-size="18" style="white-space: pre; font-size: 18px;" transform="matrix(1.3855040073394775, 0, 0, 1.4667739868164062, -4.5809268951416025, -21.12238311767578)">Progettazione</text>
+    </g>
+    <!-- .element: class="fragment" -->
+    <line x1="337.138" y1="131.323" x2="421.981" y2="182.702" stroke-width="2" marker-end="url(#arrow)" style="stroke: rgb(255, 255, 255);"/>
+    <!-- .element: class="fragment" -->
+    <g>
+    <circle cx="317.19" cy="110.303" r="50" fill="#FF9800" style="" transform="matrix(2.118403911590576, 0, 0, 0.6253920197486877, -197.5022735595703, 164.11874389648435)"/>
+    <text x="338.956" y="171.921" text-anchor="middle" alignment-baseline="middle" fill="white" font-size="18" style="white-space: pre; font-size: 18px;" transform="matrix(1.3855040073394775, 0, 0, 1.4667739868164062, 4.3534369468688965, -18.83134651184082)">Implementazione</text>
+    </g>
+    <!-- .element: class="fragment" -->
+    <line x1="446.788" y1="270.789" x2="375.648" y2="347.26" stroke-width="2" marker-end="url(#arrow)" style="stroke: rgb(255, 255, 255);"/>
+    <!-- .element: class="fragment" -->
+    <g> <circle cx="212.258" cy="276.671" r="48.992" fill="#F44336" transform="matrix(1.3855040073394775, 0, 0, 0.6161110401153564, 10.05459213256836, 210.6507873535156)" style=""/>
+  <text x="212.258" y="276.671" text-anchor="middle" alignment-baseline="middle" fill="white" font-size="18" style="white-space: pre; font-size: 18px;" transform="matrix(1.3855040073394775, 0, 0, 1.4667739868164062, 10.690991401672363, -24.157814025878906)">Feedback</text>
+  </g>
+    <!-- .element: class="fragment" -->
+  <line x1="229.298" y1="382.92" x2="165.151" y2="336.923" stroke-width="2" marker-end="url(#arrow)" style="stroke: rgb(255, 255, 255);"/>
+  <!-- .element: class="fragment" -->
+</svg>
+
 
 
 ---
 
-## Come si vede che non stiamo collaborando efficacemente?
+<div class="sources">
+
+### Fonti 
+
+- [Wikipedia - Stakeholder](https://it.wikipedia.org/wiki/Stakeholder)
+- [Zero uno web](https://www.zerounoweb.it/software/gli-stakeholder-e-il-loro-punto-di-vista/)
 
 
+### Libri
+<!-- .element: class="mt-1" -->
 
----
+- [ATDD by Example: A Practical Guide to Acceptance Test-Driven Development](https://www.amazon.it/ATDD-Example-Practical-Acceptance-Test-Driven/dp/0321784154)
 
+</div>
 
+ 
           </textarea>
         </section>
       </div>
