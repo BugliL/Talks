@@ -128,18 +128,18 @@ Adesso possiamo sostituire anche la definizione di *Collaborazione efficace*
 Collaborazione </span> tra team di sviluppo e detentori della conoscenza di
 dominio 
 <span class="fragment highlight-current-blue" data-fragment-index="0">
-per sviluppare il software minimizzando le energie spese nello svolgere il
-proprio lavoro</span>
+per <span class="fragment highlight-current-blue" data-fragment-index="1"> sviluppare software </span>
+minimizzando le energie spese nello svolgere il proprio lavoro</span>
 
 
 <!-- hidden-start --> 
 Per poter capire come ATDD aiuti a svolgere il proprio lavoro va capito in cosa
-consiste nella pratica.
+consiste nella pratica lo sviluppo di un software.
 <!-- hidden-end --> 
 
 ---
 
-## Fasi di uno sviluppo software
+## Sviluppare un software
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="25.7654 77.4812 554.5891 333.8141" width="560px" height="350px">
     <defs>
@@ -179,10 +179,69 @@ consiste nella pratica.
 
 <!-- hidden-start -->
 
-# Domande
-- Analizzare il titolo
-    - Cosa vuol dire ATDD
+Lo sviluppo di un software puo' essere suddiviso in 4 fasi principali: 
+ - Raccolta delle specifiche
+ - Progettazione del sistema
+ - Implementazione del software
+ - Verifiche e feedback
 
+Sia in un sistema Agile che in uno tradizionale, queste fasi sono presenti e
+sono tutti passaggi obbligatori per la realizzazione di un software funzionante.
+Questi cicli sono ripetuti piu' volte fino alla realizzazione del software.
+
+### Raccolta delle specifiche
+Questa e' una fase delicata in cui si cerca di capire cosa il software deve fare
+e sopratutto qual'e' il problema che deve risolvere.
+
+Si interrogano le persone che commissionano il software cercando di capire il 
+problema da risolvere e quali sono le funzionalita' da realizzare.
+
+### Progettazione del sistema
+Questa e' la fase in cui si cerca di capire come realizzare il software da un
+punto di vista tecnico e funzionale. Si definiscono a grandi linee
+l'architettura del software e le funzionalita' da costruire.
+
+### Implementazione del software
+Questa e' la fase in cui si realizza il software vero e proprio. Si scrive il
+codice e si realizzano le funzionalita' previste nella fase di progettazione.
+
+Si crea l'architettura a supporto e si realizzano le funzionalita' previste.
+
+### Verifiche e feedback
+Dopo la realizzazione si presenta il software ai committenti e si chiede un
+feedback sulle funzionalita' sviluppate. Si cerca di capire se il software
+realizzato risolve il problema ed in caso di incongruenze si torna alla raccolta
+delle specifiche ed alla progettazione del software.
+
+<!-- hidden-end -->
+
+---
+
+## Problemi nello sviluppo software 
+
+Specifiche errate o incomplete
+<!-- .element: class="fragment" -->
+
+Cattiva comunicazione con gli stakeholder
+<!-- .element: class="fragment" -->
+
+ 
+
+
+---
+
+<!-- hidden-start -->
+
+# Domande
+- Cosa consiste lo sviluppo software
+  - Quali sono le fasi principali
+  - Quali sono gli sprechi
+    - Bug e funzionalita' rotte
+    - cosa possiamo fare per ridurli
+        - TDD 
+    - come si puo' usare i test per ridurre gli errori dall'inizio
+
+  
 - Quali sono i vantaggi dell'ATDD nella pratica
     - Differenza tra averli e non averli per lo sviluppo
     - Come si possono usare per collaborare nel team
@@ -220,4 +279,9 @@ con approccio <span class="fragment highlight-current-blue" data-fragment-index=
 
 ## Minimizzare il lavoro nello sviluppo software?
 Come si puo' minimizzare il lavoro nello sviluppo software?
+
+Spesso si fanno degli errori nella raccolta delle specifiche e tutte le fasi
+successive ne risentono creando sprechi di tempo e di risorse. Nei casi migliori
+si riesce a correggere il tiro in fase di progettazione, nei casi peggiori si
+finisce per realizzare un software che non svolge
 <!-- hidden-end --> 
