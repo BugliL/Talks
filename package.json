@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "build": "for dir in presentations/*; do reveal-md $dir/*.md --template template.html --static docs/$(basename $dir); done"
+        "build": "for dir in presentations/*; do reveal-md $dir/*.md --preprocessor preprocessors/hiddenTextPreprocessor.js --template template.html --static docs/$(basename $dir); done"
     },
     "author": "Lorenzo Bugli",
     "dependencies": {
