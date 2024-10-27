@@ -1,17 +1,15 @@
 ---
 title: Collaborazione Efficace tra Team di Sviluppo e Stakeholder
 author: Lorenzo Bugli
-css: themes/sh-black.css
+footer: 2024-11-26 - Nana Bianca, Firenze
+footerIconUrl: https://www.schroedinger-hat.org/assets/sh-logo-big-UQdXK547.png
 ---
 
-## Collaborazione Efficace tra Team di Sviluppo e Stakeholder
+# Collaborazione Efficace tra Devs e Stakeholder
 <!-- .element: style="font-size: 1.5em" -->
-Costruire Software Funzionante con approccio ATDD
+Costruire Software Funzionante  
+con approccio ATDD
 
-
-2024-11-26  
-Nana Bianca, Firenze
-<!-- .element: style="small" -->
 
 ## Abstract
 <!-- .element: style="display: none" -->
