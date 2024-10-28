@@ -141,6 +141,9 @@ consiste nella pratica lo sviluppo di un software.
 
 ## Sviluppare un software
 
+![Sviluppo software](sviluppare.svg)
+<!-- .element: class="hidden" -->
+
 <div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="25.7654 77.4812 554.5891 333.8141" width="560px" height="350px">
         <defs>
