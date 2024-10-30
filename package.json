@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "build": "for dir in presentations/*; do reveal-md $dir/*.md --preprocessor preprocessors/hiddenTextPreprocessor.js --template template.html --static docs/$(basename $dir); done"
+        "build": "for dir in presentations/*; do reveal-md $dir/*.md --static docs/$(basename $dir); done",
+        "start": "reveal-md presentations/collaborazione-efficace/README.md --watch"
     },
     "author": "Lorenzo Bugli",
     "dependencies": {
