@@ -1,0 +1,48 @@
+.reveal footer {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  z-index: 1000;
+  font-size: 0.3em;
+}
+
+.reveal footer img {
+  height: 1.5em;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+.reveal h1 {
+  font-size: 1.5em;
+}
+
+.reveal h2 {
+  font-size: 1.2em;
+}
+
+.reveal .right-col {
+  float: right;
+  width: 40%;
+}
+
+.reveal .left-col {
+  float: left;
+  width: 60%;
+}
+
+.mt-1 {
+  margin-top: 1em !important;
+}
+
+.reveal .align-left {
+  text-align: left;
+}
+
+.sources {
+  float: left;
+  text-align: left;
+}
+
+.reveal .hidden {
+  display: none;
+}

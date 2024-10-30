@@ -11,57 +11,8 @@
     <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
 
+    <link rel="stylesheet" href="./_assets/css/base.css" />
 
-    <style>
-        .reveal footer {
-            position: absolute;
-            bottom: 1em;
-            left: 1em;
-            z-index: 1000;
-            font-size: 0.3em;
-          }
-
-          .reveal footer img {
-            height: 1.5em;
-            vertical-align: middle;
-            margin-right: 0.5em;
-          }
-
-          .reveal h1 {
-            font-size: 1.5em;
-          }
-
-          .reveal h2 {
-            font-size: 1.2em;
-          }
-
-          .reveal .right-col {
-            float: right;
-            width: 40%
-          }
-
-          .reveal .left-col {
-            float: left;
-            width: 60%
-          }
-
-          .mt-1 {
-            margin-top: 1em !important;
-          }
-
-          .reveal .align-left {
-            text-align: left;
-          }
-
-          .sources {
-            float: left;
-            text-align: left;
-          }
-
-          .reveal .hidden {
-            display: none;
-          }
-    </style>
   </head>
   <body>
     <div class="reveal">
@@ -243,9 +194,13 @@ This is an hidden text and the real text is not visible.
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"preprocessor":"preprocessors/hiddenTextPreprocessor.js","template":"template.html","static":"docs/test-presentation"}, queryOptions);
+      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"static":"docs/test-presentation"}, queryOptions);
     </script>
 
+    <script src="./_assets/lib/mermaid.min.js"></script>
+    <script src="./_assets/lib/reveal-mermaid.js"></script>
+    <script src="./_assets/lib/reveal-mermaid-animation.js"></script>
+    <script src="./_assets/reveal-mermaid-animation-handlers.js"></script>
 
     <script>
       Reveal.initialize(options);
