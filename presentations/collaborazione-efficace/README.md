@@ -41,108 +41,39 @@ ai risultati e capace di produrre software di qualità che soddisfi i bisogni de
 business fin dalle prime iterazioni.
 <!-- hidden-end -->
 
----
+<!-- hidden-start -->
+Contesto
+- Cosa vuol dire collaborare?
+- Cosa vuol dire farlo efficacemente?
+- Cosa vuol dire costruire software funzionante? 
+  - Ciclo di sviluppo di un software
+  - Dove si incontrano i dev e gli stakeholder?
 
-Collaborazione Efficace  
-tra team di sviluppo e <span class="fragment highlight-current-blue" data-fragment-index="2">Stakeholder</span>
+Cosa vuol dire collaborazione efficace con dev e stakeholder?
+- Cos'e' un stakeholder?
+- Perche' e' necessario collaborare?
+  - Casi in cui non e' necessario farlo
+  - Raccolta delle specifiche
+    - Difficolta' delle persone nello spiegare le banalita'
 
----
+Specifiche per esempi
+  - Evidenziare la semplicita' di collaborazione
+  - Cosa e' un test di accettazione?
+    - Un test di accettazione e' un test che usa una specifica per esempi
 
-## Stakeholder?
+Cos'e' ATDD?
+- Sistema di sviluppo che riporta nel software la specifica  
+- Cos'e' TDD?
+- Perche' e' importante sviluppare con TDD?
 
-In questo contesto gli stakeholder sono tutti coloro che possiedono la
-conoscenza da inserire all'interno del software.  
-<!-- .element: class="fragment align-left" -->
+- Come'e' fatto un test di accettazione?
+- Come ATDD permette di collaborare?
 
-I detentori della conoscenza di dominio.
-<!-- .element: class="fragment align-left" -->
-
----
-
-<span class="fragment highlight-current-blue" data-fragment-index="1">Collaborazione Efficace</span> 
-tra team di sviluppo e <span class="fragment highlight-current-blue" data-fragment-index="0">detentori della conoscenza di dominio</span>
-
----
-
-## Collaborazione efficace?
-
-Lavorare insieme per un obiettivo comune minimizzando le energie utilizzate
-nello svolgere il proprio lavoro.
-<!-- .element: class="fragment" -->
-
----
-
-<span class="fragment highlight-current-blue" data-fragment-index="0">
-Collaborazione </span> tra team di sviluppo e detentori della conoscenza di
-dominio 
-<span class="fragment highlight-current-blue" data-fragment-index="0">
-per <span class="fragment highlight-current-blue" data-fragment-index="1"> sviluppare software </span>
-minimizzando le energie spese nello svolgere il proprio lavoro</span>
+<!-- hidden-end -->
 
 ---
 
-## Sviluppare un software
-
-```mermaid 
-%%{
-  init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': 'lightblue',
-      'primaryBorderColor': '#7C0000',
-      'lineColor': 'white',
-      'tertiaryColor': '#fff'
-    }
-  }
-}%%
-flowchart LR
-    Specifiche --> Progettazione
-    Progettazione --> Implementazione
-    Implementazione --> Feedback
-    Feedback --> Specifiche
-```
----
-
-```mermaid
-graph TD
-    A[Christmas] -->|Get money| B(Go shopping)
-    B --> C{Let me think}
-    C -->|One| D[Laptop]
-    C -->|Two| E[iPhone]
-    C -->|Three| F[fa:fa-car Car]
-```
+Alla base di ogni collaborazione  
+c'e' una buona comunicazione.
 
 ---
-
-```mermaid-animation
-A
-A-->B B 
-B-->C C
-C-->D D C-->E E C-->F F
-```
----
-
-## Problemi nello sviluppo software 
-
-Specifiche errate o incomplete
-<!-- .element: class="fragment" -->
-
-Cattiva comunicazione con gli stakeholder
-<!-- .element: class="fragment" -->
-
----
-
-<div class="sources">
-
-### Fonti 
-
-- [Wikipedia - Stakeholder](https://it.wikipedia.org/wiki/Stakeholder)
-- [Zero uno web](https://www.zerounoweb.it/software/gli-stakeholder-e-il-loro-punto-di-vista/)
-
-
-### Libri
-<!-- .element: class="mt-1" -->
-
-- [ATDD by Example: A Practical Guide to Acceptance Test-Driven Development](https://www.amazon.it/ATDD-Example-Practical-Acceptance-Test-Driven/dp/0321784154)
-
-</div>
