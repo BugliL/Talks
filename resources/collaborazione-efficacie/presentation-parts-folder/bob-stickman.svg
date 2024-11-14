@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" style="width: 45%; ">
+  <!-- Head -->
+  <circle cx="100" cy="50" r="20" stroke="white" stroke-width="2" fill="none" />
+  
+  <!-- Eyes -->
+  <circle cx="90" cy="45" r="2" stroke="white" stroke-width="2" fill="white" />
+  <circle cx="110" cy="45" r="2" stroke="white" stroke-width="2" fill="white" />
+  
+  <!-- Mouth -->
+  <path d="M 90 55 Q 100 65, 110 55" stroke="white" stroke-width="2" fill="none" />
+  
+  <!-- Body -->
+  <line x1="100" y1="70" x2="100" y2="150" stroke="white" stroke-width="2" />
+  
+  <!-- Arms -->
+  <line x1="100" y1="90" x2="60" y2="120" stroke="white" stroke-width="2" />
+  <line x1="100" y1="90" x2="140" y2="120" stroke="white" stroke-width="2" />
+  
+  <!-- Legs -->
+  <line x1="100" y1="150" x2="70" y2="200" stroke="white" stroke-width="2" />
+  <line x1="100" y1="150" x2="130" y2="200" stroke="white" stroke-width="2" />
+</svg>
+
