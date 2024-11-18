@@ -1,5 +1,5 @@
 {
-    "css": "css/base.css",
+    "css": "css/base.css,css/code.css",
     "preprocessor": "preprocessors/hiddenTextPreprocessor.js",
-    "template": "template.html"
+    "template": "template.html",
 }

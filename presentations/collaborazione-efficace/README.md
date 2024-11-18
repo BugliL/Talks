@@ -3,85 +3,14 @@ title: Collaborazione Efficace tra Team di Sviluppo e Stakeholder
 author: Lorenzo Bugli
 footer: 2024-11-26 - Nana Bianca, Firenze
 footerIconUrl: https://www.schroedinger-hat.org/assets/sh-logo-big-UQdXK547.png
+revealOptions:
+  transition: none
 ---
 
 # Collaborazione Efficace tra team di sviluppo e Stakeholder
 Costruire Software Funzionante  
 con approccio ATDD
 
-<!-- hidden-start -->
-Nana Bianca e Schrödinger Hat si uniscono per portarvi workshop di
-approfondimento sul mondo Open Source.
-
-Il prossimo 27 Novembre, con Lorenzo Bugli, senior engineer @Fiscozen parleremo
-di "Collaborazione Efficace tra Team di Sviluppo e Stakeholder: Costruire
-Software Funzionante con approccio ATDD"
-
-Nel moderno sviluppo software, la stretta collaborazione tra il team di sviluppo
-e gli stakeholder è essenziale per creare soluzioni che rispondano efficacemente
-ai requisiti di business. Questo talk esplora come l'Acceptance Test-Driven
-Development (ATDD) possa guidare questa collaborazione, riducendo sprechi e
-garantendo che il software cresca in modo funzionale e allineato alle esigenze
-reali.
-
-L'ATDD permetta al team di sviluppo e agli stakeholder di definire insieme i
-requisiti sotto forma di test di accettazione, che guidano la realizzazione
-tecnica e assicurano che ogni funzionalità risponda ai bisogni reali. Questo
-approccio aiuti a prevenire incomprensioni a ridurre gli sprechi, concentrando
-il lavoro su ciò che è essenziale e immediatamente verificabile.
-
-Il processo test-first crea un sistema di verifica continua, garantendo che il
-software funzioni correttamente e soddisfi costantemente le aspettative degli
-utenti.
-
-Con esempi pratici e casi di studio veri, i partecipanti scopriranno come a
-partire da un'analisi preliminare, tutto il lavoro successivo affrontato con
-l'ATDD trasformi la collaborazione tra team di sviluppo e stakeholder orientata
-ai risultati e capace di produrre software di qualità che soddisfi i bisogni del
-business fin dalle prime iterazioni.
-<!-- hidden-end -->
-
-<!-- hidden-start -->
-Presentare una situazione con un personaggio che rappresenta un dev freelancer
-che si trova a dover sviluppare un software per un cliente.
-
-Fare l'esempio di un neoassunto che deve iniziare a sviluppare con un progetto
-esistente e deve capire come funziona la situazione
-
-- Cosa hanno in comune queste 2 persone?
-  - Entrambe possono usare ATDD per collaborare con i propri committenti
-
-- Cosa vuol dire sviluppare un software?
-  - Illustrazione delle fasi
-  - Schema delle persone necessarie e dove intervengono
-
-Cosa vuol dire collaborazione efficace con dev e stakeholder?
-- Cos'e' un stakeholder?
-- Collaborare vuol dire comunicare
-  - Necessario di un linguaggio comune, di dominio
-  - Raccolta delle specifiche
-    - Difficolta' delle persone nello spiegare le banalita'
-
-Specifiche per esempi
-  - Evidenziare la semplicita' di collaborazione
-  - Cosa e' un test di accettazione?
-    - Un test di accettazione e' un test che usa una specifica per esempi
-    - Come'e' fatto un test di accettazione?
-      - Ammesso solo linguaggio di dominio
-      - Mock di tutto il non necessario
-
-ATTD e' Acceptance Test-Driven Development
-- Sviluppo basato sui test di accettazione
-- Come ATDD permette di collaborare?
-  - Usati come specifica
-  - Usati come test a supporto dello sviluppo
-  - Usati come feedback per specifiche 
-
-
-
-Alla base di ogni collaborazione  
-c'e' una buona comunicazione.
-<!-- hidden-end -->
 
 ---
 
@@ -95,11 +24,18 @@ produce carta.
 
 ---
 
-Bob non sa niente di come si vende o si produce la carta.
+Bob non sa niente di come \
+si vende o si produce la carta.
 
 ---
 
-A Bob viene fornita una documentazione lunga quanto le cronache di Narnia
+Ma gli viene fornita una documentazione \
+lunga quanto le cronache di Narnia
+
+---
+
+La documentazione contiene delle \
+discrepanze tra varie sezioni.
 
 ---
 
@@ -116,16 +52,25 @@ settimana e deve iniziare ad integrare il programma interno all'azienda.
 
 ---
 
-Il software e' gia' in produzione e Alice non sa come funziona ma e' esperta
-di agenzie viaggi, conosce bene l'argomento
+Il software e' gia' in produzione \
+ed Alice non sa come funziona 
 
 ---
 
-Ad Alice non viene fornita nessuna documentazione
+Fortunatamente ha gia' costruito altre applicazioni per delle agenzie viaggi,
+conosce l'argomento, deve solo capire quali sono le customizzazioni
+
+---
+
+Non e' presente alcuna documentazione
 
 ---
 
 Il vecchio sviluppatore e' scappato in Brasile
+
+---
+
+Alice non sa da dove partire
 
 ---
 
@@ -140,6 +85,139 @@ Il vecchio sviluppatore e' scappato in Brasile
 
 ---
 
-Entrambi possono usare ATDD per facilitarsi il lavoro
+Sia Bob che Alice dovranno parlare con i propri stakeholder
+ed entrambi possono usare ATDD per facilitarsi il lavoro
 
 ---
+
+Un po' di contesto
+
+---
+
+
+
+
+---
+
+# Cos'e' TDD? 
+# (Test Driven Development)
+
+---
+
+Test first 
+
+code later
+<!-- .element: class="fragment" -->
+
+---
+
+# TDD in pratica
+
+1. Scrivere un test che fallisce
+<!-- .element class="fragment" -->
+
+2. Implementare il <span style="color: #ffaa00 ">codice minimo</span> per far
+passare il test
+<!-- .element class="fragment" -->
+
+1. Rifattorizzare mantenendo i test verdi
+<!-- .element class="fragment" -->
+
+---
+
+# Cos'e' TDD?
+1. Scrivere un test che fallisce
+```python [4,5]
+import unittest
+
+class UppercaseTestFunctionShould(unittest.TestCase):
+    def test_return_uppercase_string_given_string(self):
+        self.assertEqual(uppercase(string='foo'), 'FOO')
+```
+```python 
+def uppercase(string: str) -> str:
+    pass
+```
+
+---
+
+```text [1,10,15]
+> python -m unittest tdd_example.py
+
+======================================================================
+FAIL: test_return_uppercase_string_given_string (tdd_example.UppercaseTestFunctionShould.test_return_uppercase_string_given_string)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/Fiscozen/Progetti/ATTD_Talk/src/000_introduction/tdd_example.py", line 10, in test_return_uppercase_string_given_string
+    self.assertEqual(uppercase(string='foo'), 'FOO')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != 'FOO'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
+```
+
+---
+
+2. Implementare il codice minimo per far passare il test
+```python 
+def uppercase(string: str) -> str:
+    return "FOO"
+```
+
+---
+
+```text [1,4]
+> python -m unittest tdd_example.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+```
+
+---
+
+3. Rifattorizzare mantenendo i test verdi
+```python 
+def uppercase(string: str) -> str:
+    return string.upper()
+```
+
+---
+
+```text [1,4]
+> python -m unittest tdd_example.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+```
+
+---
+
+```python [4,5]
+import unittest
+
+class UppercaseTestFunctionShould(unittest.TestCase):
+    def test_return_uppercase_string_given_string(self):
+        self.assertEqual(uppercase(string='foo'), 'FOO')
+```
+```python 
+def uppercase(string: str) -> str:
+    return string.upper()
+```
+```text [1,4]
+> python -m unittest tdd_example.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+```
+
+---
+
+1. Scrivere un test che fallisce
+2. Implementare il codice minimo per far passare il test
+3. Rifattorizzare mantenendo i test verdi
+
+
+La parte 2 e' importante, serve a verificare la correttezza del test.
