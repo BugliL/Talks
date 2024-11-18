@@ -5,6 +5,7 @@ footer: 2024-11-26 - Nana Bianca, Firenze
 footerIconUrl: https://www.schroedinger-hat.org/assets/sh-logo-big-UQdXK547.png
 revealOptions:
   transition: none
+source-code: https://github.com/BugliL/ATTD_TALK
 ---
 
 # Collaborazione Efficace tra team di sviluppo e Stakeholder
