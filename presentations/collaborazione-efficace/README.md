@@ -96,26 +96,26 @@ Cosa vuol dire sviluppare un software?
 
 Sviluppare un software significa \
 creare un <span class="text-blu-highlight">modello compiuterizzato</span> \
-per <span class="text-blu-highlight">risolvere un problema specifico</span>
+per <span class="text-blu-highlight">risolvere</span> un <span class="text-blu-highlight">problema specifico</span>
 
 ---
 
 ## Fasi dello sviluppo software - teoria
 
 ![development lifecycle](./software-lifecycle.png)
-<!-- .element: class="right-col" -->
+<!-- .element: class="fragment right-col" data-fragment-index="5" -->
 
 <br/>
 <br/>
 
 - Scrittura dei requisiti
-<!-- .element: class="fragment" -->
+<!-- .element: class="fragment" data-fragment-index="1" -->
 - Progettazione del sistema
-<!-- .element: class="fragment" -->
+<!-- .element: class="fragment" data-fragment-index="2"  -->
 - Implementazione del codice
-<!-- .element: class="fragment" -->
+<!-- .element: class="fragment" data-fragment-index="3"  -->
 - Testing delle funzionalita'
-<!-- .element: class="fragment" -->
+<!-- .element: class="fragment" data-fragment-index="4"  -->
 
 ---
 
@@ -175,6 +175,10 @@ le <span class="text-blu-highlight">specifiche</span>
 per essere integrate direttamente all'interno del <span class="text-blu-highlight">processo di sviluppo</span>
 <!-- .element: class="align-left" -->
 
+---
+
+TODO: Prerequisiti all'ATDD
+ 
 ---
 
 # Cos'e' TDD? 
