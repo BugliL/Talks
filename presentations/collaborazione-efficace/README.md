@@ -95,8 +95,8 @@ Cosa vuol dire sviluppare un software?
 ---
 
 Sviluppare un software significa \
-creare un <span class="fragment highlight-blue">modello compiuterizzato</span> \
-per <span class="fragment highlight-blue">risolvere un problema specifico</span>
+creare un <span class="text-blu-highlight">modello compiuterizzato</span> \
+per <span class="text-blu-highlight">risolvere un problema specifico</span>
 
 ---
 
@@ -133,29 +133,47 @@ sono sempre le stesse
 
 ---
 
-## Fasi dello sviluppo software - pratica
-
-![develop tree](./develop-tree.png)
+Bella la teoria ma cosa succede poi nella pratica?
 
 ---
 
 ## Fasi dello sviluppo software - pratica
 
 ![develop tree](./develop-tree.png)
-<!-- .element: class="left-col" -->
-
-<br />
-Nella pratica si crea una discrepanza tra specifiche/requisiti del software e la
-sua realizzazione
 
 ---
 
-Come si fa a minimizzare la distanza \
-tra requisiti e realizzazione?
+# Cosa e' successo? 
+
+<br /> La causa piu' comune sono i problemi di comunicazione tra il team di
+sviluppo e gli esperti di dominio.
+<!-- .element: class="left-col align-left" -->
+
+
+![analisys-misanderstanding](./analisys-misunderstanding.png)
+<!-- .element: class="right-col" -->
 
 ---
 
-## ATDD 
+# Cosa e' successo?
+
+- Troppe specifiche (il caso di Bob)
+<!-- .element: class="fragment" -->
+- Poche specifiche (il caso di Alice)
+<!-- .element: class="fragment" -->
+- Specifiche poco chiare
+<!-- .element: class="fragment" -->
+- Realizzazione difforme dalle specifiche
+<!-- .element: class="fragment" -->
+
+---
+
+## Acceptance Test-Driven Development
+
+Minimizza i problemi di comunicazione <span class="text-blu-highlight">plasmando</span> \
+le <span class="text-blu-highlight">specifiche</span>
+per essere integrate direttamente all'interno del <span class="text-blu-highlight">processo di sviluppo</span>
+<!-- .element: class="align-left" -->
 
 ---
 
