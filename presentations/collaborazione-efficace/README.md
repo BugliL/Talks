@@ -95,7 +95,7 @@ Cosa vuol dire sviluppare un software?
 ---
 
 Sviluppare un software significa \
-creare un <span class="text-blu-highlight">modello compiuterizzato</span> \
+creare un <span class="text-blu-highlight">modello computerizzato</span> \
 per <span class="text-blu-highlight">risolvere</span> un <span class="text-blu-highlight">problema specifico</span>
 
 ---
