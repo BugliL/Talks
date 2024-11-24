@@ -1,4 +1,3 @@
-
 <!-- hidden-start -->
 Presentare una situazione con un personaggio che rappresenta un dev freelancer
 che si trova a dover sviluppare un software per un cliente.
@@ -28,7 +27,7 @@ Specifiche per esempi
       - Ammesso solo linguaggio di dominio
       - Mock di tutto il non necessario
 
-ATTD e' Acceptance Test-Driven Development
+ATDD e' Acceptance Test-Driven Development
 - Sviluppo basato sui test di accettazione
 - Come ATDD permette di collaborare?
   - Usati come specifica

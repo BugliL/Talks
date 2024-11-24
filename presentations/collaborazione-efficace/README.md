@@ -15,7 +15,7 @@ con approccio ATDD
 
 ---
 
-La storia di Bob
+Ogni mattina Bob si sveglia
 
 ---
 
@@ -44,7 +44,7 @@ Bob non sa da dove partire
 
 ---
 
-La storia di Alice
+Ogni mattina Alice si sveglia
 
 ---
 
@@ -63,7 +63,8 @@ conosce l'argomento, deve solo capire quali sono le customizzazioni
 
 ---
 
-Non e' presente alcuna documentazione
+Non e' presente alcuna documentazione \
+sullo sviluppo del software in produzione
 
 ---
 
@@ -75,28 +76,48 @@ Alice non sa da dove partire
 
 ---
 
-## Cosa hanno in comune Bob e Alice?
-
-- Devono sviluppare un software
-<!-- .element class="fragment" -->
-- Non hanno idea da dove partire 
-<!-- .element class="fragment" -->
-- Dovranno parlare con qualcuno per capire da dove iniziare
-<!-- .element class="fragment" -->
+Che tu sia Bob oppure Alice \
+l'importante e' che tu sappia usare ATTD \
+per arrivare a fine giornata
 
 ---
 
-Sia Bob che Alice dovranno parlare con i propri stakeholder
-ed entrambi possono usare ATDD per facilitarsi il lavoro
+TODO: Slide di presentazione
+
+Slide bicolonna con
+- Chi sono
+- Schroedinger Hat
 
 ---
 
-Un po' di contesto
+Cosa vuol dire sviluppare un software?
 
 ---
 
+Sviluppare un software significa \
+creare un modello <span class="text-blue">compiuterizzato</span> \
+per risolvere un problema del mondo reale
 
+---
 
+## Fasi dello sviluppo software
+
+![development lifecycle](./software-lifecycle.png)
+<!-- .element: class="right-col" -->
+
+<br/>
+<br/>
+
+- Analisi
+- Progettazione
+- Implementazione
+- Testing
+
+---
+
+## Fasi dello sviluppo software
+
+![develop tree](./develop-tree.png)
 
 ---
 
