@@ -46,3 +46,7 @@
 .reveal .hidden {
   display: none;
 }
+
+.text-blue {
+  color: #007bff;
+}
