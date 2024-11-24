@@ -95,8 +95,8 @@ Cosa vuol dire sviluppare un software?
 ---
 
 Sviluppare un software significa \
-creare un <span class="text-blu-highlight">modello computerizzato</span> \
-per <span class="text-blu-highlight">risolvere</span> un <span class="text-blu-highlight">problema specifico</span>
+creare un <span class="text-blue-highlight">modello computerizzato</span> \
+per <span class="text-blue-highlight">risolvere</span> un <span class="text-blue-highlight">problema specifico</span>
 
 ---
 
@@ -145,17 +145,12 @@ Bella la teoria ma cosa succede poi nella pratica?
 
 # Cosa e' successo? 
 
-<br /> La causa piu' comune sono i problemi di comunicazione tra il team di
-sviluppo e gli esperti di dominio.
-<!-- .element: class="left-col align-left" -->
-
-
-![analisys-misanderstanding](./analisys-misunderstanding.png)
-<!-- .element: class="right-col" -->
+Il modello rappresentativo non e' conforme alle specifiche fornite.
+<!-- .element: class="fragment" -->
 
 ---
 
-# Cosa e' successo?
+# Peche' e' successo?
 
 - Troppe specifiche (il caso di Bob)
 <!-- .element: class="fragment" -->
@@ -168,17 +163,38 @@ sviluppo e gli esperti di dominio.
 
 ---
 
-## Acceptance Test-Driven Development
+# Perche' e' successo?
 
-Minimizza i problemi di comunicazione <span class="text-blu-highlight">plasmando</span> \
-le <span class="text-blu-highlight">specifiche</span>
-per essere integrate direttamente all'interno del <span class="text-blu-highlight">processo di sviluppo</span>
-<!-- .element: class="align-left" -->
+<br /> Problemi di comunicazione tra il team di
+sviluppo e gli stakeholder
+<!-- .element: class="fragment left-col align-left" data-fragment-index="1" -->
+
+
+![analisys-misanderstanding](./analisys-misunderstanding.png)
+<!-- .element: class="fragment right-col" data-fragment-index="1" -->
 
 ---
 
-TODO: Prerequisiti all'ATDD
- 
+## Acceptance Test-Driven Development
+
+Minimizza i problemi di comunicazione tra <span class="text-blue-highlight">stakeholder</span> \
+e <span class="text-blue-highlight">team di sviluppo</span> integrando le specifiche nel processo di sviluppo
+<!-- .element: class="align-left fragment" -->
+
+---
+
+## Acceptance Test-Driven Development
+
+Minimizza i problemi di comunicazione tra <span class="text-blue-highlight">stakeholder</span> \
+e <span class="text-blue-highlight">team di sviluppo</span> promuovendo l'uso di <span class="text-blue-highlight">user stories</span> \
+nel <span class="text-blue-highlight">testing automatizzato</span> del software
+<!-- .element: class="align-left fragment" -->
+
+---
+
+TODO: Sezione delle user stories
+TODO: Testing automatizzato
+
 ---
 
 # Cos'e' TDD? 
