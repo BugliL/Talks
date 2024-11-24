@@ -95,12 +95,12 @@ Cosa vuol dire sviluppare un software?
 ---
 
 Sviluppare un software significa \
-creare un modello <span class="text-blue">compiuterizzato</span> \
-per risolvere un problema del mondo reale
+creare un <span class="fragment highlight-blue">modello compiuterizzato</span> \
+per <span class="fragment highlight-blue">risolvere un problema specifico</span>
 
 ---
 
-## Fasi dello sviluppo software
+## Fasi dello sviluppo software - teoria
 
 ![development lifecycle](./software-lifecycle.png)
 <!-- .element: class="right-col" -->
@@ -108,16 +108,54 @@ per risolvere un problema del mondo reale
 <br/>
 <br/>
 
-- Analisi
-- Progettazione
-- Implementazione
-- Testing
+- Scrittura dei requisiti
+<!-- .element: class="fragment" -->
+- Progettazione del sistema
+<!-- .element: class="fragment" -->
+- Implementazione del codice
+<!-- .element: class="fragment" -->
+- Testing delle funzionalita'
+<!-- .element: class="fragment" -->
 
 ---
 
-## Fasi dello sviluppo software
+## Fasi dello sviluppo software - teoria
+
+![development lifecycle](./software-lifecycle.png)
+<!-- .element: class="right-col" -->
+
+<br/>
+
+Qualsiasi sia il framework di sviluppo 
+le macro aree del ciclo di vita del software 
+sono sempre le stesse 
+<!-- .element: class="align-left" -->
+
+---
+
+## Fasi dello sviluppo software - pratica
 
 ![develop tree](./develop-tree.png)
+
+---
+
+## Fasi dello sviluppo software - pratica
+
+![develop tree](./develop-tree.png)
+<!-- .element: class="left-col" -->
+
+<br />
+Nella pratica si crea una discrepanza tra specifiche/requisiti del software e la
+sua realizzazione
+
+---
+
+Come si fa a minimizzare la distanza \
+tra requisiti e realizzazione?
+
+---
+
+## ATDD 
 
 ---
 
@@ -237,9 +275,47 @@ Ran 1 test in 0.000s
 
 ---
 
+# Qual'e' la fase piu' importante?
+
 1. Scrivere un test che fallisce
-2. Implementare il codice minimo per far passare il test
+
+2. Implementare il <span style="color: #ffaa00 ">codice minimo</span> per far
+passare il test
+
+1. Rifattorizzare mantenendo i test verdi
+
+---
+
+# La fase 2
+
+```python [2]
+def uppercase(string: str) -> str:
+    return "FOO"
+```
+<br>
+
+- Chiude il binding test-codice, \
+crea un legame tra il test ed il codice scritto.
+<!-- .element: class="fragment" -->
+- Verifica che il test sia inerente al comportamento corretto
+<!-- .element: class="fragment" -->
+
+
+---
+
+# Cos'e' ATDD?
+
+---
+
+Consiste nell'estendere la pratica di TDD \
+creando dei test di accettazione
+
+---
+
+# ATDD - Acceptance Test Driven Development
+
+1. Scrivere un test di accettazione che fallisce
+2. Implementare tutto il codice necessario per far passare il test
 3. Rifattorizzare mantenendo i test verdi
 
-
-La parte 2 e' importante, serve a verificare la correttezza del test.
+---

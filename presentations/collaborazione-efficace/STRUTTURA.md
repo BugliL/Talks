@@ -8,6 +8,9 @@ esistente e deve capire come funziona la situazione
 - Cosa hanno in comune queste 2 persone?
   - Entrambe possono usare ATDD per collaborare con i propri committenti
 
+
+
+
 - Cosa vuol dire sviluppare un software?
   - Illustrazione delle fasi
   - Schema delle persone necessarie e dove intervengono
