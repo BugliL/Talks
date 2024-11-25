@@ -54,6 +54,14 @@
   text-align: left;
 }
 
+.reveal .align-center {
+  text-align: center;
+}
+
+.reveal .align-right {
+  text-align: right;
+}
+
 .sources {
   float: left;
   text-align: left;
