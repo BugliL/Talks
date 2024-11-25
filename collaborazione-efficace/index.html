@@ -487,12 +487,33 @@ passare il test
 - Chiude il binding test-codice, \
 crea un legame tra il test ed il codice scritto.
 <!-- .element: class="fragment" -->
+
 - Verifica che il test sia inerente al comportamento corretto
+<!-- .element: class="fragment" -->
+
+- Per quanto venga modificato il codice, sappiamo che e' sempre possibile 
+  tornare indietro e verificare il test
 <!-- .element: class="fragment" -->
 
 ---
 
-TODO: 
+Un secondo esempio
+
+```text[1-4|5|6]
+Dato un documento 
+    di tipo distinta materiale
+    a prescindere dallo stato,
+    a prescindere dalla firma digitale
+    quando gli viene associato un colore
+    allora il colore associato è il GIALLO
+```
+TODO: finire l'esempio
+TODO: introduzione delle fixture e facotry boy
+TODO: Best practices per ATDD
+Usare DSL (Domain-Specific Languages) o strutture narrative come Given-When-Then.
+Refactoring continuo:
+Migliorare il codice sia dei test che della base di codice principale.
+Allineare continuamente i test con i cambiamenti nei requisiti.
 
 ---
 
@@ -500,6 +521,7 @@ Conclusioni
 
 - Abbiamo visto come scrivere un test di accettazione
 - Abbiamo visto come utilizzare i test per scrivere il software
+- Abbiamo visto come stakeholder e sviluppatori possono usare ATDD per collaborare
 
 ---
           </textarea>
