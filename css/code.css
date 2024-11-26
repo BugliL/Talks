@@ -1,8 +1,20 @@
 .python {
   overflow-x: hidden !important ;
-  font-size: 0.7em;
 }
 
 .language-plaintext {
   overflow: hidden !important ;
+}
+
+.code-wrapper {
+  font-family: monospace !important;
+  width: 100% !important;
+  /* no wrap */
+  white-space: nowrap !important;
+}
+
+code {
+  font-family: monospace !important;
+  white-space: pre-wrap !important;
+  font-size: 0.7em;
 }
