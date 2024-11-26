@@ -20,7 +20,7 @@ Ogni mattina Bob si sveglia
 
 ---
 
-Bob e' uno sviluppatore freelance a cui \
+Bob è uno sviluppatore freelance a cui \
 viene commissionato lo sviluppo di un software gestionale per un'azienda che
 produce carta.
 
@@ -49,22 +49,22 @@ Ogni mattina Alice si sveglia
 
 ---
 
-Alice e' l'unica sviluppatrice in un'agenzia viaggi, neoassunta la scorsa
+Alice è l'unica sviluppatrice in un'agenzia viaggi, neoassunta la scorsa
 settimana e deve iniziare ad integrare il programma interno all'azienda.
 
 ---
 
-Il software e' gia' in produzione \
+Il software è già in produzione \
 ed Alice non sa come funziona 
 
 ---
 
-Non e' presente alcuna documentazione \
+Non è presente alcuna documentazione \
 sullo sviluppo del software in produzione
 
 ---
 
-Il vecchio sviluppatore e' scappato in Brasile
+Il vecchio sviluppatore è scappato in Brasile
 
 ---
 
@@ -73,7 +73,7 @@ Alice non sa da dove partire
 ---
 
 Che tu sia Bob oppure Alice \
-l'importante e' che tu sappia usare ATTD \
+l'importante è che tu sappia usare ATTD \
 per arrivare a fine giornata
 
 ---
@@ -90,7 +90,7 @@ per arrivare a fine giornata
 <br />
 <div class="flex">
     <div class="align-left">
-        Schroedinger Hat e' un'associazione no profit che promuove l'opensource 
+        Schroedinger Hat è un'associazione no profit che promuove l'opensource 
         attraverso progetti di sviluppo software ed eventi
     </div>
     <div class="w-75">
@@ -137,7 +137,7 @@ per <span class="text-blue-highlight">risolvere</span> un <span class="text-blue
 <!-- .element: class="fragment" data-fragment-index="2"  -->
 - Implementazione del codice
 <!-- .element: class="fragment" data-fragment-index="3"  -->
-- Testing delle funzionalita'
+- Testing delle funzionalità
 <!-- .element: class="fragment" data-fragment-index="4"  -->
 
 ---
@@ -156,7 +156,7 @@ sono sempre le stesse
 
 ---
 
-Bella la teoria ma cosa succede poi nella pratica?
+Bella la teoria, ma cosa succede poi nella pratica?
 
 ---
 
@@ -176,7 +176,7 @@ il modello rappresentativo non rispetta i requisiti
 ---
 
 <span class="text-blue-highlight">Acceptance Test-Driven Development</span> 
-puo' aiutare a ridurre i problemi di comunicazione collaborando alla 
+puó aiutare a ridurre i problemi di comunicazione collaborando alla 
 <span class="text-blue-highlight">scrittura</span> parte dei 
 <span class="text-blue-highlight">test</span> agli 
 <span class="text-blue-highlight">stakeholder</span>
@@ -188,19 +188,19 @@ puo' aiutare a ridurre i problemi di comunicazione collaborando alla
 
 ---
 
-Mario e' un dirigente di un'azienda di progettazione di <span class="text-blue-highlight">impianti industriali</span>
+Mario è un dirigente di un'azienda di progettazione di <span class="text-blue-highlight">impianti industriali</span>
 che ha bisogno di un <span class="text-blue-highlight">software documentale</span> che aiuti il lavoro di tutti i giorni.
 
 ---
 
-Mario commissiona il lavoro di sviluppo a Bob.
+Mario commissiona il lavoro di sviluppo a Bob
 
 ---
 
-Una delle feature chiave del software e' quella di 
+Una delle feature chiave del software è quella di 
 <span class="text-blue-highlight">associare ai documenti</span>
 dei <span class="text-blue-highlight">colori</span> in base ai
-<span class="text-blue-highlight">campi</span> del documento
+<span class="text-blue-highlight">campi</span> del documento stesso
 
 ---
 
@@ -235,13 +235,18 @@ Cosa succede per i disegni tecnici in lavorazione firmati digitalmente?
 
 ---
 
-Bob si sente confidante e inizia a sviluppare il software
+Bob si sente ottimista vedendo tutte le specifiche, 
+senza accorgersi delle discrepanze inizia a sviluppare 
 
 ---
 
-Dopo l'implementazione di Bob il software sembrava funzionare 
-ma Mario si e' accorto che i documenti firmati digitalmente 
+Dopo l'implementazione di Bob il software sembrava funzionare, 
+ma Mario si è accorto che i documenti firmati digitalmente 
 in lavorazione non avevano il colore rosso
+
+---
+
+Mario e Bob si scontrano su cosa sia corretto
 
 ---
 
@@ -257,20 +262,44 @@ le specifiche sottoforma di test di accettazione
 
 # Parte "A" di ATDD
 
-Un specifica software scritta da Mario insieme a BOB
+Un specifica software scritta da Mario insieme a Bob
 
-```text[1-4|5|6]
+```text[|1-4|5|6]
 Dato un documento 
     firmato digitalmente, 
     di qualsiasi tipo, 
     in stato di lavorazione
 quando gli viene associato un colore
-allora il colore associato e' il ROSSO
+allora il colore associato è il ROSSO
 ```
+
+
+---
+```text []
+Il sistema deve associare a tutti i documenti firmati 
+digitalmente il colore verde.  
+
+Tutti i documenti di tipo distinte materiale devono 
+essere associati al colore giallo.  
+
+I documenti in lavorazione devono essere associati al 
+colore rosso a meno che non siano di tipo disegno tecnico, 
+in quel caso devono avere il colore blu.
+```
+
+```text[|1-4|5|6]
+Dato un documento 
+    firmato digitalmente, 
+    di qualsiasi tipo, 
+    in stato di lavorazione
+quando gli viene associato un colore
+allora il colore associato è il ROSSO
+```
+<!-- .element: class="w-25" -->
 
 ---
 
-# Cosa e' successo?
+# Cosa è successo?
 - Il formato della specifica risulta piu' chiaro
 <!-- .element: class="fragment" -->
 - Il test di accettazione non fa riferimento a nessun costrutto software
@@ -320,7 +349,7 @@ Repository con il codice di esempio
 ---
 
 
-# Cos'e' TDD?
+# Cos'è TDD?
 1. Scrivere un test che fallisce
 
 ```python [0-9|10-23]
@@ -406,8 +435,7 @@ class Documento:
     firmato: bool
 
     def colore(self) -> Colors:
-        if self.stato == StatoDocumento.IN_LAVORAZIONE \
-            and self.firmato:
+        if self.stato == StatoDocumento.IN_LAVORAZIONE and self.firmato:
             return Colori.ROSSO
 ```
 
@@ -435,8 +463,7 @@ def test_colore_rosso(self):
 ```
 ```python 
 def colore(self) -> Colors:
-    if self.stato == StatoDocumento.IN_LAVORAZIONE \
-        and self.firmato:
+    if self.stato == StatoDocumento.IN_LAVORAZIONE and self.firmato:
         return Colori.ROSSO
 ```
 ```text [1,4]
@@ -448,7 +475,7 @@ Ran 1 test in 0.000s
 
 ---
 
-# Qual'e' la fase piu' importante?
+# Qual'è la fase piu' importante?
 
 1. Scrivere un test che fallisce
 <!-- .element class="fragment fade-out" data-fragment-index="2" -->
@@ -467,9 +494,7 @@ passare il test
         return Colori.ROSSO
 ```
 
-<br>
-
-- Verifica che il test sia inerente al comportamento corretto
+- Correttezza del test
 <!-- .element: class="fragment" -->
 
 - Ancora di salvezza per il CTRL + Z 
@@ -483,7 +508,7 @@ crea un legame tra il test ed il codice scritto.
 
 Un secondo esempio
 
-```text[1-4|5|6]
+```text[|1-4|5|6]
 Dato un documento 
     di tipo distinta materiale
     a prescindere dallo stato,
@@ -558,7 +583,7 @@ Nessuna modifica necessaria
 
 # Mario
 
-- Si e' reso conto che la specifica iniziale era ambigua
+- Si è reso conto che la specifica iniziale era ambigua
 <!-- .element: class="fragment" -->
 
 - Ha capito come descrivere le specifiche in un formato utile per Bob
@@ -616,14 +641,14 @@ allora il colore associato è il GIALLO
 <!-- .element: class="fragment" -->
 - Forza a ragionare in termini di condizioni iniziali/finali/azioni
 <!-- .element: class="fragment" -->
-- E' scritto nel Linguaggio di Dominio
+- è scritto nel Linguaggio di Dominio
 <!-- .element: class="fragment" -->
 - Si traduce facilmente in dei test
 <!-- .element: class="fragment" -->
 
 ---
 
-Il Gherkin pattern puo' essere utilizzato in qualsiasi
+Il Gherkin pattern puó essere utilizzato in qualsiasi
 contesto per descrivere un caso specifico
 
 ---
@@ -634,19 +659,42 @@ contesto per descrivere un caso specifico
 
 ---
 
-```python [|2|3-4|6-7|9-11]
+```python [|2|3|4|5-6]
 class CarrelloShould(unittest.TestCase):
     def test_given_empty_cart_when_product_added_then_cart_contains_product(self):
-        # Given
         carrello = Carrello()
-
-        # When
         carrello.aggiungi_prodotto("Laptop")
-
-        # Then
         self.assertEqual(carrello.totale_prodotti(), 1)
         self.assertIn("Laptop", carrello.prodotti)
 ```
+
+```text [1,4,13]
+> python -m unittest 000_introduction.test_unit_example
+F
+======================================================================
+FAIL: test_given_empty_cart_when_product_added_then_cart_contains_product 
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/Fiscozen/Progetti/ATTD_Talk/src/000_introduction/test_unit_example.py",
+    self.assertEqual(carrello.totale_prodotti(), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != 1
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
+```
+
+---
+
+Gherkin unit test 
+
+- aiuta la lettura e la comprensione del test stesso
+<!-- .element: class="fragment" -->
+- prolisso ma pattern condiviso
+<!-- .element: class="fragment" -->
+
 ---
 
 Ci sono dei sistemi piu' avanzati per scrivere test di accettazione?
@@ -880,7 +928,7 @@ def step_then_colore_associato(context, colore):
 - Facile da reperire
 <!-- .element: class="fragment" -->
 
-- Un unico test e' in grado di testare piu' scenari
+- Un unico test è in grado di testare piu' scenari
 <!-- .element: class="fragment" -->
 
 - Tutti gli esempi successivi li forniscono gli stakeholder
@@ -913,7 +961,7 @@ Feature: Versionamento documenti
 
 # User story
 
-> Una user story e' un placeholder per un'intera conversazione
+> Una user story è un placeholder per un'intera conversazione
 <!-- .element: class="align-left" -->
 
 
@@ -931,20 +979,20 @@ As <role> I want <feature> so that <benefit>
 
 # User stories
 
-- Focus sul valore della funzionalita'
+- Focus sul valore della funzionalità
 <!-- .element: class="fragment" -->
 
-- Specificano lo scopo per cui una funzionalita' e' sviluppata
+- Specificano lo scopo per cui una funzionalità è sviluppata
 <!-- .element: class="fragment" -->
 
-- Non spiegano il come, ma il cosa e soprattutto il perche'
+- Non spiegano il come, ma il cosa e soprattutto il perchè
 <!-- .element: class="fragment" -->
 
 ---
 
 
-Quando una feature e' troppo grossa non 
-si puo' implementare il codide direttamente tutto
+Quando una feature è troppo grossa non 
+si puó implementare il codide direttamente tutto
 in un volta sola
 
 ---
@@ -953,7 +1001,7 @@ in un volta sola
 
 1. Scrivere un test di accettazione
 <!-- .element: class="fragment" -->
-2. Implementare le funzionalita' 
+2. Implementare le funzionalità 
 <!-- .element: class="fragment" -->
     - Scrivere uno Unit test 
     <!-- .element: class="fragment" -->
@@ -968,7 +1016,7 @@ in un volta sola
 
 ---
 
-1. Scriivere un test di accettazione
+1. Scrivere un test di accettazione
 
 ```gherkin
 Scenario: Caricamento di una nuova versione di un documento
@@ -997,7 +1045,7 @@ def step_then_versione_aggiornata(context, nuova_versione):
 ```
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
 
 ```python [|1-6|8-19|]
 
@@ -1024,7 +1072,7 @@ class GestoreDocumenti:
 
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
     - Scrivere uno Unit test
 
 ```python [|7|7-15]
@@ -1047,7 +1095,7 @@ class TestGestoreDocumenti(unittest.TestCase):
 
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
     - Scrivere codice minimo per far passare il test
 
 ```python [5-7]
@@ -1065,7 +1113,7 @@ class GestoreDocumenti:
 
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
     - Rifattorizzare il codice mantenendo i test verdi
 
 ```python [5-11]
@@ -1087,7 +1135,7 @@ class GestoreDocumenti:
 
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
     - Scrivere uno Unit test
 
 ```python 
@@ -1105,7 +1153,7 @@ class GestoreDocumenti:
 
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
     - Scrivere codice minimo per far passare il test
 
 ```python
@@ -1122,7 +1170,7 @@ class GestoreDocumenti:
 
 ---
 
-2. Implementare le funzionalita'
+2. Implementare le funzionalità
     - Rifattorizzare il codice mantenendo i test verdi
 
 ```python
@@ -1147,7 +1195,7 @@ class GestoreDocumenti:
 
 3. Test verdi - Rifattorizzare con test verdi
 
-```text [1-2|5-10|11-13|14-17|18-21]
+```text [1-2|3-5|6-10|11-13|14-17|18-21]
 > behave features/versionamento-documenti.feature
 Feature: Versionamento documenti 
   Come utente del sistema documentale
@@ -1173,8 +1221,37 @@ Took 0m0.000s
 
 ---
 
+# Qual'è la fase piu' importante?
+
+1. Scrivere un test di accettazione
+2. Implementare le funzionalità 
+<!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+    - Scrivere uno Unit test 
+    <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+    - Scrivere codice minimo per far passare il test
+    <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+    - Rifattorizzare il codice mantenendo i test verdi
+    <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+    - Ripetere il ciclo fino ad acceptant test verde
+    <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+3. Rifattorizzare il codice mantenendo i test verdi
+<!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+
+---
+
+# Scrivere un test di accettazione
+
+- Ha chiarito l'obiettivo della fase di sviluppo
+<!-- .element: class="fragment" -->
+- Ha pre-validato il comportamento del software
+<!-- .element: class="fragment" -->
+- Fornisce un mattone per continuare a costruire
+<!-- .element: class="fragment" -->
+
+---
+
 Bob ha portato a termine il progetto insieme a Mario \
-Una funzionalita' alla volta
+Una funzionalità alla volta
 
 ---
 
@@ -1183,7 +1260,7 @@ Una funzionalita' alla volta
 - Accettazione con Gherkin syntax
 - Test di accettazione per sviluppare codice
 - Test di accettazione come documentazione
-- Test di accettazione come verita'
+- Test di accettazione come verità
 
 ---
 
@@ -1194,22 +1271,22 @@ Una funzionalita' alla volta
 
 ---
 
-Ed Alice?
+Ma che fine ha fatto Alice?
 
 ---
 
 Alice ha imparato ad utilizzare ATDD
-e quando sara' lei a scappare in Brasile 
-potra' lasciare il programmatore successivo con serenita'
+e quando sarà lei a scappare in Brasile 
+potrà lasciare al suo successore tanta documentazione
 
 ---
 
-Perche' e' importante ricordare di...
+Perchè è importante ricordare di...
 
 ---
 
-> Scrivere software come se il programmatore che prendera' in mano il vostro
-> codice fosse uno psicopatico che sa dove abitate
+> Scrivere software come se il programmatore che prenderà in mano il vostro
+> lavoro fosse uno psicopatico che sa dove abitate
 
 
 ---
