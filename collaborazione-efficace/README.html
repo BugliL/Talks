@@ -73,11 +73,6 @@ ed Alice non sa come funziona
 
 ---
 
-Fortunatamente ha gia' costruito altre applicazioni per delle agenzie viaggi,
-conosce l'argomento, deve solo capire quali sono le customizzazioni
-
----
-
 Non e' presente alcuna documentazione \
 sullo sviluppo del software in produzione
 
@@ -97,12 +92,12 @@ per arrivare a fine giornata
 
 ---
 
-# Lorenzo Bugli
+# Presentiamoci 
 
 <div class="flex">
     <div class="w-50"><img class="circular-img" src="./profile.jpg" /></div>
     <div class="align-left mt-1 ml-1">
-        Senior software engineer presso <span class="text-blue-highlight">Fiscozen</span>
+        <b>Lorenzo Bugli</b> - Senior software engineer presso <span class="text-blue-highlight">Fiscozen</span>
         faccio parte della community di <span class="text-blue-highlight">Schroedinger Hat</span>
     </div>
 </div>
@@ -208,7 +203,11 @@ puo' aiutare a ridurre i problemi di comunicazione collaborando alla
 ---
 
 Mario e' un dirigente di un'azienda di progettazione di <span class="text-blue-highlight">impianti industriali</span>
-che ha bisogno di un <span class="text-blue-highlight">software documentale</span> che aiuti il lavoro di tutti i giorni
+che ha bisogno di un <span class="text-blue-highlight">software documentale</span> che aiuti il lavoro di tutti i giorni.
+
+---
+
+Mario commissiona il lavoro di sviluppo a Bob.
 
 ---
 
@@ -270,7 +269,7 @@ le specifiche sottoforma di test di accettazione
 
 ---
 
-# A di ATDD
+# Parte "A" di ATDD
 
 Un specifica software scritta da Mario insieme a BOB
 
@@ -302,8 +301,8 @@ Parte TDD di ATDD
 
 ---
 
-# Cos'e' TDD? 
-# (Test Driven Development)
+# Parte "TDD" di ATDD
+## Test Driven Development
 
 ---
 
@@ -484,15 +483,14 @@ passare il test
 
 <br>
 
-- Chiude il binding test-codice, \
-crea un legame tra il test ed il codice scritto.
-<!-- .element: class="fragment" -->
-
 - Verifica che il test sia inerente al comportamento corretto
 <!-- .element: class="fragment" -->
 
-- Per quanto venga modificato il codice, sappiamo che e' sempre possibile 
-  tornare indietro e verificare il test
+- Ancora di salvezza per il CTRL + Z 
+<!-- .element: class="fragment" -->
+
+- Chiude il binding test-codice, \
+crea un legame tra il test ed il codice scritto.
 <!-- .element: class="fragment" -->
 
 ---
@@ -504,26 +502,710 @@ Dato un documento
     di tipo distinta materiale
     a prescindere dallo stato,
     a prescindere dalla firma digitale
-    quando gli viene associato un colore
-    allora il colore associato è il GIALLO
+quando gli viene associato un colore
+allora il colore associato è il GIALLO
 ```
-TODO: finire l'esempio
-TODO: introduzione delle fixture e facotry boy
-TODO: Best practices per ATDD
-Usare DSL (Domain-Specific Languages) o strutture narrative come Given-When-Then.
-Refactoring continuo:
-Migliorare il codice sia dei test che della base di codice principale.
-Allineare continuamente i test con i cambiamenti nei requisiti.
 
 ---
 
-Conclusioni
+1. Scrivere un test che fallisce
 
-- Abbiamo visto come scrivere un test di accettazione
-- Abbiamo visto come utilizzare i test per scrivere il software
-- Abbiamo visto come stakeholder e sviluppatori possono usare ATDD per collaborare
+```python [0-11|12-22]
+@dataclass
+class Documento:
+    protocollo: str
+    tipo: TipoDocumento
+    stato: StatoDocumento
+    firmato: bool
+
+    def colore(self) -> Colors:
+        if self.stato == StatoDocumento.IN_LAVORAZIONE \
+            and self.firmato:
+            return Colori.ROSSO
+
+class ColoreDocumentoShould(TestCase):
+    def test_colore_giallo(self):
+        documento = Documento(
+            protocollo="125",
+            tipo=TipoDocumento.DISTINTA_MATERIALI,
+            stato=StatoDocumento.INVIATO,
+            firmato=False,
+        )
+        self.assertEqual(documento.colore(), Colori.GIALLO)
+```
 
 ---
+
+2. Implementare il codice minimo per far passare il test
+
+```python
+    def colore(self) -> Colors:
+        if self.tipo == TipoDocumento.DISTINTA_MATERIALI:
+            return Colori.GIALLO
+
+        if self.stato == StatoDocumento.IN_LAVORAZIONE \
+            and self.firmato:
+            return Colori.ROSSO
+```
+
+---
+
+3. Rifattorizzare mantenendo i test verdi
+
+```python
+    def colore(self) -> Colors:
+        if self.tipo == TipoDocumento.DISTINTA_MATERIALI:
+            return Colori.GIALLO
+
+        if self.stato == StatoDocumento.IN_LAVORAZIONE \
+            and self.firmato:
+            return Colori.ROSSO
+```
+
+Nessuna modifica necessaria
+
+---
+
+# Retrospettiva
+
+---
+
+# Mario
+
+- Si e' reso conto che la specifica iniziale era ambigua
+<!-- .element: class="fragment" -->
+
+- Ha capito come descrivere le specifiche in un formato utile per Bob
+<!-- .element: class="fragment" -->
+
+---
+
+# Bob
+
+- Ha integrato la specifica direttamente nel codice
+<!-- .element: class="fragment" -->
+
+- Ogni specifica integrata ha validato il comportamento del software
+<!-- .element: class="fragment" -->
+
+---
+
+# Vantaggi di entrambi
+
+- Documentazione di funzionamento gratis
+<!-- .element: class="fragment" -->
+
+---
+
+# Gherkin pattern
+## Given-When-Then
+
+---
+
+# Gherkin pattern
+
+```text
+Given [stato iniziale o precondizioni] 
+
+When [succede una determinata azione che modifica lo stato]
+
+Then [variazione di stato oppure risultato atteso]
+```
+
+---
+
+
+# Gherkin pattern
+
+```text 
+Dato un documento 
+    di tipo distinta materiale
+    a prescindere dallo stato,
+    a prescindere dalla firma digitale
+quando gli viene associato un colore
+allora il colore associato è il GIALLO
+```
+
+- Semplice da scrivere e veloce da leggere
+<!-- .element: class="fragment" -->
+- Forza a ragionare in termini di condizioni iniziali/finali/azioni
+<!-- .element: class="fragment" -->
+- E' scritto nel Linguaggio di Dominio
+<!-- .element: class="fragment" -->
+- Si traduce facilmente in dei test
+<!-- .element: class="fragment" -->
+
+---
+
+# La piramide dei test
+
+<img class="w-50" src="./test-pyramid.png" />
+
+---
+
+TODO: esempio di Gherkin pattern per unit test
+
+---
+
+Ci sono dei sistemi piu' avanzati per scrivere test di accettazione?
+
+---
+
+<img class="w-50" src="./cucumber-logo.png" />
+
+[https://cucumber.io/](https://cucumber.io/)
+
+<img class="w-25" src="./cucumber-qr-code.png" />
+
+Tools & techniques that elevate teams to greatness
+
+---
+
+
+# Behave 
+
+```gherkin
+Feature: showing off behave
+
+  Scenario: run a simple test
+     Given we have behave installed
+      When we implement a test
+      Then behave will test it for us!
+```
+
+```python
+from behave import *
+
+@given('we have behave installed')
+def step_impl(context):
+    pass
+
+@when('we implement a test')
+def step_impl(context):
+    assert True is not False
+
+@then('behave will test it for us!')
+def step_impl(context):
+    assert context.failed is False
+```
+
+---
+
+```text [1|3|5-8|10-13]
+> behave
+
+Feature: showing off behave # features/tutorial.feature:1
+
+  Scenario: run a simple test        # features/tutorial.feature:3
+    Given we have behave installed   # features/steps/tutorial_steps.py:4 0.000s
+    When we implement a test         # features/steps/tutorial_steps.py:9 0.000s
+    Then behave will test it for us! # features/steps/tutorial_steps.py:14 0.000s
+
+1 feature passed, 0 failed, 0 skipped
+1 scenario passed, 0 failed, 0 skipped
+3 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.000s
+```
+
+---
+
+Riscriviamo il vecchio test
+
+```text 
+Dato un documento 
+    di tipo distinta materiale
+    a prescindere dallo stato,
+    a prescindere dalla firma digitale
+quando gli viene associato un colore
+allora il colore associato è il GIALLO
+```
+
+---
+
+```gherkin
+Feature: Assegnazione colore documento
+
+  Scenario: Assegnamento colore documento distinta materiale
+    Given documento di tipo distinta materiale
+    When associato un colore
+    Then il colore associato è il GIALLO
+```
+
+---
+
+```gherkin
+Feature: Assegnazione colore documento
+
+  Scenario: Assegnamento colore documento distinta materiale
+    Given documento di tipo distinta materiale
+    Then il colore associato è il GIALLO
+```
+
+---
+
+```python [4-11|13-17]
+from behave import given, then, when
+from document import Colori, Documento, StatoDocumento, TipoDocumento
+
+@given("documento di tipo distinta materiale")
+def step_given_documento_distinta_materiale(context):
+    context.documento = Documento(
+        tipo=TipoDocumento.DISTINTA_MATERIALI,
+        stato=StatoDocumento.INVIATO,
+        protocollo="125",
+        firmato=False,
+    )
+
+@then("il colore associato è il GIALLO")
+def step_then_colore_associato(context):
+    assert context.documento.colore() == Colori.GIALLO
+
+
+```
+
+---
+
+Possiamo anche generalizzare il test
+
+```python 
+@then("il colore associato è il GIALLO")
+def step_then_colore_associato(context):
+    assert context.documento.colore() == Colori.GIALLO
+```
+
+```python
+@then("il colore associato è il {colore}")
+def step_then_colore_associato(context):
+    assert context.documento.colore() == Colori[colore]
+```
+
+---
+
+Possiamo specificare piu' scenari
+
+```gherkin
+Feature: Assegnazione colore documento
+
+  Scenario: Assegnamento colore documento distinta materiale
+    Given documento di tipo distinta materiale
+    Then il colore associato è il GIALLO
+
+  Scenario: Assegnamento colore documento in lavorazione
+    Given documento in stato di lavorazione, firmato
+    Then il colore associato è il ROSSO
+```
+
+---
+
+```python [1-8|11-18|21-26]
+@given("documento di tipo distinta materiale")
+def step_given_documento_distinta_materiale(context):
+    context.documento = Documento(
+        tipo=TipoDocumento.DISTINTA_MATERIALI,
+        stato=StatoDocumento.INVIATO,
+        protocollo="125",
+        firmato=False,
+    )
+
+
+@given("documento in stato di lavorazione, firmato")
+def step_given_documento_in_lavorazione(context):
+    context.documento = Documento(
+        tipo=TipoDocumento.FATTURA,
+        stato=StatoDocumento.IN_LAVORAZIONE,
+        protocollo="125",
+        firmato=True,
+    )
+
+
+@then("il colore associato è il {colore}")
+def step_then_colore_associato(context, colore):
+    assert context.documento.colore() == Colori[colore]
+    
+
+```
+
+---
+
+Utilizzo di template
+
+```gherkin
+Feature: Asssegnazione colore documento
+
+  Scenario Outline: Assegnamento colore documento
+    Given documento di tipo <tipo>, nello stato <stato>, firmato <firmato>
+    Then il colore associato è il <colore>
+
+    Examples:
+      | tipo               | stato           | firmato     | colore |
+      | DISTINTA_MATERIALI | ANY             | ANY         | GIALLO |
+      | FATTURA            | IN_LAVORAZIONE  | True        | ROSSO  |
+```
+
+---
+
+```python [1-8|11-18|21-26]
+@given("documento di tipo {tipo}, nello stato {stato}, firmato {firmato}")
+def step_given_documento_distinta_materiale(context, tipo, stato, firmato):
+
+    tipo = TipoDocumento[tipo] if tipo != "ANY" else random.choice(list(TipoDocumento))
+    stato = StatoDocumento[stato] if stato != "ANY" else random.choice(list(StatoDocumento))
+    firmato = bool(firmato == "True") if firmato != "ANY" else random.choice([True, False])
+
+    context.documento = Documento(tipo=tipo, stato=stato, protocollo="125", firmato=firmato)
+
+
+@then("il colore associato è {colore}")
+def step_then_colore_associato(context, colore):
+    assert context.documento.colore() == Colori[colore]
+
+
+```
+
+---
+
+# Specifica per esempi
+
+- Impossibile da fraintendere
+<!-- .element: class="fragment" -->
+
+- Facile da reperire
+<!-- .element: class="fragment" -->
+
+- Un unico test e' in grado di testare piu' scenari
+<!-- .element: class="fragment" -->
+
+- Tutti gli esempi successivi li forniscono gli stakeholder
+<!-- .element: class="fragment" -->
+
+
+---
+
+
+Un esempio un po' piu' complesso
+
+```gherkin [|2-3|5-9|11-15|]
+Feature: Versionamento documenti
+  Come utente del sistema documentale Voglio salvare una nuova versione di un
+  documento Per tenere traccia delle modifiche effettuate
+
+  Scenario: Caricamento di una nuova versione di un documento
+    Given il documento "Contratto.docx" ha la versione 1.0
+    When viene caricato una nuova versione del "Contratto.docx"
+    Then il sistema aggiorna il documento alla versione 1.1
+    AND il sistema aggiorna lo storico versioni del "Contratto.docx"
+
+  Scenario: Visualizzazione storico versioni
+    Given il documento "Contratto.docx" con tre versioni salvate
+    Then il sistema mostra le versioni 1.0, 1.1, e 1.2 con data e autore delle modifiche
+```
+
+---
+
+# User story
+
+> Una user story e' un placeholder per un'intera conversazione
+<!-- .element: class="align-left" -->
+
+
+```gherkin
+As <role> I want <feature> so that <benefit>
+```
+
+```text
+  Come utente del sistema documentale
+  Voglio salvare una nuova versione di un documento
+  Per tenere traccia delle modifiche effettuate
+```
+
+---
+
+# User stories
+
+- Focus sul valore della funzionalita'
+<!-- .element: class="fragment" -->
+
+- Specificano lo scopo per cui una funzionalita' e' sviluppata
+<!-- .element: class="fragment" -->
+
+- Non spiegano il come, ma il cosa e soprattutto il perche'
+<!-- .element: class="fragment" -->
+
+---
+
+
+Quando una feature e' troppo grossa non 
+si puo' implementare il codide direttamente tutto
+in un volta sola
+
+---
+
+# Ciclo di sviluppo di ATTD
+
+1. Scrivere un test di accettazione
+<!-- .element: class="fragment" -->
+2. Implementare le funzionalita' 
+<!-- .element: class="fragment" -->
+    - Scrivere uno Unit test 
+    <!-- .element: class="fragment" -->
+    - Scrivere codice minimo per far passare il test
+    <!-- .element: class="fragment" -->
+    - Rifattorizzare il codice mantenendo i test verdi
+    <!-- .element: class="fragment" -->
+    - Ripetere il ciclo fino ad acceptant test verde
+    <!-- .element: class="fragment" -->
+3. Rifattorizzare il codice mantenendo i test verdi
+<!-- .element: class="fragment" -->
+
+---
+
+1. Scriivere un test di accettazione
+
+```gherkin
+Scenario: Caricamento di una nuova versione di un documento
+    Given il documento "Contratto.docx" ha la versione 1.0
+    When viene caricato una nuova versione del "Contratto.docx"
+    Then il sistema aggiorna il documento alla versione 1.1
+    AND il sistema aggiorna lo storico versioni del "Contratto.docx"
+```
+
+```python [|1-4|6-9|10-16]
+@given('il documento "{nome}" ha la versione {versione}')
+def step_given_documento_con_versione(context, nome, versione):
+    context.gestore = GestoreDocumenti()
+    context.gestore.aggiungi_documento(nome, versione, autore="Mario Rossi")
+
+@when('viene caricata una nuova versione del "{nome}"')
+def step_when_nuova_versione(context, nome):
+    context.gestore.nuova_versione(nome, autore="Mario Rossi")
+
+@then("il sistema aggiorna il documento alla versione {nuova_versione}")
+def step_then_versione_aggiornata(context, nuova_versione):
+    documento = context.gestore.storico_versioni("Contratto.docx")
+    ultima_versione = documento[-1].numero
+    assert ultima_versione == nuova_versione
+
+```
+---
+
+2. Implementare le funzionalita'
+
+```python [|1-6|8-19|]
+
+@dataclass
+class Versione:
+    numero: str
+    data: datetime
+    autore: str
+
+class GestoreDocumenti:
+    def __init__(self):
+        self.documenti = {}
+
+    def aggiungi_documento(self, nome, versione_iniziale, autore):
+        pass
+
+    def nuova_versione(self, nome, autore):
+        pass
+
+    def storico_versioni(self, nome):
+        pass
+
+```
+
+---
+
+2. Implementare le funzionalita'
+    - Scrivere uno Unit test
+
+```python [|7|7-15]
+class TestGestoreDocumenti(unittest.TestCase):
+
+    def setUp(self):
+        """Setup eseguito prima di ogni test"""
+        self.gestore = GestoreDocumenti()
+
+    def test_crea_versione_iniziale_documento_when_aggiungi_documento_called(self):
+        """Test che il metodo aggiunga correttamente un documento"""
+        self.gestore.aggiungi_documento("Contratto.docx", "1.0", "Mario Rossi")
+
+        # Verifica che il documento sia stato aggiunto correttamente
+        documenti = self.gestore.storico_versioni("Contratto.docx")
+        self.assertEqual(len(documenti), 1)
+        self.assertEqual(documenti[0].numero, "1.0")
+        self.assertEqual(documenti[0].autore, "Mario Rossi")
+```
+
+---
+
+2. Implementare le funzionalita'
+    - Scrivere codice minimo per far passare il test
+
+```python [5-7]
+class GestoreDocumenti:
+    def __init__(self):
+        self.documenti = {}
+
+    def aggiungi_documento(self, nome, versione_iniziale, autore):
+        versione = Versione(numero="1.0", data=datetime.now(), autore="Mario Rossi")
+        self.documenti[nome] = [versione]
+
+    def storico_versioni(self, nome):
+        return self.documenti.get(nome, [])
+```
+
+---
+
+2. Implementare le funzionalita'
+    - Rifattorizzare il codice mantenendo i test verdi
+
+```python [5-11]
+class GestoreDocumenti:
+    def __init__(self):
+        self.documenti = {}
+
+    def aggiungi_documento(self, nome, versione_iniziale, autore):
+        versione = Versione(
+            numero=versione_iniziale,
+            data=datetime.now(),
+            autore=autore,
+        )
+        self.documenti[nome] = [versione]
+
+    def storico_versioni(self, nome):
+        return self.documenti.get(nome, [])
+```
+
+---
+
+2. Implementare le funzionalita'
+    - Scrivere uno Unit test
+
+```python 
+    def test_aggiorna_versione_when_nuova_version_called_with_correct_data(self):
+        """Test che il metodo aggiunga una nuova versione a un documento esistente"""
+        self.gestore.aggiungi_documento("Contratto.docx", "1.0", "Mario Rossi")
+        self.gestore.nuova_versione("Contratto.docx", "Luigi Bianchi")
+
+        # Verifica che sia stata aggiunta una nuova versione
+        documenti = self.gestore.storico_versioni("Contratto.docx")
+        self.assertEqual(len(documenti), 2)
+        self.assertEqual(documenti[-1].numero, "1.1")  # La versione dovrebbe essere 1.1
+        self.assertEqual(documenti[-1].autore, "Luigi Bianchi")
+```
+
+---
+
+2. Implementare le funzionalita'
+    - Scrivere codice minimo per far passare il test
+
+```python
+class GestoreDocumenti:
+    def nuova_versione(self, nome, autore):
+        Versione(
+            numero="1.1",
+            data=datetime.now(),
+            autore="Luigi Bianchi",
+        )
+        storico.append(nuova_versione)
+
+```
+
+---
+
+2. Implementare le funzionalita'
+    - Rifattorizzare il codice mantenendo i test verdi
+
+```python
+class GestoreDocumenti:
+    def nuova_versione(self, nome, autore):
+        storico = self.documenti.get(nome)
+        if not storico:
+            raise ValueError("Documento non trovato")
+
+        # Ottieni l'ultima versione e calcola la nuova
+        ultima_versione = storico[-1]
+        nuova_versione_num = f"{float(ultima_versione.numero) + 0.1:.1f}"
+        nuova_versione = Versione(
+            numero=nuova_versione_num,
+            data=datetime.now(),
+            autore=autore,
+        )
+        storico.append(nuova_versione)
+
+```
+---
+
+3. Test verdi - Rifattorizzare con test verdi
+
+```text [1-2|5-10|11-13|14-17|18-21]
+> behave features/versionamento-documenti.feature
+Feature: Versionamento documenti 
+  Come utente del sistema documentale
+  Voglio salvare una nuova versione di un documento
+  Per tenere traccia delle modifiche effettuate
+  Scenario: Caricamento di una nuova versione di un documento        
+    Given il documento "Contratto.docx" ha la versione 1.0           
+    When viene caricata una nuova versione del "Contratto.docx"      
+    Then il sistema aggiorna il documento alla versione 1.1          
+    And il sistema aggiorna lo storico versioni del "Contratto.docx" 
+
+  Scenario: Visualizzazione storico versioni                                           
+    Given il documento "Contratto.docx" con tre versioni salvate                       
+    Then il sistema mostra le versioni 1.0, 1.1, 1.2 con data e autore delle modifiche 
+
+1 feature passed, 0 failed, 0 skipped
+2 scenarios passed, 0 failed, 0 skipped
+6 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.000s
+```
+<!-- .element: class="fs-06" -->
+
+
+---
+
+Bob ha portato a termine il progetto insieme a Mario \
+Una funzionalita' alla volta
+
+---
+
+# Cosa abbiamo visto
+
+- Accettazione con Gherkin syntax
+- Test di accettazione per sviluppare codice
+- Test di accettazione come documentazione
+- Test di accettazione come verita'
+
+---
+
+# Cosa abbiamo visto
+- Given, When, Then
+- As a, I want, So that
+- TDD e ATDD
+
+---
+
+Ed Alice?
+
+---
+
+Alice ha imparato ad utilizzare ATDD
+e quando sara' lei a scappare in Brasile 
+potra' lasciare il programmatore successivo con serenita'
+
+---
+
+Perche' e' importante ricordare di...
+
+---
+
+> Scrivere software come se il programmatore che prendera' in mano il vostro
+> codice fosse uno psicopatico che sa dove abitate
+
+
+---
+
+# Grazie per l'attenzione
           </textarea>
         </section>
       </div>
