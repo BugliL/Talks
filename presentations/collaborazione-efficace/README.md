@@ -623,14 +623,30 @@ allora il colore associato è il GIALLO
 
 ---
 
+Il Gherkin pattern puo' essere utilizzato in qualsiasi
+contesto per descrivere un caso specifico
+
+---
+
 # La piramide dei test
 
 <img class="w-50" src="./test-pyramid.png" />
 
 ---
 
-TODO: esempio di Gherkin pattern per unit test
+```python [|2|3-4|6-7|9-11]
+class CarrelloShould(unittest.TestCase):
+    def test_given_empty_cart_when_product_added_then_cart_contains_product(self):
+        # Given
+        carrello = Carrello()
 
+        # When
+        carrello.aggiungi_prodotto("Laptop")
+
+        # Then
+        self.assertEqual(carrello.totale_prodotti(), 1)
+        self.assertIn("Laptop", carrello.prodotti)
+```
 ---
 
 Ci sono dei sistemi piu' avanzati per scrivere test di accettazione?
@@ -648,7 +664,7 @@ Tools & techniques that elevate teams to greatness
 ---
 
 
-# Behave 
+# Gherkin
 
 ```gherkin
 Feature: showing off behave
@@ -658,8 +674,13 @@ Feature: showing off behave
       When we implement a test
       Then behave will test it for us!
 ```
+File: tutorial.feature
 
-```python
+---
+
+# Behave - Libreria python
+
+```python [|3-5|7-9|11-13]
 from behave import *
 
 @given('we have behave installed')
@@ -674,6 +695,7 @@ def step_impl(context):
 def step_impl(context):
     assert context.failed is False
 ```
+File: tutorial.py
 
 ---
 
@@ -816,16 +838,16 @@ def step_then_colore_associato(context, colore):
 Utilizzo di template
 
 ```gherkin
-Feature: Asssegnazione colore documento
+Feature: Assegnazione colore documento
 
   Scenario Outline: Assegnamento colore documento
     Given documento di tipo <tipo>, nello stato <stato>, firmato <firmato>
     Then il colore associato è il <colore>
 
     Examples:
-      | tipo               | stato           | firmato     | colore |
-      | DISTINTA_MATERIALI | ANY             | ANY         | GIALLO |
-      | FATTURA            | IN_LAVORAZIONE  | True        | ROSSO  |
+      | tipo        | stato           | firmato     | colore |
+      | DISTINTA    | ANY             | ANY         | GIALLO |
+      | FATTURA     | IN_LAVORAZIONE  | True        | ROSSO  |
 ```
 
 ---
@@ -870,10 +892,11 @@ def step_then_colore_associato(context, colore):
 
 Un esempio un po' piu' complesso
 
-```gherkin [|2-3|5-9|11-15|]
+```gherkin [|2-4|6-10|12-16||2-4]
 Feature: Versionamento documenti
-  Come utente del sistema documentale Voglio salvare una nuova versione di un
-  documento Per tenere traccia delle modifiche effettuate
+  Come utente del sistema documentale 
+  Voglio salvare una nuova versione di un documento 
+  Per tenere traccia delle modifiche effettuate
 
   Scenario: Caricamento di una nuova versione di un documento
     Given il documento "Contratto.docx" ha la versione 1.0
