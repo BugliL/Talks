@@ -103,7 +103,7 @@ per arrivare a fine giornata
 <div class="flex">
     <div>
         <img class="w-50" src="./linkedin.png" /><br />
-        Profilo Linkedin 
+        Mio Profilo Linkedin 
     </div>
     <div>
         <img class="w-50" src="./schroedinger-hat-qr-code.png" /><br />
@@ -333,7 +333,7 @@ code later
 1. Scrivere un test che fallisce
 <!-- .element class="fragment" -->
 
-2. Implementare il <span style="color: #ffaa00 ">codice minimo</span> per far
+2. Implementare il <span class="text-blue-highlight">codice minimo</span> per far
 passare il test
 <!-- .element class="fragment" -->
 
@@ -400,7 +400,7 @@ FAILED (failures=1)
 
 ---
 
-2. Implementare il codice minimo per far passare il test
+2. Implementare il <span class="text-blue-highlight">codice minimo</span> per far passare il test
 ```python [8-9]
 @dataclass
 class Documento:
@@ -480,7 +480,7 @@ Ran 1 test in 0.000s
 1. Scrivere un test che fallisce
 <!-- .element class="fragment fade-out" data-fragment-index="2" -->
 
-2. Implementare il <span style="color: #ffaa00 ">codice minimo</span> per far
+2. Implementare il <span class="text-blue-highlight">codice minimo</span> per far
 passare il test
 
 1. Rifattorizzare mantenendo i test verdi
@@ -547,7 +547,7 @@ class ColoreDocumentoShould(TestCase):
 
 ---
 
-2. Implementare il codice minimo per far passare il test
+2. Implementare il <span class="text-blue-highlight">codice minimo</span> per far passare il test
 
 ```python
     def colore(self) -> Colors:
@@ -585,7 +585,6 @@ Nessuna modifica necessaria
 
 - Si è reso conto che la specifica iniziale era ambigua
 <!-- .element: class="fragment" -->
-
 - Ha capito come descrivere le specifiche in un formato utile per Bob
 <!-- .element: class="fragment" -->
 
@@ -595,7 +594,6 @@ Nessuna modifica necessaria
 
 - Ha integrato la specifica direttamente nel codice
 <!-- .element: class="fragment" -->
-
 - Ogni specifica integrata ha validato il comportamento del software
 <!-- .element: class="fragment" -->
 
@@ -604,6 +602,10 @@ Nessuna modifica necessaria
 # Vantaggi di entrambi
 
 - Documentazione di funzionamento gratis
+<!-- .element: class="fragment" -->
+- Comportamento software incatenato dagli acceptance test
+<!-- .element: class="fragment" --> 
+- Possibilità di verificare il comportamento del software in tutte le funzionalità
 <!-- .element: class="fragment" -->
 
 ---
