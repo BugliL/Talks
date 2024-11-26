@@ -475,7 +475,7 @@ Ran 1 test in 0.000s
 
 ---
 
-# Qual'è la fase piu' importante?
+# Qual è la fase piu' importante?
 
 1. Scrivere un test che fallisce
 <!-- .element class="fragment fade-out" data-fragment-index="2" -->
@@ -1221,7 +1221,7 @@ Took 0m0.000s
 
 ---
 
-# Qual'è la fase piu' importante?
+# Qual è la fase piu' importante?
 
 1. Scrivere un test di accettazione
 2. Implementare le funzionalità 
