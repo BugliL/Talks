@@ -1027,6 +1027,27 @@ Un esempio un po' piu' complesso
 
 ---
 
+```text
+Quando un utente carica una nuova versione di un documento già esistente, come
+ad esempio "Contratto.docx", il sistema dovrebbe incrementare automaticamente il
+numero di versione. Ad esempio, se il documento è attualmente alla versione 1.0,
+dovrebbe essere aggiornato alla versione 1.1. Allo stesso tempo, il sistema
+dovrebbe mantenere traccia di tutte le modifiche effettuate, aggiornando lo
+storico versioni con le informazioni rilevanti.
+
+Inoltre, sarebbe importante permettere agli utenti di visualizzare lo storico
+delle versioni per ogni documento. L'implementazione di queste funzionalità
+risponde alla necessità di garantire una gestione trasparente, organizzata e
+tracciabile delle modifiche ai documenti, così da migliorare l'efficienza e la
+sicurezza nel nostro flusso di lavoro.
+
+Lo storico dei documenti dovrebbe anche includere anche la data modifica e
+l’autore che ha effettuato i cambiamenti. Queste funzionalità sono essenziali
+per assicurare una gestione trasparente e completa dei documenti.
+```
+
+---
+
 Un esempio un po' piu' complesso
 
 ```gherkin [|2-4|6-10|12-16||2-4]
@@ -1067,9 +1088,10 @@ As <role> I want <feature> so that <benefit>
 ---
 
 # Cosa succede per acceptance test grandi?
-Quando una feature è troppo grossa non 
-si puó implementare il codide direttamente tutto
+Quando una feature è troppo grossa non \
+si puó implementare il codice direttamente tutto \
 in un volta sola
+<!-- .element: class="align-left" -->
 
 ---
 
