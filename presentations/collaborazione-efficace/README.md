@@ -1,7 +1,7 @@
 ---
 title: Collaborazione Efficace tra Team di Sviluppo e Stakeholder
 author: Lorenzo Bugli
-footer: 2024-11-26 - Nana Bianca, Firenze
+footer: 2024-11-27 - Nana Bianca, Firenze
 footerIconUrl: https://www.schroedinger-hat.org/assets/sh-logo-big-UQdXK547.png
 revealOptions:
   transition: none
@@ -185,25 +185,13 @@ che aiuti il lavoro di tutti i giorni.
 
 ---
 
-Mario commissiona il lavoro di sviluppo a Bob
+Mario commissiona il lavoro di sviluppo a Bob e gli fornisce una serie di
+specifiche già scritte
 
 ---
 
-Una delle feature chiave del software è quella di 
-<span class="text-blue-highlight">associare ai documenti</span>
-dei <span class="text-blue-highlight">colori</span> in base ai
-<span class="text-blue-highlight">campi</span> del documento stesso
+Estratto delle specifiche 
 
----
-
-I campi del documento che fanno variare il colore:
-- Tipo di documento
-- Stato del documento
-- Firma digitale applicata
-
----
-
-Specifica software scritta da Mario
 ```text
 Il sistema deve associare a tutti i documenti firmati 
 digitalmente il colore verde.  
@@ -232,17 +220,24 @@ senza accorgersi delle discrepanze inizia a sviluppare
 
 ---
 
-Dopo l'implementazione di Bob il software sembrava funzionare, 
-ma Mario si è accorto che i documenti firmati digitalmente 
+Passano i giorni...
+
+---
+
+Bob continua a sviluppare
+
+---
+
+Ad un certo punto...
+
+---
+
+Mario si è accorto che i documenti firmati digitalmente 
 in lavorazione non avevano il colore rosso
 
 ---
 
-Mario e Bob si scontrano su cosa sia corretto
-
----
-
-Suona familiare?
+Meeting di riepilogo
 ![analisys-misanderstanding](./analisys-misunderstanding.png)
 
 ---
@@ -302,14 +297,14 @@ in quel caso devono avere il colore blu.
 ```gherkin
 Dato un documento di tipo disegno tecnico.
 Quando il documento è in lavorazione.
-Allora il colore associato deve essere blu.
+Allora il colore associato deve essere BLU.
 ```
 <!-- .element: class="fragment" -->
 
 ```gherkin
-Dato un documento di tipo disegno tecnico.
+Dato un documento non di tipo disegno tecnico.
 Quando il documento è in lavorazione.
-Allora il colore associato deve essere blu.
+Allora il colore associato deve essere ROSSO.
 ```
 <!-- .element: class="fragment" -->
 
@@ -357,7 +352,7 @@ allora il colore associato è il ROSSO
 <!-- .element: class="fragment" -->
 - Il formato della specifica risulta piu' chiaro
 <!-- .element: class="fragment" -->
-- Bob e Mario hanno concordato sul comportamento del software
+- Risultato concordato tra Dev e Stakeholder
 <!-- .element: class="fragment" -->
 
 Note: chiunque e' in grado di validarlo
@@ -367,7 +362,9 @@ Note: chiunque e' in grado di validarlo
 Bob si e' stufato di provare il software a mano
 ed ha deciso di scrivere dei test automatizzati
 
-Bob decide di passare al test driven development, TDD
+---
+
+Bob decide di passare al <span class="text-blue-highlight">test driven development</span>
 
 ---
 
@@ -733,7 +730,7 @@ FAILED (failures=1)
 
 ---
 
-Gherkin unit test 
+Gherkin come titolo del test
 
 - aiuta la lettura e la comprensione del test stesso
 <!-- .element: class="fragment" -->
@@ -742,7 +739,8 @@ Gherkin unit test
 
 ---
 
-Ci sono dei sistemi più avanzati per scrivere test di accettazione?
+Bob è pigro e si chiede:
+"ci sono dei sistemi più avanzati per scrivere test di accettazione?"
 
 ---
 
@@ -1104,7 +1102,7 @@ nel nostro flusso di lavoro.
 
 ---
 
-```gherkin [|2-6|8-12|14-18|20-24]
+```gherkin [|2-6|8-12|13-16|18-21]
 Feature: Gestione del Cestino e Rimozione Documenti
 
   Scenario: Spostamento di un documento nel Cestino invece di eliminarlo
