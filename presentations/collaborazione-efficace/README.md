@@ -158,6 +158,12 @@ sono sempre le stesse
 
 ---
 
+## Test automatizzati
+
+TODO: scrivere qualcosa sui test automatizzati
+
+---
+
 Bella la teoria, ma cosa succede poi nella pratica?
 
 ---
@@ -190,8 +196,10 @@ puó aiutare a ridurre i problemi di comunicazione collaborando alla
 
 ---
 
-Mario è un dirigente di un'azienda di progettazione di <span class="text-blue-highlight">impianti industriali</span>
-che ha bisogno di un <span class="text-blue-highlight">software documentale</span> che aiuti il lavoro di tutti i giorni.
+Mario è un dirigente di un'azienda di progettazione di 
+<span class="text-blue-highlight">impianti industriali</span>
+che ha bisogno di un <span class="text-blue-highlight">software documentale</span> 
+che aiuti il lavoro di tutti i giorni.
 
 ---
 
@@ -547,7 +555,7 @@ Ran 1 test in 0.000s
 2. Implementare il <span class="text-blue-highlight">codice minimo</span> per far
 passare il test
 
-1. Rifattorizzare mantenendo i test verdi
+3. Rifattorizzare mantenendo i test verdi
 <!-- .element class="fragment fade-out" data-fragment-index="2" -->
 
 ---
@@ -1359,7 +1367,7 @@ Una funzionalità alla volta
 
 # Cosa abbiamo visto
 
-- Accettazione con Gherkin syntax
+- Traduzione in test di accettazione 
 - Test di accettazione per sviluppare codice
 - Test di accettazione come documentazione
 - Test di accettazione come verità
@@ -1367,6 +1375,7 @@ Una funzionalità alla volta
 ---
 
 # Cosa abbiamo visto
+- Gherkin syntax
 - Given, When, Then
 - As a, I want, So that
 - TDD e ATDD
