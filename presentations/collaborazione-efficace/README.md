@@ -141,26 +141,8 @@ per <span class="text-blue-highlight">risolvere</span> un <span class="text-blue
   funzionalità
 <!-- .element: class="fragment" data-fragment-index="4"  -->
 
-
----
-
-## Fasi dello sviluppo software - teoria
-
-![development lifecycle](./software-lifecycle.png)
-<!-- .element: class="right-col" -->
-
-<br/>
-
-Qualsiasi sia il framework di sviluppo 
-le macro aree del ciclo di vita del software 
-sono sempre le stesse 
-<!-- .element: class="align-left" -->
-
----
-
-## Test automatizzati
-
-TODO: scrivere qualcosa sui test automatizzati
+Note: Qualsiasi sia il framework di sviluppo le macro aree del ciclo \
+sono sempre le stesse
 
 ---
 
@@ -270,7 +252,7 @@ le specifiche sottoforma di <span class="text-blue-highlight">test di accettazio
 
 ---
 
-# Parte "A" di ATDD
+# Acceptance test
 
 Un specifica software scritta da Mario insieme a Bob
 
@@ -283,8 +265,8 @@ quando gli viene associato un colore
 allora il colore associato è il ROSSO
 ```
 
-
 ---
+
 ```text []
 Il sistema deve associare a tutti i documenti firmati 
 digitalmente il colore verde.  
@@ -378,16 +360,17 @@ allora il colore associato è il ROSSO
 - Bob e Mario hanno concordato sul comportamento del software
 <!-- .element: class="fragment" -->
 
----
-
-Come utilizza Bob la specifica fornita?
-
-Parte TDD di ATDD
-<!-- .element: class="fragment" -->
+Note: chiunque e' in grado di validarlo
 
 ---
 
-# Parte "TDD" di ATDD
+Bob si e' stufato di provare il software a mano
+ed ha deciso di scrivere dei test automatizzati
+
+Bob decide di passare al test driven development, TDD
+
+---
+
 ## Test Driven Development
 
 ---
@@ -1035,6 +1018,8 @@ Un esempio un po' piu' complesso
 
 ---
 
+Un esempio un po' piu' complesso
+
 ```text
 Quando un utente carica una nuova versione di un documento già esistente, come
 ad esempio "Contratto.docx", il sistema dovrebbe incrementare automaticamente il
@@ -1055,8 +1040,6 @@ per assicurare una gestione trasparente e completa dei documenti.
 ```
 
 ---
-
-Un esempio un po' piu' complesso
 
 ```gherkin [|2-4|6-10|12-16||2-4]
 Feature: Versionamento documenti
@@ -1095,11 +1078,66 @@ As <role> I want <feature> so that <benefit>
 
 ---
 
-# Cosa succede per acceptance test grandi?
-Quando una feature è troppo grossa non \
-si puó implementare il codice direttamente tutto \
-in un volta sola
-<!-- .element: class="align-left" -->
+# Un altro esempio
+
+```text
+Quando un utente elimina un documento dal sistema, il sistema dovrebbe spostare
+il documento nel "Cestino" piuttosto che rimuoverlo definitivamente. Ad esempio,
+se un documento "Rapporto_2024.pdf" viene eliminato, il sistema deve
+automaticamente archiviare il documento nel Cestino e mantenerlo lì per un
+periodo di 30 giorni, durante il quale l'utente può ripristinarlo facilmente.
+
+Dopo il periodo di 30 giorni, il sistema dovrebbe eliminare definitivamente il
+documento dal Cestino. Allo stesso tempo, il sistema dovrebbe tenere traccia
+della data di eliminazione e dell'autore che ha effettuato l'operazione. Questo
+comportamento garantisce che i documenti eliminati non vengano persi
+accidentalmente, permettendo agli utenti di ripristinarli in caso di errore o
+necessità, migliorando la sicurezza e la protezione dei dati.
+
+Inoltre, sarebbe utile per gli utenti poter visualizzare una lista dei documenti
+nel Cestino, con la data di eliminazione e l'autore della rimozione, così da
+garantire una gestione chiara e tracciabile delle operazioni di eliminazione.
+Queste funzionalità sono cruciali per fornire un ulteriore livello di protezione
+contro la perdita accidentale dei dati, aumentando la trasparenza e la sicurezza
+nel nostro flusso di lavoro.
+```
+
+---
+
+```gherkin [|2-6|8-12|14-18|20-24]
+Feature: Gestione del Cestino e Rimozione Documenti
+
+  Scenario: Spostamento di un documento nel Cestino invece di eliminarlo
+    Given un documento "Rapporto_2024.pdf" è presente nel sistema
+    When il documento viene eliminato
+    Then il documento viene spostato nel Cestino
+
+  Scenario: Tracciamento della data e autore dell'eliminazione
+    Given un documento "Rapporto_2024.pdf" è stato eliminato dal sistema
+    When il documento viene spostato nel Cestino o eliminato definitivamente
+    Then il sistema registra la data e l'autore dell'eliminazione
+
+  Scenario: Rimozione definitiva di un documento dal Cestino
+    Given un documento "Rapporto_2024.pdf" è nel Cestino 
+    When il documento è rimasto nel Cestino per 30 giorni
+    Then il sistema elimina definitivamente il documento dal Cestino
+
+  Scenario: Ripristino di un documento dal Cestino
+    Given un documento "Rapporto_2024.pdf" è nel Cestino
+    When il documento viene ripristinato dal Cestino 
+    Then il documento torna nel suo stato precedente alla cancellazione 
+```
+
+---
+
+# Cosa succede per acceptance test complesso?
+
+Bob non può scrivere tutto il codice in una volta
+per un test di accettazione complesso.
+
+---
+
+Bob decide di cambiare il suo ciclo di sviluppo
 
 ---
 
