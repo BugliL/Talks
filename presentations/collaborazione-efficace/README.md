@@ -128,8 +128,8 @@ per <span class="text-blue-highlight">risolvere</span> un <span class="text-blue
 ![development lifecycle](./software-lifecycle.png)
 <!-- .element: class="fragment right-col" data-fragment-index="5" -->
 
-<br/>
-<br/>
+<br />
+<br />
 
 - Scrittura dei requisiti
 <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -137,8 +137,10 @@ per <span class="text-blue-highlight">risolvere</span> un <span class="text-blue
 <!-- .element: class="fragment" data-fragment-index="2"  -->
 - Implementazione del codice
 <!-- .element: class="fragment" data-fragment-index="3"  -->
-- Testing delle funzionalità
+- Verifica e testing delle \
+  funzionalità
 <!-- .element: class="fragment" data-fragment-index="4"  -->
+
 
 ---
 
@@ -256,7 +258,7 @@ Suona familiare?
 ---
 
 Bob cambia approccio e decide di scrivere insieme a Mario
-le specifiche sottoforma di test di accettazione
+le specifiche sottoforma di <span class="text-blue-highlight">test di accettazione</span>
 
 ---
 
@@ -287,7 +289,7 @@ colore rosso a meno che non siano di tipo disegno tecnico,
 in quel caso devono avere il colore blu.
 ```
 
-```text[|1-4|5|6]
+```text 
 Dato un documento 
     firmato digitalmente, 
     di qualsiasi tipo, 
@@ -299,10 +301,71 @@ allora il colore associato è il ROSSO
 
 ---
 
-# Cosa è successo?
-- Il formato della specifica risulta piu' chiaro
+Traduciamo insieme
+
+```text
+I documenti in lavorazione devono essere associati al 
+colore rosso a meno che non siano di tipo disegno tecnico, 
+in quel caso devono avere il colore blu.
+```
+
+```gherkin
+Dato un documento di tipo disegno tecnico.
+Quando il documento è in lavorazione.
+Allora il colore associato deve essere blu.
+```
 <!-- .element: class="fragment" -->
-- Il test di accettazione non fa riferimento a nessun costrutto software
+
+```gherkin
+Dato un documento di tipo disegno tecnico.
+Quando il documento è in lavorazione.
+Allora il colore associato deve essere blu.
+```
+<!-- .element: class="fragment" -->
+
+---
+
+Altro esempio
+
+```text
+Se un documento è inizialmente "non in lavorazione", deve avere associato il
+colore grigio. Tuttavia, nel momento in cui il suo stato passa a "in
+lavorazione", il sistema deve automaticamente aggiornare il colore associato a
+blu, dato che si tratta di un disegno tecnico.
+```
+
+```gherkin
+Dato un documento di tipo disegno tecnico.
+Quando il documento è nello stato "non in lavorazione".
+Allora il colore associato deve essere grigio.
+```
+<!-- .element: class="fragment" -->
+
+```gherkin
+Dato un documento di tipo disegno tecnico.
+Quando il suo stato passa da "non in lavorazione" a "in lavorazione".
+Allora il colore associato deve cambiare automaticamente da grigio a blu.
+```
+<!-- .element: class="fragment" -->
+
+---
+
+# Cosa è successo?
+
+```text 
+Dato un documento 
+    firmato digitalmente, 
+    di qualsiasi tipo, 
+    in stato di lavorazione
+quando gli viene associato un colore
+allora il colore associato è il ROSSO
+```
+
+- Il linguaggio comune, comprensibile a chiunque
+<!-- .element: class="fragment" -->
+- La struttura rigida impedisce fraintendimenti
+<!-- .element: class="fragment" -->
+- Il formato della specifica risulta piu' chiaro
 <!-- .element: class="fragment" -->
 - Bob e Mario hanno concordato sul comportamento del software
 <!-- .element: class="fragment" -->
@@ -344,7 +407,8 @@ passare il test
 
 <img class="w-25" src="./code-qr-code.png" />
 
-Repository con il codice di esempio
+Repository con il codice di esempio \
+Scritto in Python
 
 ---
 
@@ -488,7 +552,7 @@ passare il test
 
 ---
 
-# La fase 2
+# Perché la fase 2?
 ```python 
     def colore(self) -> Colors:
         return Colori.ROSSO
@@ -530,8 +594,7 @@ class Documento:
     firmato: bool
 
     def colore(self) -> Colors:
-        if self.stato == StatoDocumento.IN_LAVORAZIONE \
-            and self.firmato:
+        if self.stato == StatoDocumento.IN_LAVORAZIONE and self.firmato:
             return Colori.ROSSO
 
 class ColoreDocumentoShould(TestCase):
@@ -554,8 +617,7 @@ class ColoreDocumentoShould(TestCase):
         if self.tipo == TipoDocumento.DISTINTA_MATERIALI:
             return Colori.GIALLO
 
-        if self.stato == StatoDocumento.IN_LAVORAZIONE \
-            and self.firmato:
+        if self.stato == StatoDocumento.IN_LAVORAZIONE and self.firmato:
             return Colori.ROSSO
 ```
 
@@ -568,8 +630,7 @@ class ColoreDocumentoShould(TestCase):
         if self.tipo == TipoDocumento.DISTINTA_MATERIALI:
             return Colori.GIALLO
 
-        if self.stato == StatoDocumento.IN_LAVORAZIONE \
-            and self.firmato:
+        if self.stato == StatoDocumento.IN_LAVORAZIONE and self.firmato:
             return Colori.ROSSO
 ```
 
@@ -583,9 +644,9 @@ Nessuna modifica necessaria
 
 # Mario
 
-- Si è reso conto che la specifica iniziale era ambigua
+- Si è reso conto che la specifiche iniziali erano ambigue
 <!-- .element: class="fragment" -->
-- Ha capito come descrivere le specifiche in un formato utile per Bob
+- Ha capito come descrivere le specifiche in un comodo per Bob
 <!-- .element: class="fragment" -->
 
 ---
@@ -605,8 +666,6 @@ Nessuna modifica necessaria
 <!-- .element: class="fragment" -->
 - Comportamento software incatenato dagli acceptance test
 <!-- .element: class="fragment" --> 
-- Possibilità di verificare il comportamento del software in tutte le funzionalità
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -626,7 +685,6 @@ Then [variazione di stato oppure risultato atteso]
 ```
 
 ---
-
 
 # Gherkin pattern
 
@@ -652,12 +710,6 @@ allora il colore associato è il GIALLO
 
 Il Gherkin pattern puó essere utilizzato in qualsiasi
 contesto per descrivere un caso specifico
-
----
-
-# La piramide dei test
-
-<img class="w-50" src="./test-pyramid.png" />
 
 ---
 
@@ -699,7 +751,7 @@ Gherkin unit test
 
 ---
 
-Ci sono dei sistemi piu' avanzati per scrivere test di accettazione?
+Ci sono dei sistemi più avanzati per scrivere test di accettazione?
 
 ---
 
@@ -709,12 +761,13 @@ Ci sono dei sistemi piu' avanzati per scrivere test di accettazione?
 
 <img class="w-25" src="./cucumber-qr-code.png" />
 
-Tools & techniques that elevate teams to greatness
+Tool e librerie per integrare test di accettazione
+
 
 ---
 
-
-# Gherkin
+# Cucumber
+## Documentazione sulla sintassi Gherkin
 
 ```gherkin
 Feature: showing off behave
@@ -724,11 +777,26 @@ Feature: showing off behave
       When we implement a test
       Then behave will test it for us!
 ```
-File: tutorial.feature
+
+---
+
+# Behave 
+
+Libreria python per implementare test di accettazione
+
 
 ---
 
 # Behave - Libreria python
+
+```gherkin
+Feature: showing off behave
+
+  Scenario: run a simple test
+     Given we have behave installed
+      When we implement a test
+      Then behave will test it for us!
+```
 
 ```python [|3-5|7-9|11-13]
 from behave import *
@@ -745,7 +813,6 @@ def step_impl(context):
 def step_impl(context):
     assert context.failed is False
 ```
-File: tutorial.py
 
 ---
 
@@ -885,6 +952,23 @@ def step_then_colore_associato(context, colore):
 
 ---
 
+Bob procede con lo sviluppo
+
+---
+
+Mario si ripresenta da Bob con altri 10
+acceptance test da implementare con tutti colori diversi
+
+---
+
+Bob trova 18 incongruenze
+
+---
+
+Bob si fa furbo
+
+---
+
 Utilizzo di template
 
 ```gherkin
@@ -939,6 +1023,9 @@ def step_then_colore_associato(context, colore):
 
 ---
 
+Un esempio un po' piu' complesso
+
+---
 
 Un esempio un po' piu' complesso
 
@@ -979,20 +1066,7 @@ As <role> I want <feature> so that <benefit>
 
 ---
 
-# User stories
-
-- Focus sul valore della funzionalità
-<!-- .element: class="fragment" -->
-
-- Specificano lo scopo per cui una funzionalità è sviluppata
-<!-- .element: class="fragment" -->
-
-- Non spiegano il come, ma il cosa e soprattutto il perchè
-<!-- .element: class="fragment" -->
-
----
-
-
+# Cosa succede per acceptance test grandi?
 Quando una feature è troppo grossa non 
 si puó implementare il codide direttamente tutto
 in un volta sola
@@ -1015,6 +1089,10 @@ in un volta sola
     <!-- .element: class="fragment" -->
 3. Rifattorizzare il codice mantenendo i test verdi
 <!-- .element: class="fragment" -->
+
+---
+
+![atdd-cycle](./atdd-cycle.png)
 
 ---
 
@@ -1283,7 +1361,7 @@ potrà lasciare al suo successore tanta documentazione
 
 ---
 
-Perchè è importante ricordare di...
+Perché è importante ricordare di...
 
 ---
 
