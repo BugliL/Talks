@@ -19,54 +19,76 @@ utili per integrare il TDD in progetti già esistenti"
 
 # From Zero to Tested
 
+<img class="w-25" width="25%" src="./imgs/slide-qr-code.png" />
+
 Come aggiungere test a un progetto esistente
 
-<img class="w-25" src="./imgs/slide-qr-code.png" />
+---
+
+## Perche' i software sono privi di test automatici?
 
 ---
 
-## Perche' i software nascono senza test?
+Nei team sono presenti una o piu' persone che si oppongono allo sviluppo dei
+test
 
 ---
 
-Dobbiamo rilasciare oggi! 
+## 🏃🏻‍➡️ L'impaziente
+
+Dobbiamo correre, il progetto e' in ritardo!
+<!-- .element class="fragment" -->
+
+Dobbiamo rilasciare entro ieri! 
+<!-- .element class="fragment" -->
 
 Non c'e' tempo per sviluppare anche i test!
+<!-- .element class="fragment" -->
 
 ---
 
-Lascia stare, non buttare via tempo a scriverli!
+## 🤷🏻‍♂️ L'ignaro
 
-Sono codice inutile per l'applicazione!
+Se il codice e' scritto bene non servono!
+<!-- .element class="fragment" -->
+
+I test sono inutili per far funzionare l'applicazione!
+<!-- .element class="fragment" -->
 
 ---
+
+## 🦸🏻‍♂️ L'impavido
 
 Lascia stare i test, lo facciamo provare a mano!
+<!-- .element class="fragment" -->
+
+I test lo faranno i clienti in produzione su casi reali!
+<!-- .element class="fragment" -->
 
 ---
+
+## 😎 L'ottimista
+
+Non li facciamo adesso
+<!-- .element class="fragment" -->
 
 Li possiamo sempre aggiungere dopo! 
+<!-- .element class="fragment" -->
 
 ---
 
-## Cosa succede quando un software cresce senza test?
+## Il risultato?
 
 ---
 
-Non lo toccare, non sono sicuro che quel pezzo funzioni ancora!
+Non lo cambiare oppure non funziona piu'!
 
 ---
 
-## Sviluppo Software
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Non lo toccare, non so cosa fa quel codice!
 
 ---
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!
 
 ---
