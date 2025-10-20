@@ -31,7 +31,7 @@ https://buglil.github.io/Talks/from-zero-to-tested/#/
 
 ---
 
-Perche' le persone evitano di scrivere i test?
+Perche' le persone evitano di scriverli!
 
 ---
 
@@ -121,23 +121,49 @@ per iniziare a testare!
 
 ---
 
-## Contesto col caso peggiore
+## Il caso peggiore
+
+---
+
+## Il caso peggiore
+
+Sapendo come gestire il caso peggiore, tutti gli altri sono
+casi piu' semplici e meno complicati
+
+---
+
+## Il caso peggiore
 
 - Vi trovate su un progetto che non conoscete
 <!-- .element class="fragment" -->
 - L'applicazione e' in produzione e sta funzionando correttamente.
 <!-- .element class="fragment" -->
-- Chi ci ha lavorato e' scappato in Brasile
+- Documentazione.... che?
+<!-- .element class="fragment" -->
+- Chi ci ha lavoravo e' scappato in Brasile
 <!-- .element class="fragment" -->
 
 ---
 
-Dovete aggiungere una nuova feature, una funzionalita' che integra parte del
-codice attuale e aggiunge del comportamento
+## In poche parole
+
+- Non sapete da dove partire 
+<!-- .element class="fragment" -->
+- I rilasci non si possono fare alla leggera
+<!-- .element class="fragment" -->
+- La sola documentazione e' il codice 
+<!-- .element class="fragment" -->
+- Non avete nessuno a cui chiedere
+<!-- .element class="fragment" -->
 
 ---
 
-Qual'e' la prima cosa da fare?
+Dovete aggiungere una nuova feature <br>
+modificando codice gia' scritto e aggiungerne altro
+
+---
+
+## Qual'e' la prima cosa da fare?
 
 ---
 
