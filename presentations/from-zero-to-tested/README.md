@@ -23,6 +23,7 @@ utili per integrare il TDD in progetti già esistenti"
 <img class="w-25" width="25%" src="./imgs/slide-qr-code.png" />
 
 Come aggiungere test a un progetto esistente
+https://buglil.github.io/Talks/from-zero-to-tested/#/
 
 ---
 
@@ -30,83 +31,76 @@ Come aggiungere test a un progetto esistente
 
 ---
 
-Nei team sono presenti una o piu' persone che si oppongono allo sviluppo dei
-test
+Perche' le persone evitano di scrivere i test
 
 ---
 
 ## 🏃🏻‍➡️ L'impaziente
 
-Dobbiamo correre, il progetto e' in ritardo!
+- Dobbiamo rilasciare, il progetto e' gia' in ritardo!
 <!-- .element class="fragment" -->
-
-Dobbiamo rilasciare entro ieri! 
+- Dobbiamo rilasciare entro ieri! 
 <!-- .element class="fragment" -->
-
-Non c'e' tempo per sviluppare anche i test!
+- Per sviluppare i test, per troppo tempo!
 <!-- .element class="fragment" -->
 
 ---
 
 ## 🤷🏻‍♂️ L'ignaro
 
-Se il codice e' scritto bene non servono!
+- Se il codice e' scritto bene non servono!
 <!-- .element class="fragment" -->
-
-I test sono inutili per far funzionare l'applicazione!
+- I test sono inutili per far funzionare l'applicazione!
 <!-- .element class="fragment" -->
 
 ---
 
 ## 🦸🏻‍♂️ L'impavido
 
-Lascia stare i test, lo facciamo provare a mano!
+- Lascia stare i test, vedremo la funzionalita' in produzione
 <!-- .element class="fragment" -->
-
-I test lo faranno i clienti in produzione su casi reali!
+- I test lo faranno i clienti in produzione su casi reali!
+<!-- .element class="fragment" -->
+- Non preoccuparti, la funzionalita' la proviamo a mano!
 <!-- .element class="fragment" -->
 
 ---
 
 ## 😎 L'ottimista
 
-Non li facciamo adesso, ci sara' tempo dopo!
+- Non li facciamo adesso, ci sara' tempo dopo!
 <!-- .element class="fragment" -->
-
-Li possiamo sempre aggiungere dopo! 
-<!-- .element class="fragment" -->
-
----
-
-## Il risultato?
-
----
-
-Non lo cambiare oppure non funziona piu'!
-<!-- .element class="fragment" -->
-
-Non lo toccare, non so cosa fa quel codice!
-<!-- .element class="fragment" -->
-
-Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!
+- Li possiamo sempre aggiungere dopo! Non servono adesso!
 <!-- .element class="fragment" -->
 
 ---
 
 ## Il risultato?
 
-Codice instabile
-<!-- .element class="fragment" -->
+---
 
-Rallenta lo sviluppo di nuove funzionalita' a causa dei bug
+- Non lo toccare oppure non funziona piu'!
 <!-- .element class="fragment" -->
-
-Conviene buttare tutto e ricominciare da zero
+- Non lo cambiare, non so cosa fa quel codice!
+<!-- .element class="fragment" -->
+- Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!
 <!-- .element class="fragment" -->
 
 ---
 
-oh forse no...
+## Il risultato?
+
+- Codice instabile
+<!-- .element class="fragment" -->
+- Difficile aggiungere nuove funzionalita'  
+senza rompere qualcosa
+<!-- .element class="fragment" -->
+- Conviene buttare tutto e ricominciare da zero
+<!-- .element class="fragment" -->
+
+---
+
+oppure no...
 
 non e' mai troppo tardi!
 <!-- .element class="fragment" -->
