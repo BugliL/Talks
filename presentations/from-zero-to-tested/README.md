@@ -31,7 +31,7 @@ https://buglil.github.io/Talks/from-zero-to-tested/#/
 
 ---
 
-Perche' le persone evitano di scrivere i test
+Perche' le persone evitano di scrivere i test?
 
 ---
 
@@ -57,11 +57,13 @@ Perche' le persone evitano di scrivere i test
 
 ## 🦸🏻‍♂️ L'impavido
 
-- Lascia stare i test, vedremo la funzionalita' in produzione
+- Lascia stare i test, <br />
+  vedremo la funzionalita' in produzione!
 <!-- .element class="fragment" -->
 - I test lo faranno i clienti in produzione su casi reali!
 <!-- .element class="fragment" -->
-- Non preoccuparti, la funzionalita' la proviamo a mano!
+- Non preoccuparti, <br />
+  la funzionalita' la proviamo a mano!
 <!-- .element class="fragment" -->
 
 ---
@@ -77,8 +79,6 @@ Perche' le persone evitano di scrivere i test
 
 ## Il risultato?
 
----
-
 - Non lo toccare oppure non funziona piu'!
 <!-- .element class="fragment" -->
 - Non lo cambiare, non so cosa fa quel codice!
@@ -90,20 +90,30 @@ Perche' le persone evitano di scrivere i test
 
 ## Il risultato?
 
-- Codice instabile
+- Spaghetti code instabile
 <!-- .element class="fragment" -->
 - Difficile aggiungere nuove funzionalita'  
 senza rompere qualcosa
 <!-- .element class="fragment" -->
-- Conviene buttare tutto e ricominciare da zero
+- Si perde tempo in debugging superfluo
 <!-- .element class="fragment" -->
 
 ---
 
-oppure no...
+# 😭
 
-non e' mai troppo tardi!
-<!-- .element class="fragment" -->
+Conviene riscrivere il progetto da 0
+
+---
+
+# 🤔 
+
+oppure no...
+ 
+---
+
+non e' mai troppo tardi <br/>
+per iniziare a testare!
 
 ---
 
@@ -111,7 +121,39 @@ non e' mai troppo tardi!
 
 ---
 
-## Progetto di esempio
-Un'applicazione web per la gestione di un e-commerce
+## Contesto col caso peggiore
+
+- Vi trovate su un progetto che non conoscete
+<!-- .element class="fragment" -->
+- L'applicazione e' in produzione e sta funzionando correttamente.
+<!-- .element class="fragment" -->
+- Chi ci ha lavorato e' scappato in Brasile
+<!-- .element class="fragment" -->
 
 ---
+
+Dovete aggiungere una nuova feature, una funzionalita' che integra parte del
+codice attuale e aggiunge del comportamento
+
+---
+
+Qual'e' la prima cosa da fare?
+
+---
+
+Panoramica ad alto livello
+
+- Capire quali sono i sistemi coinvolti
+<!-- .element class="fragment" -->
+- Capire la struttura del software da modificare
+<!-- .element class="fragment" -->
+
+---
+
+TODO:
+
+
+
+<!-- TODO: Slide Talk is cheap, show me the code -->
+<!-- TODO: Dimostrare come i mock salvano la vita -->
+<!-- TODO: Approfondimento per microservizi -->

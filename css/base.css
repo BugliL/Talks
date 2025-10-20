@@ -128,3 +128,7 @@ p code {
 .reveal h6 {
   text-transform: none !important;
 }
+
+li {
+  margin-top: 1em;
+}
