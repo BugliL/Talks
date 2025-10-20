@@ -118,4 +118,13 @@ p code {
   white-space: nowrap; /* prevent wrapping */
   padding-left: 0.2em; /* space around text */
   padding-right: 0.2em; /* space around text */
+  text-transform: none !important;
+}
+
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none !important;
 }
