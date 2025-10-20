@@ -69,7 +69,7 @@ I test lo faranno i clienti in produzione su casi reali!
 
 ## 😎 L'ottimista
 
-Non li facciamo adesso
+Non li facciamo adesso, ci sara' tempo dopo!
 <!-- .element class="fragment" -->
 
 Li possiamo sempre aggiungere dopo! 
@@ -82,13 +82,41 @@ Li possiamo sempre aggiungere dopo!
 ---
 
 Non lo cambiare oppure non funziona piu'!
-
----
+<!-- .element class="fragment" -->
 
 Non lo toccare, non so cosa fa quel codice!
+<!-- .element class="fragment" -->
+
+Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!
+<!-- .element class="fragment" -->
 
 ---
 
-Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!
+## Il risultato?
+
+Codice instabile
+<!-- .element class="fragment" -->
+
+Rallenta lo sviluppo di nuove funzionalita' a causa dei bug
+<!-- .element class="fragment" -->
+
+Conviene buttare tutto e ricominciare da zero
+<!-- .element class="fragment" -->
+
+---
+
+oh forse no...
+
+non e' mai troppo tardi!
+<!-- .element class="fragment" -->
+
+---
+
+## Da “zero” al primo test
+
+---
+
+## Progetto di esempio
+Un'applicazione web per la gestione di un e-commerce
 
 ---
