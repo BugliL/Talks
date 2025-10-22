@@ -110,3 +110,15 @@
 .fs-06 {
   font-size: 0.6em;
 }
+
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none !important;
+}
+
+li {
+  margin-top: 1em;
+}
