@@ -3,6 +3,7 @@ title: Collaborazione Efficace tra Team di Sviluppo e Stakeholder
 author: Lorenzo Bugli
 footer: 2024-11-27 - Nana Bianca, Firenze
 footerIconUrl: https://www.schroedinger-hat.org/assets/sh-logo-big-UQdXK547.png
+presentationLink: https://buglil.github.io/Talks/collaborazione-efficace/#/
 revealOptions:
   transition: none
 source-code: https://github.com/BugliL/ATTD_TALK
