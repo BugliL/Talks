@@ -27,93 +27,82 @@ https://buglil.github.io/Talks/from-zero-to-tested/#/
 
 ---
 
-## Perche' i software sono privi di test automatici?
+Come ci si trova immischiati <br/>
+un progetto privo di test?
 
 ---
 
-Perche' le persone evitano di scriverli!
+Ci sono diverse risposte...
 
 ---
 
-## 🏃🏻‍➡️ L'impaziente
-
-- Dobbiamo rilasciare, il progetto e' gia' in ritardo!
-<!-- .element class="fragment" -->
-- Dobbiamo rilasciare entro ieri! 
-<!-- .element class="fragment" -->
-- Per sviluppare i test, per troppo tempo!
+"Dobbiamo rilasciare entro ieri!"
 <!-- .element class="fragment" -->
 
----
-
-## 🤷🏻‍♂️ L'ignaro
-
-- Se il codice e' scritto bene non servono!
-<!-- .element class="fragment" -->
-- I test sono inutili per far funzionare l'applicazione!
+"Non c'e' tempo per sviluppare anche i test!"
 <!-- .element class="fragment" -->
 
 ---
 
-## 🦸🏻‍♂️ L'impavido
+"Sono inutili, l'applicazione funziona lo stesso senza!"
+<!-- .element class="fragment" -->
 
-- Lascia stare i test, <br />
-  vedremo la funzionalita' in produzione!
-<!-- .element class="fragment" -->
-- I test lo faranno i clienti in produzione su casi reali!
-<!-- .element class="fragment" -->
-- Non preoccuparti, <br />
-  la funzionalita' la proviamo a mano!
+"Perche' perdere tempo per fare lavoro in piu' ?"
 <!-- .element class="fragment" -->
 
 ---
 
-## 😎 L'ottimista
+"Lascia stare i test, lo facciamo provare a mano!"
 
-- Non li facciamo adesso, ci sara' tempo dopo!
-<!-- .element class="fragment" -->
-- Li possiamo sempre aggiungere dopo! Non servono adesso!
-<!-- .element class="fragment" -->
+---
+
+"Li possiamo sempre aggiungere dopo!"
 
 ---
 
 ## Il risultato?
 
-- Non lo toccare oppure non funziona piu'!
+---
+
+"Non lo cambiare oppure non funziona piu'!"
 <!-- .element class="fragment" -->
-- Non lo cambiare, non so cosa fa quel codice!
+
+"Non lo toccare, non so cosa fa quel codice!"
 <!-- .element class="fragment" -->
-- Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!
+
+"Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!"
 <!-- .element class="fragment" -->
 
 ---
 
-## Il risultato?
 
-- Spaghetti code instabile
-<!-- .element class="fragment" -->
-- Difficile aggiungere nuove funzionalita'  
-senza rompere qualcosa
-<!-- .element class="fragment" -->
-- Si perde tempo in debugging superfluo
-<!-- .element class="fragment" -->
+## In breve...
+
+---
+
+Spaghetti code instabile e fragile
+
+---
+
+Impossibile aggiungere nuove funzionalita' <br>
+senza paura di rompere qualcosa
+
+---
+
+Perdita di tempo in debugging 
 
 ---
 
 # 😭
 
-Conviene riscrivere il progetto da 0
+Conviene quasi buttare tutto <br>
+il codice e ricominciare da zero
 
 ---
 
-# 🤔 
+# 🤔
 
 oppure no...
- 
----
-
-non e' mai troppo tardi <br/>
-per iniziare a testare!
 
 ---
 
