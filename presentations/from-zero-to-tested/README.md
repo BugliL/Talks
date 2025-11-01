@@ -84,12 +84,12 @@ Spaghetti code instabile e fragile
 
 ---
 
-Impossibile aggiungere nuove funzionalita' <br>
-senza paura di rompere qualcosa
+Perdita di tempo in debugging 
 
 ---
 
-Perdita di tempo in debugging 
+Impossibile aggiungere nuove funzionalita' <br>
+senza paura di rompere qualcosa
 
 ---
 
@@ -110,65 +110,49 @@ oppure no...
 
 ---
 
-## Il caso peggiore
+## La situazione che tutti conosciamo
 
 ---
 
-## Il caso peggiore
-
-Sapendo come gestire il caso peggiore, tutti gli altri sono
-casi piu' semplici e meno complicati
+## Lunedì mattina, ore 9:00
 
 ---
 
-## Il caso peggiore
-
-- Vi trovate su un progetto che non conoscete
-<!-- .element class="fragment" -->
-- L'applicazione e' in produzione e sta funzionando correttamente.
-<!-- .element class="fragment" -->
-- Documentazione.... che?
-<!-- .element class="fragment" -->
-- Chi ci ha lavoravo e' scappato in Brasile
-<!-- .element class="fragment" -->
+Il cliente ci ha chiesto una modifica su questo progetto
 
 ---
 
-## In poche parole
+Lo seguiva Franco, si e' licenziato 3 mesi fa <br>
+Sei la persona piu' adatta per farlo!
 
-- Non sapete da dove partire 
+---
+
+So che non conosci il codice, ma che sara' mai!
+
+---
+
+Mi racommando, fallo entro venerdì e con 0 downtime!
+
+---
+
+## Cosa trovi davanti?
+
+- Codice scritto da qualcun altro
 <!-- .element class="fragment" -->
-- I rilasci non si possono fare alla leggera
+- Zero test, zero documentazione
 <!-- .element class="fragment" -->
-- La sola documentazione e' il codice 
+- Funziona... ma non sai come
 <!-- .element class="fragment" -->
-- Non avete nessuno a cui chiedere
+- E devi modificarlo
 <!-- .element class="fragment" -->
 
 ---
 
 Dovete aggiungere una nuova feature <br>
-modificando codice gia' scritto e aggiungerne altro
+toccando codice vecchio integrandone altro
 
 ---
 
-## Qual'e' la prima cosa da fare?
+## Da dove si inizia iniziamo?
 
 ---
-
-Panoramica ad alto livello
-
-- Capire quali sono i sistemi coinvolti
-<!-- .element class="fragment" -->
-- Capire la struttura del software da modificare
-<!-- .element class="fragment" -->
-
----
-
-TODO:
-
-
-
-<!-- TODO: Slide Talk is cheap, show me the code -->
-<!-- TODO: Dimostrare come i mock salvano la vita -->
-<!-- TODO: Approfondimento per microservizi -->
