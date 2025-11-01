@@ -32,127 +32,41 @@ un progetto privo di test?
 
 ---
 
-Ci sono diverse risposte...
+## Lunedì mattina ore 9:00
 
 ---
 
-"Dobbiamo rilasciare entro ieri!"
-<!-- .element class="fragment" -->
-
-"Non c'e' tempo per sviluppare anche i test!"
-<!-- .element class="fragment" -->
+"Lorenzo, un cliente ha bisogno di una `modifica urgente` su un loro software.
+L'`azienda` che lo ha sviluppato e' `fallita`, e dobbiamo assolutamente 
+occuparcene noi! Questo `cliente e' troppo importante`"
 
 ---
 
-"Sono inutili, l'applicazione funziona lo stesso senza!"
-<!-- .element class="fragment" -->
-
-"Perche' perdere tempo per fare lavoro in piu' ?"
-<!-- .element class="fragment" -->
+"Entro venerdì, mi raccomando!"
 
 ---
 
-"Lascia stare i test, lo facciamo provare a mano!"
+## Situazione rosea
 
----
-
-"Li possiamo sempre aggiungere dopo!"
-
----
-
-## Il risultato?
-
----
-
-"Non lo cambiare oppure non funziona piu'!"
-<!-- .element class="fragment" -->
-
-"Non lo toccare, non so cosa fa quel codice!"
-<!-- .element class="fragment" -->
-
-"Come non funzionano piu' le email? <br/> Ho cambiato solo un'etichetta!"
-<!-- .element class="fragment" -->
-
----
-
-
-## In breve...
-
----
-
-Spaghetti code instabile e fragile
-
----
-
-Perdita di tempo in debugging 
-
----
-
-Impossibile aggiungere nuove funzionalita' <br>
-senza paura di rompere qualcosa
-
----
-
-# 😭
-
-Conviene quasi buttare tutto <br>
-il codice e ricominciare da zero
-
----
-
-# 🤔
-
-oppure no...
-
----
-
-## Da “zero” al primo test
-
----
-
-## La situazione che tutti conosciamo
-
----
-
-## Lunedì mattina, ore 9:00
-
----
-
-Il cliente ci ha chiesto una modifica su questo progetto
-
----
-
-Lo seguiva Franco, si e' licenziato 3 mesi fa <br>
-Sei la persona piu' adatta per farlo!
-
----
-
-So che non conosci il codice, ma che sara' mai!
-
----
-
-Mi racommando, fallo entro venerdì e con 0 downtime!
-
----
-
-## Cosa trovi davanti?
-
-- Codice scritto da qualcun altro
-<!-- .element class="fragment" -->
+- Conoscenza del codice pari a zero 
+<!-- .element class="fragment align-left" -->
 - Zero test, zero documentazione
 <!-- .element class="fragment" -->
-- Funziona... ma non sai come
-<!-- .element class="fragment" -->
-- E devi modificarlo
+- Funziona... ma non so come
 <!-- .element class="fragment" -->
 
 ---
 
-Dovete aggiungere una nuova feature <br>
-toccando codice vecchio integrandone altro
+## Il mio primo pensiero
+
+Conviene buttare tutto e ricominciare da zero
+<!-- .element class="fragment" -->
+
+Ma non era un'opzione...
+<!-- .element class="fragment" -->
 
 ---
 
-## Da dove si inizia iniziamo?
+## Da dove ho iniziato?
 
 ---
