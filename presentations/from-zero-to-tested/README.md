@@ -36,13 +36,16 @@ un progetto privo di test?
 
 ---
 
-"Lorenzo, un cliente ha bisogno di una `modifica urgente` su un loro software.
-L'`azienda` che lo ha sviluppato e' `fallita`, e dobbiamo assolutamente 
-occuparcene noi! Questo `cliente e' troppo importante`"
+"Buongiorno Lorenzo,  <br/>
+il nostro cliente `Acme.corp` ha un gestionale interno. <br/>
+Vogliono una `modifica urgente` entro questo `venerdì`! <br/>
+L'azienda che lo ha sviluppato e' `fallita`, e dobbiamo assolutamente 
+occuparcene noi!"
+<!-- .element class="align-left" -->
 
 ---
 
-"Entro venerdì, mi raccomando!"
+"...occuparcene noi!..."
 
 ---
 
@@ -52,18 +55,19 @@ occuparcene noi! Questo `cliente e' troppo importante`"
 <!-- .element class="fragment align-left" -->
 - Zero test, zero documentazione
 <!-- .element class="fragment" -->
-- Funziona... ma non so come
+- Conosco l'azienda <br>
+  ma non so come funziona il programma
 <!-- .element class="fragment" -->
 
 ---
 
-## Il mio primo pensiero
+Il mio primo pensiero?
 
-Conviene buttare tutto e ricominciare da zero
-<!-- .element class="fragment" -->
+---
 
-Ma non era un'opzione...
-<!-- .element class="fragment" -->
+*@#!$%&!? 
+
+<img class="w-25" width="10%" src="./imgs/i-hate-mondays.png" />
 
 ---
 
