@@ -110,3 +110,12 @@
 .fs-06 {
   font-size: 0.6em;
 }
+
+p code {
+  background-color: #7ca7dd; /* dark gray background */
+  color: #d1d5da; /* light text color */
+  border-radius: 6px; /* smooth rounded corners */
+  white-space: nowrap; /* prevent wrapping */
+  padding-left: 0.2em; /* space around text */
+  padding-right: 0.2em; /* space around text */
+}
