@@ -32,7 +32,7 @@ un progetto privo di test?
 
 ---
 
-## Lunedì mattina ore 9:00
+## Lunedì mattina ore 9:00 - Il briefing
 
 ---
 
@@ -102,9 +102,11 @@ Cos'e' che devo fare esattamente?
 # Maggiori dettagli
 
 "Metteremo in vendita una nuova categoria di prodotti, i `prodotti biologici`.
-Questi prodotti perdono qualità più velocemente ogni giorno.
-Dobbiamo aggiornare il sistema per gestire delle `regole personalizzate`!"
+Questi prodotti perdono qualità più velocemente ogni giorno. Dobbiamo
+aggiornare il sistema per gestire delle `regole personalizzate`."
 <!-- .element class="align-left" -->
+
+<!-- C'e' un altra funzionalita' da integrare ma stiamo ancora definendo i dettagli."-->
 
 ---
 
@@ -121,8 +123,9 @@ Un primo sguardo al codice
 ---
 
 ```python
-def update_products_end_of_day(self):
-  for item in get_items():
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  for item in cursor.fetchall():
     if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
       if item.quality > 0:
         if item.name != "Miele":
@@ -131,17 +134,15 @@ def update_products_end_of_day(self):
       if item.quality < 50:
         item.quality = item.quality + 1
         if item.name == "Promozione Speciale":
-          if item.expiration_days < 11:
+          if item.exp_days < 11:
             if item.quality < 50:
                             item.quality = item.quality + 1
-          if item.expiration_days < 6:
+          if item.exp_days < 6:
             if item.quality < 50:
                             item.quality = item.quality + 1
-
     if item.name != "Miele":
-      item.expiration_days = item.expiration_days - 1
-
-    if item.expiration_days < 0:
+      item.exp_days = item.exp_days - 1
+    if item.exp_days < 0:
       if item.name != "Formaggio Brie":
         if item.name != "Promozione Speciale":
           if item.quality > 0:
@@ -152,6 +153,12 @@ def update_products_end_of_day(self):
       else:
         if item.quality < 50:
           item.quality = item.quality + 1
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
 ```
 <!-- .element class="fullscreen"  -->
 
@@ -160,11 +167,41 @@ def update_products_end_of_day(self):
 <img class="w-75" src="./imgs/facepalm.png" />
 
 ---
+
+# Caratteristiche principali del codice
+
+- Wall of code unico non strutturato
+<!-- .element class="fragment" -->
+
+- Impossibile da toccare senza rompere qualcosa
+<!-- .element class="fragment" -->
+
+- Nessun test automatico a supporto
+<!-- .element class="fragment" -->
+
+---
+
+Come si affronta un mostro del genere?
+
+---
+
+# Analisi del codice
+
+- Comprendere la logica di business
+- Identificare i punti critici
+- Creare una mappa del codice
+
+
+---
+
+## Venerdi' - La conclusione
+
+---
 <!-- Non toccare questa parte -->
 
 ## Com'e' andata a finire?
 
-- Consegnato venerdì pomeriggio
+- Consegnate tutte le modifiche
 <!-- .element class="fragment" -->
 
 - Zero bug aggiunti
@@ -183,23 +220,26 @@ Il mio capo ha avuto un aumento!
 
 ---
 
-Io ovviamente no..
+Io una pacca sulla spalla
 
 ---
 
-Ma sono ugualmente soddisfatto
+Ma sono ugualmente soddisfatto...
 
 ---
 
 Quella sfida ha portato ad un `framework` utile 
 per `combattere` codice `legacy privo di test` <br>
-in decine di occasioni 
+in decine di occasioni
+<!-- .element class="align-left" -->
 
 ---
 
-Ma non smettero' mai di odiare i lunedì mattina
+... in ogni caso
 
-<img class="w-25" src="./imgs/i-hate-mondays.png" />
+---
+
+<img class="w-50" src="./imgs/i-hate-mondays.png" />
 
 ---
 
