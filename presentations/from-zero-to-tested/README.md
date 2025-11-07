@@ -122,10 +122,10 @@ Un primo sguardo al codice
 
 ```python
 def update_products_end_of_day(self):
-  for item in self.items:
+  for item in get_items():
     if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
       if item.quality > 0:
-        if item.name != "xxx":
+        if item.name != "Miele":
           item.quality = item.quality - 1
     else:
       if item.quality < 50:
@@ -138,14 +138,14 @@ def update_products_end_of_day(self):
             if item.quality < 50:
                             item.quality = item.quality + 1
 
-    if item.name != "xxx":
+    if item.name != "Miele":
       item.expiration_days = item.expiration_days - 1
 
     if item.expiration_days < 0:
       if item.name != "Formaggio Brie":
         if item.name != "Promozione Speciale":
           if item.quality > 0:
-            if item.name != "xxx":
+            if item.name != "Miele":
                             item.quality = item.quality - 1
         else:
           item.quality = item.quality - item.quality
