@@ -37,10 +37,10 @@ un progetto privo di test?
 ---
 
 "Buongiorno Lorenzo,  <br/>
-il nostro cliente `Acme.corp` ha un gestionale interno. <br/>
-Vogliono una `modifica urgente` entro questo `venerdì`! <br/>
-L'azienda che lo ha sviluppato e' `fallita`, e dobbiamo assolutamente 
-occuparcene noi!"
+il nostro cliente `Acme.corp` ha un loro `e-commerce`. <br/>
+Vogliono una `modifica urgente` entro questo `venerdì`!  <br/>
+L'azienda che lo ha sviluppato e' `fallita`, <br/>
+e dobbiamo assolutamente occuparcene noi!"
 <!-- .element class="align-left" -->
 
 ---
@@ -55,8 +55,7 @@ occuparcene noi!"
 <!-- .element class="fragment align-left" -->
 - Zero test, zero documentazione
 <!-- .element class="fragment" -->
-- Conosco l'azienda <br>
-  ma non so come funziona il programma
+- Non so come funziona l'ecommerce del cliente
 <!-- .element class="fragment" -->
 
 ---
@@ -65,9 +64,7 @@ occuparcene noi!"
 
 ---
 
-*@#!$%&!?*
-
-<img class="w-25" src="./imgs/i-hate-mondays.png" />
+<img class="w-50" src="./imgs/i-hate-mondays.png" />
 
 ---
 
@@ -105,24 +102,24 @@ mandare una `email` al responsabile"
 
 ---
 
-<!--
-TODO: spiegare l'importanza di capire il contesto da un punto di vista
-dell'utilizzatore prima di addentrarsi nel codice spiegando che mi sono 
-messo accanto ad un operatore ed ho chiesto direttamente come lavora e come
-la richiesta fosse utile
--->
+## Martedi' 
 
 ---
 
-## 10. Analisi del software ma come utente
-## 12. Capire la struttura come sviluppatore
-## 13. Capire dove intervenire con le modifiche
-## 15. Create a safety net
-## 20. Sensing and separation
-## 30. TDD process
+Un primo sguardo al codice
 
 ---
 
+<img class="w-75" src="./imgs/the-what-face.png" />
+
+---
+
+<img class="w-75" src="./imgs/facepalm.png" />
+
+---
+
+
+---
 <!-- Non toccare questa parte -->
 
 ## Com'e' andata a finire?
