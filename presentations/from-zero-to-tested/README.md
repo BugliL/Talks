@@ -37,10 +37,9 @@ un progetto privo di test?
 ---
 
 "Buongiorno Lorenzo,  <br/>
-il nostro cliente `Acme.corp` ha un loro `e-commerce`. <br/>
-Vogliono una `modifica urgente` entro questo `venerdì`!  <br/>
-L'azienda che lo ha sviluppato e' `fallita`, <br/>
-e dobbiamo assolutamente occuparcene noi!"
+il nostro cliente `Acme.Corp` è un supermercato con un gestionale custom. 
+Vogliono una `nuova funzionalità` entro questo `venerdì`!
+L'azienda che lo ha sviluppato è `fallita` e dobbiamo assolutamente occuparcene noi!"
 <!-- .element class="align-left" -->
 
 ---
@@ -55,7 +54,7 @@ e dobbiamo assolutamente occuparcene noi!"
 <!-- .element class="fragment align-left" -->
 - Zero test, zero documentazione
 <!-- .element class="fragment" -->
-- Non so come funziona l'ecommerce del cliente
+- Non so come funziona il programma
 <!-- .element class="fragment" -->
 
 ---
@@ -80,25 +79,32 @@ Cos'e' che devo fare esattamente?
 
 ---
 
-## La richiesta del cliente
+## Il contesto
 
-"Vogliamo aggiungere delle `allerte automatiche` nel nostro `e-commerce`. Quando
-un prodotto scende sotto la una soglia di `scorta minima`, il sistema deve
-mandare una `email` al responsabile"
-<!-- .element class="align-left" -->
+- Tutti i prodotti hanno una proprietà che 
+  indica quanti `giorni` mancano alla `data di scadenza`.
+
+- Tutti i prodotti hanno una proprietà che 
+  denota il `valore` dell'articolo
 
 ---
 
-## I dettagli
+## Il contesto
 
-- Ogni prodotto ha una propria "scorta minima"
-<!-- .element class="fragment" -->
-- Il sistema deve controllare ogni ora
-<!-- .element class="fragment" -->
-- Email con lista prodotti sotto scorta
-<!-- .element class="fragment" -->
-- Non inviare email duplicate nelle 24h
-<!-- .element class="fragment" -->
+- Alla `fine di ogni giornata` il sistema `decrementa`
+  entrambe le proprietà per ogni prodotto 
+
+- Alcuni prodotti hanno `regole speciali`, come le
+  `promozioni speciali` che hanno regole personalizzate
+
+---
+
+# Maggiori dettagli
+
+"Metteremo in vendita una nuova categoria di prodotti, i `prodotti biologici`.
+Questi prodotti perdono qualità più velocemente ogni giorno.
+Dobbiamo aggiornare il sistema per gestire delle `regole personalizzate`!"
+<!-- .element class="align-left" -->
 
 ---
 
@@ -114,10 +120,44 @@ Un primo sguardo al codice
 
 ---
 
-<img class="w-75" src="./imgs/facepalm.png" />
+```python
+def update_products_end_of_day(self):
+  for item in self.items:
+    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+      if item.quality > 0:
+        if item.name != "xxx":
+          item.quality = item.quality - 1
+    else:
+      if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+          if item.expiration_days < 11:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+          if item.expiration_days < 6:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+
+    if item.name != "xxx":
+      item.expiration_days = item.expiration_days - 1
+
+    if item.expiration_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "xxx":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+```
+<!-- .element class="fullscreen"  -->
 
 ---
 
+<img class="w-75" src="./imgs/facepalm.png" />
 
 ---
 <!-- Non toccare questa parte -->
@@ -174,5 +214,7 @@ Lorenzo Bugli - @BugliL
 
 ---
 
+# Riferimenti
 
+- [Gilded Rose Kata](https://github.com/NotMyself/GildedRose)
 

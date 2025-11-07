@@ -18,3 +18,10 @@ code {
   white-space: pre-wrap !important;
   font-size: 0.7em;
 }
+
+pre.fullscreen {
+  position: fixed;
+  top: -4vh;
+  height: 42vh !important;
+  font-size: 0.48em;
+}
