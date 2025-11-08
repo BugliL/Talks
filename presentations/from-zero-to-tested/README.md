@@ -103,10 +103,26 @@ Cos'e' che devo fare esattamente?
 
 "Metteremo in vendita una nuova categoria di prodotti, i `prodotti biologici`.
 Questi prodotti perdono qualità più velocemente ogni giorno. Dobbiamo
-aggiornare il sistema per gestire delle `regole personalizzate`."
+aggiornare il sistema per gestire delle `nuove regole personalizzate` e
+aggiungere una voce per il report delle vendite giornaliere.
 <!-- .element class="align-left" -->
 
 <!-- C'e' un altra funzionalita' da integrare ma stiamo ancora definendo i dettagli."-->
+
+---
+
+Ho concluso la giornata portandomi il `codice in locale` con un `backup`
+del `database` per poter iniziare a guardare il codice e sopratutto `provare`
+il `software` .
+<!-- .element class="align-left" -->
+
+---
+
+Alla fine la richiesta del cliente e' semplice, no?
+
+---
+
+Ingenuo...
 
 ---
 
@@ -115,6 +131,10 @@ aggiornare il sistema per gestire delle `regole personalizzate`."
 ---
 
 ## Un primo sguardo al codice
+
+---
+
+Prendiamo un pezzo a caso del codice
 
 ---
 
@@ -170,15 +190,98 @@ def update_products_end_of_day():
 
 ## Caratteristiche principali del codice
 
-- Wall of code unico non strutturato
+- Wall of code unico `non strutturato`
 <!-- .element class="fragment" -->
 
-- Impossibile da toccare senza rompere qualcosa
+- Impossibile da toccare `senza rompere` qualcosa
 <!-- .element class="fragment" -->
 
 ---
 
+Quella modifica che doveva essere fatta <br/>
+in `mezza giornata` non era possibile
+
+---
+
 Come si affronta un mostro del genere?
+
+---
+
+Si capisce la `funzionalita' alto livello` del sistema
+<!-- .element class="align-left" -->
+
+Si ricerca nel codice `dove` e `come` e' stata implementata
+<!-- .element class="fragment align-left" -->
+
+---
+
+Il risultato di questa prima analisi dovrebbe essere:
+
+- Una descrizione del `comportamento attuale` 
+<!-- .element class="fragment" -->
+
+- Un mapping tra la descrizione e il `codice sorgente`
+<!-- .element class="fragment" -->
+
+---
+
+```python
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  for item in cursor.fetchall():
+    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+      if item.quality > 0:
+        if item.name != "Miele":
+          item.quality = item.quality - 1
+    else:
+      if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+          if item.exp_days < 11:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+          if item.exp_days < 6:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+    if item.name != "Miele":
+      item.exp_days = item.exp_days - 1
+    if item.exp_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "Miele":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
+<!-- .element class="fullscreen"  -->
+
+---
+
+
+```python
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+
+  for item in cursor.fetchall():
+    # .... condizioni varie
+
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
 
 ---
 
@@ -266,9 +369,6 @@ def update_products_end_of_day():
 <!-- .element class="fullscreen"  -->
 
 ---
-
-Con il codice attuale `non e' testabile` cosi' com'e'
-o meglio, e' `abbastanza complicato` da testare.
 
 
 ---
