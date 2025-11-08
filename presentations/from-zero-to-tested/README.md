@@ -99,7 +99,7 @@ Cos'e' che devo fare esattamente?
 
 ---
 
-# Maggiori dettagli
+## Maggiori dettagli
 
 "Metteremo in vendita una nuova categoria di prodotti, i `prodotti biologici`.
 Questi prodotti perdono qualità più velocemente ogni giorno. Dobbiamo
@@ -114,7 +114,7 @@ aggiornare il sistema per gestire delle `regole personalizzate`."
 
 ---
 
-Un primo sguardo al codice
+## Un primo sguardo al codice
 
 ---
 
@@ -168,15 +168,12 @@ def update_products_end_of_day():
 
 ---
 
-# Caratteristiche principali del codice
+## Caratteristiche principali del codice
 
 - Wall of code unico non strutturato
 <!-- .element class="fragment" -->
 
 - Impossibile da toccare senza rompere qualcosa
-<!-- .element class="fragment" -->
-
-- Nessun test automatico a supporto
 <!-- .element class="fragment" -->
 
 ---
@@ -185,19 +182,176 @@ Come si affronta un mostro del genere?
 
 ---
 
-# Analisi del codice
+## Si scrivono dei <br/> `characterization tests`
 
-- Comprendere la logica di business
-- Identificare i punti critici
-- Creare una mappa del codice
+---
+
+## Characterization tests
+
+Sono test che verificano il `comportamento esistente` del sistema
+non di come dovrebbe funzionare
+<!-- .element class="align-left" -->
+
+Hanno lo scopo di creare uno `snapshot funzionale`
+per poter cambiare il codice in sicurezza
+<!-- .element class="fragment align-left" -->
+
+---
+
+## Characterization tests
+
+Sono dei test `ad alto livello`, spesso `end-to-end` oppure `di integrazione`
+<!-- .element class="align-left" -->
+
+Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
+<!-- .element class="fragment align-left" -->
+
+---
+
+<img class="w-60" src="./imgs/tdd.png" />
+
+---
+
+## Characterization tests vs TDD
+
+- Si scrivono dei test `verdi`, senza toccare la funzionalita'
+<!-- .element class="fragment align-left" -->
+
+- Si `rifattorizza` il codice mantenendo i test verdi
+<!-- .element class="fragment align-left" -->
+
+- Si aggiunge la `nuova funzionalita'` mantenendo i test verdi
+<!-- .element class="fragment align-left" -->
+
+---
+
+```python
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  for item in cursor.fetchall():
+    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+      if item.quality > 0:
+        if item.name != "Miele":
+          item.quality = item.quality - 1
+    else:
+      if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+          if item.exp_days < 11:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+          if item.exp_days < 6:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+    if item.name != "Miele":
+      item.exp_days = item.exp_days - 1
+    if item.exp_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "Miele":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
+<!-- .element class="fullscreen"  -->
+
+---
+
+Con il codice attuale `non e' testabile` cosi' com'e'
+o meglio, e' `abbastanza complicato` da testare.
 
 
 ---
 
-## Venerdi' - La conclusione
+## Mercoledi' 
 
 ---
+
+## Rifattorizzazione
+
+---
+
+
+```python
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+
+  for item in cursor.fetchall():
+    # .... condizioni varie
+
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
+
+--- 
+
+## Introduce variable
+
+Per disaccoppiare il codice il piu' possibile
+si puo' introdurre una variabile temporanea `items`
+che contenga i prodotti letti dal database
+
+---
+
+```python
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  items = cursor.fetchall()
+
+  for item in items:
+    # .... condizioni varie
+
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
+
+---
+
+Toccare il codice senza `characterization tests` e' pericoloso, 
+va fatto con `cautela` e `molta attenzione`
+
+---
+
+#TODO: CONTINUE HERE
+
+---
+
+
+## Giovedi'
+
+---
+
+Implementazione della funzionalita'
+
+---
+
 <!-- Non toccare questa parte -->
+
+## Venerdi' 
+
+---
+
+## La conclusione
+
+---
 
 ## Com'e' andata a finire?
 
@@ -257,4 +411,9 @@ Lorenzo Bugli - @BugliL
 # Riferimenti
 
 - [Gilded Rose Kata](https://github.com/NotMyself/GildedRose)
+- Working Effectively with Legacy Code <br/>
+  *Michael Feathers*
+
+- Refactoring: Improving the Design of Existing Code <br/>
+  *Martin Fowler*
 
