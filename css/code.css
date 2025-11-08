@@ -25,3 +25,7 @@ pre.fullscreen {
   height: 42vh !important;
   font-size: 0.4em;
 }
+
+pre.fullscreen code {
+  max-height: none;
+}
