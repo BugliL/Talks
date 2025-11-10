@@ -193,3 +193,60 @@ Se il test fallisce, ho rotto qualcosa
 <!-- .element class="fragment" -->
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+```python
+def daily_sales_report():
+    global connection, cursor, total_sales, yesterday_date, email_server
+    # ...
+```
+
+---
+
+```python[8,16|22]
+def daily_sales_report():
+    # ...
+    
+    for s in sales:
+        total_sales += s[3]
+        report_text = report_text + "Vendita ID: " + str(s[0]) + " - "
+        if s[4] == 1:
+            cursor.execute("UPDATE customer_stats SET visits = visits + 1 WHERE id = " + str(s[7]))
+            cash_sales += s[3]
+            report_text = report_text + "PICCOLO - "
+        else:
+            report_text = report_text + "CARTA - "
+            card_sales += s[3] * 0.95
+            discount_amount += s[3] * 0.05
+            now = datetime.now()
+            cursor.execute("INSERT INTO promotions_used VALUES (" + str(s[0]) + ", 'CARD_DISCOUNT', '" + str(now) + "')")
+            report_text = report_text + "SCONTO CARTA 5% - "
+        report_text = report_text + "€" + str(s[3]) + "\n"
+    
+    # ...
+
+    email_server.sendmail("manager@acme.com", report_text)
+    cursor.execute("INSERT INTO email_log VALUES ('" + str(datetime.now()) + "', 'manager@acme.com', 'REPORT_SENT')")
+    f = open("/tmp/sales_" + str(datetime.now().date()) + ".txt", "w")
+    f.write(report_text)
+    f.close()
+    cursor.execute("UPDATE stats SET last_report = '" + str(datetime.now()) + "'")
+    cursor.execute("UPDATE stats SET total_reports = total_reports + 1")
+    connection.commit()
+```
+<!-- .element class="fullscreen"  -->
+---

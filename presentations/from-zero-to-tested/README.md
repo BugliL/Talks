@@ -95,7 +95,7 @@ Cos'e' che devo fare esattamente?
   entrambe le proprietà per ogni prodotto 
 
 - Alcuni prodotti hanno `regole speciali`, come le
-  `promozioni speciali` che hanno regole personalizzate
+  `promozioni` che hanno regole personalizzate
 
 ---
 
@@ -104,16 +104,7 @@ Cos'e' che devo fare esattamente?
 "Metteremo in vendita una nuova categoria di prodotti, i `prodotti biologici`.
 Questi prodotti perdono qualità più velocemente ogni giorno. Dobbiamo
 aggiornare il sistema per gestire delle `nuove regole personalizzate` e
-aggiungere una voce per il report delle vendite giornaliere.
-<!-- .element class="align-left" -->
-
-<!-- C'e' un altra funzionalita' da integrare ma stiamo ancora definendo i dettagli."-->
-
----
-
-Ho concluso la giornata portandomi il `codice in locale` con un `backup`
-del `database` per poter iniziare a guardare il codice e sopratutto `provare`
-il `software` .
+aggiungere una `voce per il report` delle vendite giornaliere.
 <!-- .element class="align-left" -->
 
 ---
@@ -126,11 +117,15 @@ Ingenuo...
 
 ---
 
-## Martedi' 
+Ho concluso la giornata portandomi il `codice in locale` con un `backup`
+del `database` per poter iniziare a guardare il codice e sopratutto `provare`
+il `software` .
+<!-- .element class="align-left" -->
 
 ---
 
-## Un primo sguardo al codice
+## Martedi' 
+## 3gg alla scadenza
 
 ---
 
@@ -142,7 +137,7 @@ Prendiamo un pezzo a caso del codice
 
 ---
 
-```python
+```python[]
 def process_supplier_invoices():
     global connection, cursor, total_amount, email_server
     cursor.execute("SELECT * FROM supplier_invoices WHERE status != 'PROCESSED'")
@@ -208,7 +203,8 @@ Come si affronta un mostro del genere?
 
 ---
 
-Si capisce la `funzionalita' alto livello` del sistema
+Si capisce la `funzionalita' alto livello` del sistema anche provando 
+fisicamente l'applicazione
 <!-- .element class="align-left" -->
 
 Si ricerca nel codice `dove` e `come` le funzionalita' sono state implementate
@@ -295,7 +291,168 @@ Osserviamo il codice della funzione `update_products_end_of_day`
 
 ---
 
-```python
+```python[]
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  for item in cursor.fetchall():
+    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+      if item.quality > 0:
+        if item.name != "Miele":
+          item.quality = item.quality - 1
+    else:
+      if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+          if item.exp_days < 11:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+          if item.exp_days < 6:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+    if item.name != "Miele":
+      item.exp_days = item.exp_days - 1
+    if item.exp_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "Miele":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
+<!-- .element class="fullscreen"  -->
+
+---
+
+Osserviamo il codice della funzione `update_products_end_of_day`
+
+---
+
+```python[]
+def daily_sales_report():
+    global connection, cursor, total_sales, yesterday_date, email_server
+    cursor.execute("SELECT * FROM sales WHERE date = '" + str(datetime.now().date()) + "'")
+    sales = cursor.fetchall()
+    total_sales = 0.0
+    cash_sales = 0; card_sales = 0; discount_amount = 0
+    report_text = ""
+    cursor.execute("SELECT COUNT(*) FROM customers WHERE active = 1")
+    active_customers = cursor.fetchone()[0]
+    
+    for s in sales:
+        total_sales += s[3]
+        report_text = report_text + "Vendita ID: " + str(s[0]) + " - "
+        if s[4] == 1:
+            cursor.execute("UPDATE customer_stats SET visits = visits + 1 WHERE id = " + str(s[7]))
+            cash_sales += s[3]
+            report_text = report_text + "PICCOLO - "
+        else:
+            report_text = report_text + "CARTA - "
+            card_sales += s[3] * 0.95
+            discount_amount += s[3] * 0.05
+            now = datetime.now()
+            cursor.execute("INSERT INTO promotions_used VALUES (" + str(s[0]) + ", 'CARD_DISCOUNT', '" + str(now) + "')")
+            report_text = report_text + "SCONTO CARTA 5% - "
+        report_text = report_text + "€" + str(s[3]) + "\n"
+    
+    report_text = "ACME CORP - " + "REPORT " + "VENDITE " + "DEL " + str(datetime.now().day) 
+    report_text += "/" + str(datetime.now().month) + "/" + str(datetime.now().year) 
+    report_text += " alle " + str(datetime.now().hour) + ":" + str(datetime.now().minute) 
+    report_text = report_text + "TOTALE" + ": " + "€" + str(total_sales) + "\n"
+    report_text = report_text + "CLIENTI" + " " + "ATTIVI" + ": " + str(active_customers) + "\n"
+    
+    email_server.sendmail("manager@acme.com", report_text)
+    cursor.execute("INSERT INTO email_log VALUES ('" + str(datetime.now()) + "', 'manager@acme.com', 'REPORT_SENT')")
+    f = open("/tmp/sales_" + str(datetime.now().date()) + ".txt", "w")
+    f.write(report_text)
+    f.close()
+    cursor.execute("UPDATE stats SET last_report = '" + str(datetime.now()) + "'")
+    cursor.execute("UPDATE stats SET total_reports = total_reports + 1")
+    connection.commit()
+```
+<!-- .element class="fullscreen"  -->
+---
+
+Per riuscire ad identificare queste 2 funzioni da modificare
+si e' fatta sera 
+<!-- .element class="align-left"  -->
+
+---
+
+## Mercoledi' 
+## 2gg alla scadenza
+
+---
+
+Capito i punti in cui intervenire, come si va avanti?
+
+---
+
+Va costruita una `rete di sicurezza` per modificare il codice dell'applicazione
+<!-- .element class="align-left"  -->
+
+Una `batteria di test` che rappresenta le funzionalita' del programma
+<!-- .element class="fragment align-left"  -->
+
+---
+
+Ogni modifica al codice puo' `rompere qualcosa`, ma se si verifica il 
+comportamento del codice con i test si controlla se tutto funziona  `come dovrebbe`
+<!-- .element class="align-left"  -->
+
+---
+
+## Characterization tests
+
+---
+
+## Characterization tests
+
+Sono test che verificano il `comportamento attuale` 
+<!-- .element class="align-left" -->
+
+Hanno lo scopo di creare uno `snapshot funzionale` del sistema
+<!-- .element class="fragment align-left" -->
+
+---
+
+## Characterization tests
+
+Sono dei test `ad alto livello`, spesso `end-to-end` oppure `d'integrazione`
+<!-- .element class="align-left" -->
+
+Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
+<!-- .element class="fragment align-left" -->
+
+---
+
+<img class="w-60" src="./imgs/tdd.png" />
+
+---
+
+## Characterization tests - process
+
+- Si scrivono dei test `verdi`, senza toccare la funzionalita'
+<!-- .element class="fragment align-left" -->
+
+- Si `rifattorizza` il codice mantenendo i test `verdi`
+<!-- .element class="fragment align-left" -->
+
+- Si aggiunge la `nuova funzionalita'` usando il TDD
+<!-- .element class="fragment align-left" -->
+
+---
+
+```python[|2,3,32-36|4-31]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
   for item in cursor.fetchall():
@@ -354,195 +511,6 @@ def update_products_end_of_day():
 ```
 
 ---
-
-
-Osserviamo il codice della funzione `update_products_end_of_day`
-
----
-
-```python
-def daily_sales_report():
-    global connection, cursor, total_sales, yesterday_date, email_server
-    cursor.execute("SELECT * FROM sales WHERE date = '" + str(datetime.now().date()) + "'")
-    sales = cursor.fetchall()
-    total_sales = 0.0
-    cash_sales = 0; card_sales = 0; discount_amount = 0
-    report_text = ""
-    cursor.execute("SELECT COUNT(*) FROM customers WHERE active = 1")
-    active_customers = cursor.fetchone()[0]
-    
-    for s in sales:
-        total_sales += s[3]
-        report_text = report_text + "Vendita ID: " + str(s[0]) + " - "
-        if s[4] == 1:
-            cursor.execute("UPDATE customer_stats SET visits = visits + 1 WHERE id = " + str(s[7]))
-            cash_sales += s[3]
-            report_text = report_text + "PICCOLO - "
-        else:
-            report_text = report_text + "CARTA - "
-            card_sales += s[3] * 0.95
-            discount_amount += s[3] * 0.05
-            now = datetime.now()
-            cursor.execute("INSERT INTO promotions_used VALUES (" + str(s[0]) + ", 'CARD_DISCOUNT', '" + str(now) + "')")
-            report_text = report_text + "SCONTO CARTA 5% - "
-        report_text = report_text + "€" + str(s[3]) + "\n"
-    
-    report_text = "ACME CORP - " + "REPORT " + "VENDITE " + "DEL " + str(datetime.now().day) 
-    report_text += "/" + str(datetime.now().month) + "/" + str(datetime.now().year) 
-    report_text += " alle " + str(datetime.now().hour) + ":" + str(datetime.now().minute) 
-    report_text = report_text + "TOTALE" + ": " + "€" + str(total_sales) + "\n"
-    report_text = report_text + "CLIENTI" + " " + "ATTIVI" + ": " + str(active_customers) + "\n"
-    
-    email_server.sendmail("manager@acme.com", report_text)
-    cursor.execute("INSERT INTO email_log VALUES ('" + str(datetime.now()) + "', 'manager@acme.com', 'REPORT_SENT')")
-    f = open("/tmp/sales_" + str(datetime.now().date()) + ".txt", "w")
-    f.write(report_text)
-    f.close()
-    cursor.execute("UPDATE stats SET last_report = '" + str(datetime.now()) + "'")
-    cursor.execute("UPDATE stats SET total_reports = total_reports + 1")
-    connection.commit()
-```
-<!-- .element class="fullscreen"  -->
-
----
-
-```python
-def daily_sales_report():
-    global connection, cursor, total_sales, yesterday_date, email_server
-    # ...
-```
-
----
-
-```python[8,16|22]
-def daily_sales_report():
-    # ...
-    
-    for s in sales:
-        total_sales += s[3]
-        report_text = report_text + "Vendita ID: " + str(s[0]) + " - "
-        if s[4] == 1:
-            cursor.execute("UPDATE customer_stats SET visits = visits + 1 WHERE id = " + str(s[7]))
-            cash_sales += s[3]
-            report_text = report_text + "PICCOLO - "
-        else:
-            report_text = report_text + "CARTA - "
-            card_sales += s[3] * 0.95
-            discount_amount += s[3] * 0.05
-            now = datetime.now()
-            cursor.execute("INSERT INTO promotions_used VALUES (" + str(s[0]) + ", 'CARD_DISCOUNT', '" + str(now) + "')")
-            report_text = report_text + "SCONTO CARTA 5% - "
-        report_text = report_text + "€" + str(s[3]) + "\n"
-    
-    # ...
-
-    email_server.sendmail("manager@acme.com", report_text)
-    cursor.execute("INSERT INTO email_log VALUES ('" + str(datetime.now()) + "', 'manager@acme.com', 'REPORT_SENT')")
-    f = open("/tmp/sales_" + str(datetime.now().date()) + ".txt", "w")
-    f.write(report_text)
-    f.close()
-    cursor.execute("UPDATE stats SET last_report = '" + str(datetime.now()) + "'")
-    cursor.execute("UPDATE stats SET total_reports = total_reports + 1")
-    connection.commit()
-```
-<!-- .element class="fullscreen"  -->
----
-
-## Mercoledi'
-
----
-
-## Il primo test
-
----
-
-L'analisi del codice ha permesso di identificare le parti da modificare
-adesso si costruiscono i primi `test di caratterizzazione`
-<!-- .element class="align-left" -->
-
----
-
-
-## Characterization tests
-
-Sono test che verificano il `comportamento esistente` del sistema
-non di come dovrebbe funzionare
-<!-- .element class="align-left" -->
-
-Hanno lo scopo di creare uno `snapshot funzionale`
-per poter cambiare il codice in sicurezza
-<!-- .element class="fragment align-left" -->
-
----
-
-## Characterization tests
-
-Sono dei test `ad alto livello`, spesso `end-to-end` oppure `di integrazione`
-<!-- .element class="align-left" -->
-
-Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
-<!-- .element class="fragment align-left" -->
-
----
-
-<img class="w-60" src="./imgs/tdd.png" />
-
----
-
-## Characterization tests vs TDD
-
-- Si scrivono dei test `verdi`, senza toccare la funzionalita'
-<!-- .element class="fragment align-left" -->
-
-- Si `rifattorizza` il codice mantenendo i test verdi
-<!-- .element class="fragment align-left" -->
-
-- Si aggiunge la `nuova funzionalita'` mantenendo i test verdi
-<!-- .element class="fragment align-left" -->
-
----
-
-```python
-def update_products_end_of_day():
-  cursor.execute("SELECT id, name, exp_days, quality FROM products")
-  for item in cursor.fetchall():
-    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
-      if item.quality > 0:
-        if item.name != "Miele":
-          item.quality = item.quality - 1
-    else:
-      if item.quality < 50:
-        item.quality = item.quality + 1
-        if item.name == "Promozione Speciale":
-          if item.exp_days < 11:
-            if item.quality < 50:
-                            item.quality = item.quality + 1
-          if item.exp_days < 6:
-            if item.quality < 50:
-                            item.quality = item.quality + 1
-    if item.name != "Miele":
-      item.exp_days = item.exp_days - 1
-    if item.exp_days < 0:
-      if item.name != "Formaggio Brie":
-        if item.name != "Promozione Speciale":
-          if item.quality > 0:
-            if item.name != "Miele":
-                            item.quality = item.quality - 1
-        else:
-          item.quality = item.quality - item.quality
-      else:
-        if item.quality < 50:
-          item.quality = item.quality + 1
-  for item in items:
-    cursor.execute(
-      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
-      (item.exp_days, item.quality, item.id)
-    )
-  connection.commit()
-```
-<!-- .element class="fullscreen"  -->
-
----
 TODO: CONTINUE HERE
 
 ---
@@ -590,6 +558,25 @@ Implementazione della funzionalita'
 ---
 
 ## La conclusione
+
+---
+
+## Come si e' svolto il progetto?
+
+- **Lunedi'** - L'arrivo della patata bollente 💀
+<!-- .element class="fragment" -->
+
+- **Martedi'** - Analisi del codice e del sistema
+<!-- .element class="fragment" -->
+
+- **Mercoledi'** - scrittura dei test e rifattorizzazione
+<!-- .element class="fragment" -->
+
+- **Giovedi'** - TDD per implementazione 
+<!-- .element class="fragment" -->
+
+- **Venerdi'** - Consegna del progetto 🎉
+<!-- .element class="fragment" -->
 
 ---
 
