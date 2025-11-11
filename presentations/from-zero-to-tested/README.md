@@ -276,9 +276,9 @@ graph TB
 
 Sezioni trovate
 
-- La funzione `update_products_end_of_day`
-  gestisce le scadenze dei prodotti
-<!-- .element class="fragment" -->
+La funzione `update_products_end_of_day`
+gestisce le scadenze dei prodotti
+<!-- .element class="fragment align-left" -->
 
 ---
 
@@ -329,57 +329,12 @@ def update_products_end_of_day():
 
 ---
 
-Osserviamo il codice della funzione `update_products_end_of_day`
+<img class="w-75" src="./imgs/facepalm2.jpg" />
 
 ---
 
-```python[]
-def daily_sales_report():
-    global connection, cursor, total_sales, yesterday_date, email_server
-    cursor.execute("SELECT * FROM sales WHERE date = '" + str(datetime.now().date()) + "'")
-    sales = cursor.fetchall()
-    total_sales = 0.0
-    cash_sales = 0; card_sales = 0; discount_amount = 0
-    report_text = ""
-    cursor.execute("SELECT COUNT(*) FROM customers WHERE active = 1")
-    active_customers = cursor.fetchone()[0]
-    
-    for s in sales:
-        total_sales += s[3]
-        report_text = report_text + "Vendita ID: " + str(s[0]) + " - "
-        if s[4] == 1:
-            cursor.execute("UPDATE customer_stats SET visits = visits + 1 WHERE id = " + str(s[7]))
-            cash_sales += s[3]
-            report_text = report_text + "PICCOLO - "
-        else:
-            report_text = report_text + "CARTA - "
-            card_sales += s[3] * 0.95
-            discount_amount += s[3] * 0.05
-            now = datetime.now()
-            cursor.execute("INSERT INTO promotions_used VALUES (" + str(s[0]) + ", 'CARD_DISCOUNT', '" + str(now) + "')")
-            report_text = report_text + "SCONTO CARTA 5% - "
-        report_text = report_text + "€" + str(s[3]) + "\n"
-    
-    report_text = "ACME CORP - " + "REPORT " + "VENDITE " + "DEL " + str(datetime.now().day) 
-    report_text += "/" + str(datetime.now().month) + "/" + str(datetime.now().year) 
-    report_text += " alle " + str(datetime.now().hour) + ":" + str(datetime.now().minute) 
-    report_text = report_text + "TOTALE" + ": " + "€" + str(total_sales) + "\n"
-    report_text = report_text + "CLIENTI" + " " + "ATTIVI" + ": " + str(active_customers) + "\n"
-    
-    email_server.sendmail("manager@acme.com", report_text)
-    cursor.execute("INSERT INTO email_log VALUES ('" + str(datetime.now()) + "', 'manager@acme.com', 'REPORT_SENT')")
-    f = open("/tmp/sales_" + str(datetime.now().date()) + ".txt", "w")
-    f.write(report_text)
-    f.close()
-    cursor.execute("UPDATE stats SET last_report = '" + str(datetime.now()) + "'")
-    cursor.execute("UPDATE stats SET total_reports = total_reports + 1")
-    connection.commit()
-```
-<!-- .element class="fullscreen"  -->
----
-
-Per riuscire ad identificare queste 2 funzioni da modificare
-si e' fatta sera 
+L'analisi del codice porta a identificare la funzione critica 
+da modificare ma ormai si e' fatta sera
 <!-- .element class="align-left"  -->
 
 ---
@@ -389,7 +344,7 @@ si e' fatta sera
 
 ---
 
-Capito i punti in cui intervenire, come si va avanti?
+Capito il punto in cui intervenire, come si va avanti?
 
 ---
 
@@ -711,20 +666,133 @@ def update_products_end_of_day():
 
 ---
 
-## TODO: step 1 di rifattorizzazione
+```python[]
+if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+    if item.quality > 0:
+        if item.name != "Miele":
+            item.quality = item.quality - 1
+else:
+    if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+            if item.exp_days < 11:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+            if item.exp_days < 6:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+if item.name != "Miele":
+    item.exp_days = item.exp_days - 1
+if item.exp_days < 0:
+    if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+            if item.quality > 0:
+                if item.name != "Miele":
+                    item.quality = item.quality - 1
+        else:
+            item.quality = item.quality - item.quality
+    else:
+        if item.quality < 50:
+            item.quality = item.quality + 1
+```
+<!-- .element class="fullscreen fontsize-small"   -->
 
 ---
 
 <img class="w-100" src="./imgs/coverage-run-4.png" />
 
 ---
-# TODO: step 2 di rifattorizzazione
+
+```python[]
+if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+    if item.quality > 0:
+        if item.name != "Miele":
+            item.quality = item.quality - 1
+
+if item.name == "Formaggio Brie":
+    if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+            if item.exp_days < 11:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+            if item.exp_days < 6:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+
+if item.name == "Promozione Speciale":
+    if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+            if item.exp_days < 11:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+            if item.exp_days < 6:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+
+if item.name != "Miele":
+    item.exp_days = item.exp_days - 1
+
+if item.exp_days < 0:
+    if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+            if item.quality > 0:
+                if item.name != "Miele":
+                    item.quality = item.quality - 1
+
+        if item.name == "Promozione Speciale":
+            item.quality = item.quality - item.quality
+
+    if item.name == "Formaggio Brie":
+        if item.quality < 50:
+            item.quality = item.quality + 1
+```
+<!-- .element class="fullscreen fontsize-ultra-tiny"  -->
+
 ---
 
 <img class="w-100" src="./imgs/coverage-run-4.png" />
 
 ---
-# TODO: step 3 di rifattorizzazione
+
+```python[]
+if item.name == "Miele":
+    continue
+
+if (
+    item.name not in ["Formaggio Brie", "Promozione Speciale", "Miele"]
+    and item.quality > 0
+):
+    item.quality = item.quality - 1
+
+if item.name == "Formaggio Brie" and item.quality < 50:
+    item.quality = item.quality + 1
+
+    if item.exp_days < 0:
+        item.quality = item.quality + 1
+
+if item.name == "Promozione Speciale" and item.quality < 50:
+    item.quality = item.quality + 1
+
+    if item.exp_days < 11 and item.quality < 50:
+        item.quality = item.quality + 1
+
+    if item.exp_days < 6 and item.quality < 50:
+        item.quality = item.quality + 1
+
+if item.name == "Promozione Speciale" and item.exp_days < 0:
+    item.quality = 0
+
+if item.exp_days < 0 and item.name != "Formaggio Brie":
+    if item.name != "Promozione Speciale":
+        if item.quality > 0:
+            item.quality = item.quality - 1
+
+item.exp_days = item.exp_days - 1
+
+```
+<!-- .element class="fullscreen fontsize-tiny"  -->
 
 ---
 
@@ -736,15 +804,192 @@ Si ripristina il codice precedente
 
 ---
 
-# TODO: step 3 di rifattorizzazione
+
+```python[]
+if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+    if item.quality > 0:
+        if item.name != "Miele":
+            item.quality = item.quality - 1
+
+if item.name == "Formaggio Brie":
+    if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+            if item.exp_days < 11:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+            if item.exp_days < 6:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+
+if item.name == "Promozione Speciale":
+    if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+            if item.exp_days < 11:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+            if item.exp_days < 6:
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+
+if item.name != "Miele":
+    item.exp_days = item.exp_days - 1
+
+if item.exp_days < 0:
+    if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+            if item.quality > 0:
+                if item.name != "Miele":
+                    item.quality = item.quality - 1
+
+        if item.name == "Promozione Speciale":
+            item.quality = item.quality - item.quality
+
+    if item.name == "Formaggio Brie":
+        if item.quality < 50:
+            item.quality = item.quality + 1
+```
+<!-- .element class="fullscreen fontsize-ultra-tiny"  -->
 
 ---
-
 
 <img class="w-100" src="./imgs/coverage-run-4.png" />
 
 ---
-# TODO: step 4 di rifattorizzazione
+
+La rete di sicurezza ha `protetto` il codice durante la rifattorizzazione,
+ha `impedito` di introdurre `bug`
+<!-- .element class="align-left"  -->
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+
+```python[]
+if item.name == "Miele":
+    continue
+
+if item.name == "Formaggio Brie":
+    if item.quality < 50:
+        item.quality = item.quality + 1
+
+        if item.exp_days < 0:
+            item.quality = item.quality + 1
+
+    item.exp_days = item.exp_days - 1
+    continue
+
+if item.name == "Promozione Speciale":
+    if item.quality < 50:
+        item.quality = item.quality + 1
+
+        if item.exp_days < 11 and item.quality < 50:
+            item.quality = item.quality + 1
+
+        if item.exp_days < 6 and item.quality < 50:
+            item.quality = item.quality + 1
+
+    if item.exp_days < 0:
+        item.quality = 0
+
+    item.exp_days = item.exp_days - 1
+    continue
+
+if item.quality > 0:
+    item.quality = item.quality - 1
+
+    if item.exp_days < 0 and item.quality > 0:
+        item.quality = item.quality - 1
+
+item.exp_days = item.exp_days - 1
+```
+<!-- .element class="fullscreen"  -->
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+
+<div class="reveal">
+  <div class="right-col" style="top: 20vh;">
+
+```python[|1-4|5-13|16-30|32-40|]
+
+def update_miele(item: Product):
+    return
+
+
+def update_formaggio_brie(item: Product):
+    if item.quality < 50:
+        item.quality = item.quality + 1
+
+        if item.exp_days < 0:
+            item.quality = item.quality + 1
+
+    item.exp_days = item.exp_days - 1
+
+
+def update_promozione_speciale(item: Product):
+    if item.quality < 50:
+        item.quality = item.quality + 1
+
+        if item.exp_days < 11 and item.quality < 50:
+            item.quality = item.quality + 1
+
+        if item.exp_days < 6 and item.quality < 50:
+            item.quality = item.quality + 1
+
+    if item.exp_days < 0:
+        item.quality = 0
+
+    item.exp_days = item.exp_days - 1
+
+
+def update_product(item: Product):
+    if item.quality > 0:
+        item.quality = item.quality - 1
+
+        if item.exp_days < 0 and item.quality > 0:
+            item.quality = item.quality - 1
+
+    item.exp_days = item.exp_days - 1
+```
+<!-- .element class="fontsize-ultra-tiny h-40"  -->
+
+  </div>
+  <div class="w-50 align-left">
+
+```python[5-18|6-8|10-12|14-16|18]
+def update_products_end_of_day():
+    cursor.execute("SELECT ... FROM products")
+    items = cursor.fetchall()
+
+    for item in items:
+        if item.name == "Miele":
+            update_miele(item)
+            continue
+
+        if item.name == "Formaggio Brie":
+            update_formaggio_brie(item)
+            continue
+
+        if item.name == "Promozione Speciale":
+            update_promozione_speciale(item)
+            continue
+
+        update_product(item)
+
+    for item in items:
+        cursor.execute("UPDATE ...")
+    connection.commit()
+```
+<!-- .element class="fontsize-tiny h-30"  -->
+  </div>
+</div>
 
 ---
 
@@ -765,6 +1010,7 @@ A forza di rifattorizzare...
 ---
 
 ## Giovedi'
+## 1gg alla scadenza
 
 ---
 
