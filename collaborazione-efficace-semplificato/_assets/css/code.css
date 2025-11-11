@@ -18,3 +18,66 @@ code {
   white-space: pre-wrap !important;
   font-size: 0.7em;
 }
+
+pre.fullscreen {
+  position: fixed;
+  top: -4vh;
+  height: 42vh !important;
+  font-size: 0.4em;
+}
+
+pre.fontsize-ultra-tiny {
+  font-size: 0.35em !important;
+}
+
+pre.fontsize-tiny {
+  font-size: 0.4em !important;
+}
+
+pre.fontsize-small {
+  font-size: 0.5em !important;
+}
+
+pre.fontsize-medium {
+  font-size: 0.6em !important;
+}
+
+pre.fontsize-large {
+  font-size: 0.8em !important;
+}
+
+pre.h-80 {
+  height: 80vh !important;
+}
+
+pre.h-60 {
+  height: 60vh !important;
+}
+
+pre.h-50 {
+  height: 50vh !important;
+}
+
+pre.h-45 {
+  height: 45vh !important;
+}
+
+pre.h-40 {
+  height: 40vh !important;
+}
+
+pre.h-35 {
+  height: 30vh !important;
+}
+
+pre.h-30 {
+  height: 30vh !important;
+}
+
+pre.h-20 {
+  height: 20vh !important;
+}
+
+pre.fullscreen code {
+  max-height: none;
+}
