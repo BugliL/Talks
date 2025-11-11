@@ -469,29 +469,161 @@ Come si testa del codice `accoppiato` cosi' tanto al db?
 
 ---
 
-I mock sono nostri amici
+Potrei tirarmi su un database di test e fare le prove...
 
 ---
 
-TODO: Cos'e' un mock
+...ma i mock sono nostri amici
 
 ---
 
-TODO: mock vs stub vs fake
+## Cos'e' un mock?
 
 ---
 
-TODO: esempio di test con mock - product base
-
-
----
-
-TODO: esempio di run dei test
+<img class="w-50" src="./imgs/ditto.png" />
 
 ---
 
-Non deve essere toccato il codice ma solo `eseguito` per
-validare l'implementazione dei `test`
+Un `mock` e' un oggetto che puo' simulare `qualsiasi comportamento` e
+sostituirlo in ogni contesto
+
+---
+
+Tutto quello che e' una `dipendenza` nel codice puo' essere rappresentata da un `mock`
+
+---
+
+Si usano
+
+- `Sistema esterno`: db, email, file system, network....
+<!-- .element class="fragment"  -->
+
+- `Librerie`: logging, network, GUI....
+<!-- .element class="fragment"  -->
+
+- `Dipendenze da altri moduli`: funzioni, classi, metodi....
+<!-- .element class="fragment"  --> 
+
+- `Funzionalita' costose` da eseguire: calcoli complessi, algoritmi....
+<!-- .element class="fragment"  -->
+
+---
+
+Esempio di mock di un file system
+
+```python[|5-9|12|13-22]
+from unittest.mock import mock_open, patch
+from unittest import TestCase
+
+
+def read_file_content(filepath):
+    """Funzione che legge un file e ritorna il contenuto"""
+    with open(filepath, "r") as f:
+        return f.read()
+
+
+class TestFileRead(TestCase):
+    @patch("builtins.open", mock_open(read_data="contenuto mockato del file"))
+    def test_read_file_with_mock_open(self):
+        """Esempio 1: Uso di mock_open per simulare lettura file"""
+
+        content = read_file_content("file.txt")
+
+        self.assertEqual(content, "contenuto mockato del file")
+```
+<!-- .element class="h-30"  -->
+
+---
+
+Esempio di mock di una libreria `random`
+
+```python[|8|9-13|13]
+from unittest.mock import Mock, patch
+from unittest import TestCase
+
+import random
+
+
+class TestRandom(TestCase):
+    @patch("random.randint", return_value=5)
+    def test_random(self, mock_random: Mock):
+        result = random.randint(10, 20)
+        assert result == 5
+
+        mock_random.assert_called_once()
+```
+
+---
+
+Mock vs stub vs fake
+
+- `Mock`: simula & verifica 
+<!-- .element class="fragment"  -->
+
+- `Stub`: produce valori 
+<!-- .element class="fragment"  -->
+
+- `Fake`: implementazione semplificata 
+<!-- .element class="fragment"  -->
+
+---
+
+Come usare i mock per testare `update_products_end_of_day`?
+
+---
+
+Il primo test
+
+---
+
+```python[|6|9|11-31|16-24|26-27|29-35]
+from unittest import TestCase
+from unittest.mock import patch, Mock
+
+from src.interfaces import Product
+
+from src.update_products_end_of_day import update_products_end_of_day
+
+
+@patch("src.update_products_end_of_day.cursor")
+class UpdateProductsEndOfDayShould(TestCase):
+    def test_update_normal_product_data_when_called(self, mock_cursor: Mock) -> None:
+        """
+        Un prodotto normale diminuisce quality ed exp_days di 1 dopo un giorno
+        """
+
+        # Arrange
+        normal_product = Product(
+            id=1,
+            name="Prodotto Normale",
+            exp_days=5,
+            quality=10,
+        )
+
+        mock_cursor.fetchall.return_value = [normal_product]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(normal_product.exp_days, 4)
+        self.assertEqual(normal_product.quality, 9)
+```
+<!-- .element class="fullscreen fontsize-small"  -->
+
+---
+
+<img class="w-100" src="./imgs/product-test.png" />
+
+---
+
+Il `mock` elimina il bisogno di un database e permette di `isolare` il codice
+
+---
+
+L'idea di base del test e' usare il codice esistente per definire il
+`comportamento atteso`
 <!-- .element class="align-left"  -->
 
 ---
@@ -504,15 +636,155 @@ Il `codice` diventa la `sorgente di verita'`
 
 ---
 
-TODO: esempio di test con mock - miele
+```python[|6|9|11-31|16-24|26-27|29-35]
+from unittest import TestCase
+from unittest.mock import patch, Mock
+
+from src.interfaces import Product
+
+from src.update_products_end_of_day import update_products_end_of_day
+
+
+@patch("src.update_products_end_of_day.cursor")
+class UpdateProductsEndOfDayShould(TestCase):
+    def test_update_miele_data_when_called(self, mock_cursor: Mock) -> None:
+        """
+        Il Miele non degrada mai di qualita' e non scade mai
+        """
+
+        # Arrange
+        product = Product(
+            id=2,
+            name="Miele",
+            exp_days=10,
+            quality=5,
+        )
+
+        mock_cursor.fetchall.return_value = [product]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(product.exp_days, 9)
+        self.assertEqual(product.quality, 4)
+```
+<!-- .element class="fullscreen fontsize-small"  -->
 
 ---
 
-TODO: esempio di test con mock - formaggio brie
+Osservando il codice si scrivono i test e si verifica la loro correttezza
+<!-- .element class="align-left"  -->
 
 ---
 
-TODO: esempio di test con mock - promozione speciale
+<img class="w-100" src="./imgs/honey-wrong.png" />
+
+---
+
+Il run del test ha dato esito `rosso` ma ha fornito un'informazione preziosa
+<!-- .element class="align-left"  -->
+
+Il `Miele` non diminuisce mai di qualita'!
+<!-- .element class="fragment align-left"  -->
+
+---
+
+
+```python[|5-10]
+@patch("src.update_products_end_of_day.cursor")
+class UpdateProductsEndOfDayShould(TestCase):
+    def test_update_miele_data_when_called(self, mock_cursor: Mock) -> None:
+        # ...
+
+        # Assert
+        self.assertEqual(product.exp_days, 10)
+        self.assertEqual(product.quality, 5)
+```
+
+---
+
+<img class="w-100" src="./imgs/honey-right.png" />
+
+---
+
+Il run dei test serve come `feedback rapido` per capire `come funziona` il codice
+<!-- .element class="align-left"  -->
+
+Non si usano i test solo per `convalidare` il codice ma anche per `capirlo meglio`
+<!-- .element class="fragment align-left"  -->
+
+---
+
+Altri test per gli altri prodotti
+
+---
+
+```python[]
+from unittest import TestCase
+from unittest.mock import patch, Mock
+
+from src.interfaces import Product
+
+from src.update_products_end_of_day import update_products_end_of_day
+
+
+@patch("src.update_products_end_of_day.cursor")
+class UpdateProductsEndOfDayShould(TestCase):
+    def test_update_formaggio_brie_data_when_called(self, mock_cursor: Mock) -> None:
+        """
+        Il Formaggio Brie aumenta di quality di 1 dopo un giorno
+        """
+
+        # Arrange
+        brie_product = Product(
+            id=2,
+            name="Formaggio Brie",
+            exp_days=5,
+            quality=10,
+        )
+
+        mock_cursor.fetchall.return_value = [brie_product]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(brie_product.exp_days, 4)
+        self.assertEqual(brie_product.quality, 11)
+```
+<!-- .element class="fullscreen fontsize-small"  -->
+
+---
+
+```pythonp[]
+@patch("src.update_products_end_of_day.cursor")
+class UpdateProductsEndOfDayShould(TestCase):
+    def test_update_promozione_speciale_data_when_called(
+        self, mock_cursor: Mock
+    ) -> None:
+        """
+        La promozione speciale aumenta di quality di 1 dopo un giorno
+        """
+
+        # Arrange
+        special_promotion = Product(
+            id=2,
+            name="Promozione Speciale",
+            exp_days=5,
+            quality=10,
+        )
+
+        mock_cursor.fetchall.return_value = [special_promotion]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(special_promotion.exp_days, 4)
+        self.assertEqual(special_promotion.quality, 13)
+```
+<!-- .element class="fullscreen fontsize-small"  -->
 
 ---
 
@@ -520,15 +792,25 @@ TODO: esempio di test con mock - promozione speciale
 
 ---
 
+Abbiamo dei test per ogni categoria di prodotto
+
+---
+
 Quando ci si ferma nello scrivere i test?
 
 ---
 
-TODO: cos'e' la coverage
+La `coverage` ci aiuta a rispondere a questa domanda
 
 ---
 
-TODO: come sfruttare la metrica
+## Cos'e' la coverage?
+
+Qta di codice coperto dai test, espressa in percentuale
+
+---
+
+Indica quali e `quante righe` di codice sono state `eseguite` durante il run dei test
 
 ---
 
@@ -539,6 +821,18 @@ TODO: come sfruttare la metrica
 ---
 
 ## Report di coverage 
+
+<img class="w-100" src="./imgs/coverage-report-1.png" />
+
+---
+
+Il report ci dice che non tutto il codice e' coperto dai test, ci sono parti che
+non sono state considerate
+<!-- .element class="align-left"  -->
+
+---
+
+Il report indica dalla riga 26 alla 35
 
 <img class="w-100" src="./imgs/coverage-report-1.png" />
 
@@ -564,14 +858,62 @@ def update_products_end_of_day():
 
 ---
 
-TODO: test per expired normal product
+```python[|10|19-25]
+def test_update_expired_normal_product_when_called(self, mock_cursor: Mock) -> None:
+    """
+    Un prodotto normale diminuisce di quality di 2 dopo la scadenza
+    """
+
+    # Arrange
+    normal_product = Product(
+        id=1,
+        name="Prodotto Normale",
+        exp_days=-1,
+        quality=10,
+    )
+
+    mock_cursor.fetchall.return_value = [normal_product]
+
+    # Act
+    update_products_end_of_day()
+
+    # Assert
+    self.assertEqual(normal_product.exp_days, -2)
+    self.assertEqual(normal_product.quality, 8)
+```
+<!-- .element class="fontsize-small h-35"  -->
 
 ---
 
-TODO: test per expired brie product
+```python[|10-11|19-25]
+def test_update_formaggio_brie_scaduto_when_called(self, mock_cursor: Mock) -> None:
+    """
+    Il Formaggio Brie aumenta di quality di 2 dopo la scadenza
+    """
+
+    # Arrange
+    brie_product = Product(
+        id=2,
+        name="Formaggio Brie",
+        exp_days=-1,
+        quality=10,
+    )
+
+    mock_cursor.fetchall.return_value = [brie_product]
+
+    # Act
+    update_products_end_of_day()
+
+    # Assert
+    self.assertEqual(brie_product.exp_days, -2)
+    self.assertEqual(brie_product.quality, 12)
+
+```
+<!-- .element class="fontsize-small h-35"  -->
 
 ---
 
+Manca ancora la riga 32 
 <img class="w-100" src="./imgs/coverage-report-2.png" />
 
 ---
@@ -595,10 +937,53 @@ def update_products_end_of_day():
 <!-- .element class=""  -->
 ---
 
-TODO: test scadenza promozione speciale 6 gg
+```python[|1,8|17-25]
+def test_update_promozione_speciale_exp_date_lt_11_gt_6_when_called(
+        self, mock_cursor: Mock
+    ) -> None:
+        # Arrange
+        special_promotion = Product(
+            id=2,
+            name="Promozione Speciale",
+            exp_days=10,
+            quality=10,
+        )
+
+        mock_cursor.fetchall.return_value = [special_promotion]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(special_promotion.exp_days, 9)
+        self.assertEqual(special_promotion.quality, 12)
+```
+<!-- .element class="fontsize-small h-35"  -->
 
 ---
-TODO: test scadenza promozione speciale 11 gg
+
+```python[1,8|17-25]
+def test_update_promozione_speciale_exp_date_lt_6_when_called(
+        self, mock_cursor: Mock
+    ) -> None:
+        # Arrange
+        special_promotion = Product(
+            id=2,
+            name="Promozione Speciale",
+            exp_days=5,
+            quality=10,
+        )
+
+        mock_cursor.fetchall.return_value = [special_promotion]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(special_promotion.exp_days, 4)
+        self.assertEqual(special_promotion.quality, 13)
+```
+<!-- .element class="fontsize-small h-35"  -->
 
 ---
 
@@ -614,11 +999,62 @@ Coverage al 100% del metodo `update_products_end_of_day`
 
 ---
 
-TODO: localizzato edge case mancante > 50
+Ma non e' sufficiente...
 
 ---
 
-TODO: test qualità oltre 50 - test_update_promozione_speciale_quality_max_50_when_called
+```python[3,7]
+def update_products_end_of_day():
+    # ...
+      if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+          if item.exp_days < 11:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+    # ...
+```
+
+---
+
+Cosa succede se la qualita' e' 50 oppure di piu'?
+
+---
+
+Caso non mappato dai test ma coverage 100%
+
+---
+
+o meglio...
+
+---
+
+...non ancora mappato dai test
+
+---
+
+```python[|1,8,9|17-25]
+def test_update_promozione_speciale_quality_max_50_when_called(
+    self, mock_cursor: Mock
+) -> None:
+    # Arrange
+    special_promotion = Product(
+        id=2,
+        name="Promozione Speciale",
+        exp_days=5,
+        quality=55,
+    )
+
+    mock_cursor.fetchall.return_value = [special_promotion]
+
+    # Act
+    update_products_end_of_day()
+
+    # Assert
+    self.assertEqual(special_promotion.exp_days, 4)
+    self.assertEqual(special_promotion.quality, 55)
+```
+<!-- .element class="fontsize-small h-35"  -->
 
 ---
 
