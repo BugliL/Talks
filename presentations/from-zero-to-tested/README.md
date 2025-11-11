@@ -48,6 +48,27 @@ L'azienda che lo ha sviluppato è `fallita` e dobbiamo assolutamente occuparcene
 
 ---
 
+<div class="flex">
+    <div class="w-50"><img class="circular-img" src="./imgs/profile.jpg" /></div>
+    <div class="align-left mt-1 ml-1">
+        <b>Lorenzo Bugli</b> - Senior software engineer presso <span class="text-blue-highlight">Fiscozen</span>
+        faccio parte della community di <span class="text-blue-highlight">Schroedinger Hat</span>
+    </div>
+</div>
+<br />
+<div class="flex">
+    <div class="align-left">
+        Schroedinger Hat è un'associazione no profit che promuove l'opensource 
+        attraverso progetti di sviluppo software ed eventi
+    </div>
+    <div class="w-75">
+        <img src="./imgs/sh-logo.png" />
+    </div>
+</div>
+
+
+---
+
 ## Situazione rosea
 
 - Conoscenza del codice pari a zero 
