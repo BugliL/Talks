@@ -108,6 +108,10 @@ aggiornare il sistema per gestire delle `nuove regole personalizzate`
 
 ---
 
+"Le `Lenticchie biologiche` perdono `2 punti di qualità` ogni giorno trascorso."
+
+---
+
 Alla fine la richiesta del cliente e' semplice, no?
 
 ---
@@ -1450,25 +1454,254 @@ A forza di rifattorizzare...
 
 ---
 
+<img class="w-60" src="./imgs/forget.png" />
+
+---
+
 Implementazione della funzionalita'
 
 ---
 
-TODO: testing per la nuova funzionalita'
+<img class="w-60" src="./imgs/tdd.png" />
 
 ---
 
-TODO: aggiunta del codice per la nuova funzionalita'
+"Le `Lenticchie biologiche` perdono `2 punti di qualità` ogni giorno trascorso."
+<!-- .element class="align-left"  -->
 
 ---
 
-<!-- Non toccare questa parte -->
+```python[]
+def update_lenticchie_product(item: Product):
+    pass
+```
+
+---
+
+```python[|18]
+from unittest import TestCase
+
+from src.update_products_end_of_day import update_lenticchie_product
+from src.interfaces import Product
+
+
+class TestLenticchieUpdate(TestCase):
+    def test_update_lenticchie_product_when_called(self) -> None:
+        # Arrange
+        product = Product(
+            id=3,
+            name="Lenticchie Biologiche",
+            exp_days=5,
+            quality=10,
+        )
+
+        # Act
+        update_lenticchie_product(item=product)
+
+        # Assert
+        self.assertEqual(product.quality, 8)
+        self.assertEqual(product.exp_days, 4)
+
+```
+<!-- .element class="fontsize-small h-40"  -->
+
+---
+
+<img src="./imgs/lenticchie-red-test.png" />
+
+---
+
+```python[]
+def update_lenticchie_product(item: Product):
+    if item.quality > 0:
+        item.quality = item.quality - 2
+
+        if item.exp_days < 0 and item.quality > 0:
+            item.quality = item.quality - 2
+
+    item.exp_days = item.exp_days - 1
+```
+<!-- .element class=""  -->
+
+---
+
+<img src="./imgs/lenticchie-green-test.png" />
+
+---
+
+```python[]
+from unittest import TestCase
+from unittest.mock import Mock, patch
+
+from src.update_products_end_of_day import update_products_end_of_day
+from src.interfaces import Product
+
+
+@patch("src.update_products_end_of_day.cursor")
+class UpdateProductsEndOfDayShould(TestCase):
+    def test_update_lenticchie_product_when_called(self, mock_cursor: Mock) -> None:
+        # Arrange
+        product = Product(
+            id=3,
+            name="Lenticchie Biologiche",
+            exp_days=5,
+            quality=10,
+        )
+
+        mock_cursor.fetchall.return_value = [product]
+
+        # Act
+        update_products_end_of_day()
+
+        # Assert
+        self.assertEqual(product.quality, 8)
+        self.assertEqual(product.exp_days, 4)
+```
+<!-- .element class="fontsize-small h-40"  -->
+
+---
+
+<img src="./imgs/integration-test-fail.png" />
+
+---
+
+```python[|18-20]
+def update_products_end_of_day():
+    cursor.execute("SELECT id, name, exp_days, quality FROM products")
+    items = cursor.fetchall()
+
+    for item in items:
+        if item.name == "Miele":
+            update_miele(item)
+            continue
+
+        if item.name == "Formaggio Brie":
+            update_formaggio_brie(item)
+            continue
+
+        if item.name == "Promozione Speciale":
+            update_promozione_speciale(item)
+            continue
+
+        if item.name == "Lenticchie Biologiche":
+            update_lenticchie_product(item)
+            continue
+
+        update_product(item)
+
+    for item in items:
+        cursor.execute(
+            "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+            (item.exp_days, item.quality, item.id),
+        )
+    connection.commit()
+```
+<!-- .element class="fontsize-small fullscreen"  -->
+
+---
+
+<img src="./imgs/integration-test-good.png" />
+
+---
+
+Da dove eravamo partiti?
+
+---
+
+```python[]
+def update_products_end_of_day():
+  cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  items = cursor.fetchall()
+  for item in items:
+    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
+      if item.quality > 0:
+        if item.name != "Miele":
+          item.quality = item.quality - 1
+    else:
+      if item.quality < 50:
+        item.quality = item.quality + 1
+        if item.name == "Promozione Speciale":
+          if item.exp_days < 11:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+          if item.exp_days < 6:
+            if item.quality < 50:
+                            item.quality = item.quality + 1
+    if item.name != "Miele":
+      item.exp_days = item.exp_days - 1
+    if item.exp_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "Miele":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+  for item in items:
+    cursor.execute(
+      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+      (item.exp_days, item.quality, item.id)
+    )
+  connection.commit()
+```
+<!-- .element class="fullscreen"  -->
+
+---
+
+Dove siamo arrivati?
+
+---
+
+```python[|18-20]
+def update_products_end_of_day():
+    cursor.execute("SELECT id, name, exp_days, quality FROM products")
+    items = cursor.fetchall()
+
+    for item in items:
+        if item.name == "Miele":
+            update_miele(item)
+            continue
+
+        if item.name == "Formaggio Brie":
+            update_formaggio_brie(item)
+            continue
+
+        if item.name == "Promozione Speciale":
+            update_promozione_speciale(item)
+            continue
+
+        if item.name == "Lenticchie Biologiche":
+            update_lenticchie_product(item)
+            continue
+
+        update_product(item)
+
+    for item in items:
+        cursor.execute(
+            "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
+            (item.exp_days, item.quality, item.id),
+        )
+    connection.commit()
+```
+<!-- .element class="fontsize-small fullscreen"  -->
+
+---
+
+Abbiamo affiancato ai `characterization test` il processo di `TDD` per 
+implementare nuove funzionalita'
+<!-- .element class="align-left"  -->
+
+---
+
+Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
+
+---
 
 ## Venerdi' 
-
----
-
-## La conclusione
+## D-Day
 
 ---
 

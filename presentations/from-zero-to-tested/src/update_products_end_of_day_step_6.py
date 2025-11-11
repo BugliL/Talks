@@ -46,16 +46,6 @@ def update_product(item: Product):
     item.exp_days = item.exp_days - 1
 
 
-def update_lenticchie_product(item: Product):
-    if item.quality > 0:
-        item.quality = item.quality - 2
-
-        if item.exp_days < 0 and item.quality > 0:
-            item.quality = item.quality - 2
-
-    item.exp_days = item.exp_days - 1
-
-
 def update_products_end_of_day():
     cursor.execute("SELECT id, name, exp_days, quality FROM products")
     items = cursor.fetchall()
@@ -71,10 +61,6 @@ def update_products_end_of_day():
 
         if item.name == "Promozione Speciale":
             update_promozione_speciale(item)
-            continue
-
-        if item.name == "Lenticchie Biologiche":
-            update_lenticchie_product(item)
             continue
 
         update_product(item)
