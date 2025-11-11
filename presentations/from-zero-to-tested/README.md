@@ -101,10 +101,9 @@ Cos'e' che devo fare esattamente?
 
 ## Maggiori dettagli
 
-"Metteremo in vendita una nuova categoria di prodotti, i `prodotti biologici`.
+"Metteremo in vendita una nuova categoria di prodotti, i `Lenticchie biologiche`.
 Questi prodotti perdono qualità più velocemente ogni giorno. Dobbiamo
-aggiornare il sistema per gestire delle `nuove regole personalizzate` e
-aggiungere una `voce per il report` delle vendite giornaliere.
+aggiornare il sistema per gestire delle `nuove regole personalizzate` 
 <!-- .element class="align-left" -->
 
 ---
@@ -281,10 +280,6 @@ Sezioni trovate
   gestisce le scadenze dei prodotti
 <!-- .element class="fragment" -->
 
-- La funzione `daily_sales_report`
-  genera il report giornaliero delle vendite
-<!-- .element class="fragment" -->
-
 ---
 
 Osserviamo il codice della funzione `update_products_end_of_day`
@@ -294,7 +289,8 @@ Osserviamo il codice della funzione `update_products_end_of_day`
 ```python[]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
-  for item in cursor.fetchall():
+  items = cursor.fetchall()
+  for item in items:
     if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
       if item.quality > 0:
         if item.name != "Miele":
@@ -452,10 +448,11 @@ Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
 
 ---
 
-```python[|2,3,32-36|4-31]
+```python[|3,4,33-37|5-32]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
-  for item in cursor.fetchall():
+  items = cursor.fetchall()
+  for item in items:
     if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
       if item.quality > 0:
         if item.name != "Miele":
@@ -495,11 +492,12 @@ def update_products_end_of_day():
 ---
 
 
-```python[|2|3-6|7-15]
+```python[|2-3|4-6|7-20]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  items = cursor.fetchall()
 
-  for item in cursor.fetchall():
+  for item in items:
     # .... condizioni varie
 
   for item in items:
@@ -511,11 +509,185 @@ def update_products_end_of_day():
 ```
 
 ---
-TODO: CONTINUE HERE
+
+Come si testa del codice `accoppiato` cosi' tanto al db?
 
 ---
 
-## Rifattorizzazione
+I mock sono nostri amici
+
+---
+
+TODO: Cos'e' un mock
+
+---
+
+TODO: mock vs stub vs fake
+
+---
+
+TODO: esempio di test con mock - product base
+
+
+---
+
+TODO: esempio di run dei test
+
+---
+
+Non deve essere toccato il codice ma solo `eseguito` per
+validare l'implementazione dei `test`
+<!-- .element class="align-left"  -->
+
+---
+
+I `test` diventano il `codice da scrivere`
+<!-- .element class="align-left fragment"  -->
+
+Il `codice` diventa la `sorgente di verita'`
+<!-- .element class="align-left fragment"  -->
+
+---
+
+TODO: esempio di test con mock - miele
+
+---
+
+TODO: esempio di test con mock - formaggio brie
+
+---
+
+TODO: esempio di test con mock - promozione speciale
+
+---
+
+<img class="" src="./imgs/test-run-1.png" />
+
+---
+
+Quando ci si ferma nello scrivere i test?
+
+---
+
+TODO: cos'e' la coverage
+
+---
+
+TODO: come sfruttare la metrica
+
+---
+
+## Coverage run
+
+<img class="w-100" src="./imgs/coverage-run-1.png" />
+
+---
+
+## Report di coverage 
+
+<img class="w-100" src="./imgs/coverage-report-1.png" />
+
+---
+
+```python[|3]
+def update_products_end_of_day():
+    # ... 
+    if item.exp_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "Miele":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+    # ...
+```
+<!-- .element class=""  -->
+
+---
+
+TODO: test per expired normal product
+
+---
+
+TODO: test per expired brie product
+
+---
+
+<img class="w-100" src="./imgs/coverage-report-2.png" />
+
+---
+
+```python[|10]
+def update_products_end_of_day():
+    # ... 
+    if item.exp_days < 0:
+      if item.name != "Formaggio Brie":
+        if item.name != "Promozione Speciale":
+          if item.quality > 0:
+            if item.name != "Miele":
+                            item.quality = item.quality - 1
+        else:
+          item.quality = item.quality - item.quality
+      else:
+        if item.quality < 50:
+          item.quality = item.quality + 1
+    # ...
+```
+<!-- .element class=""  -->
+---
+
+TODO: test scadenza promozione speciale 6 gg
+
+---
+TODO: test scadenza promozione speciale 11 gg
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-3.png" />
+
+---
+
+<img class="w-100" src="./imgs/coverage-report-3.png" />
+
+---
+
+Coverage al 100% del metodo `update_products_end_of_day`
+
+---
+
+TODO: localizzato edge case mancante > 50
+
+---
+
+TODO: test qualità oltre 50 - test_update_promozione_speciale_quality_max_50_when_called
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+
+100% di coverage non vuol dire 100% di sicurezza
+
+---
+
+<img class="w-100" src="./imgs/coverage-report-3.png" />
+
+---
+
+Il buon senso e capire gli `edge case` sono fondamentali
+
+---
+
+## E ora?
+
+---
+
+Si rifattorizza!
 
 ---
 
@@ -523,8 +695,9 @@ TODO: CONTINUE HERE
 ```python
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
+  items = cursor.fetchall():
 
-  for item in cursor.fetchall():
+  for item in items:
     # .... condizioni varie
 
   for item in items:
@@ -534,20 +707,76 @@ def update_products_end_of_day():
     )
   connection.commit()
 ```
-
---- 
-
-Toccare il codice senza `characterization tests` e' pericoloso, 
-va fatto con `cautela` e `molta attenzione`
+<!-- .element class=""  -->
 
 ---
 
+## TODO: step 1 di rifattorizzazione
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+# TODO: step 2 di rifattorizzazione
+---
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+# TODO: step 3 di rifattorizzazione
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-3-wrong.png" />
+
+---
+
+Si ripristina il codice precedente
+
+---
+
+# TODO: step 3 di rifattorizzazione
+
+---
+
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+# TODO: step 4 di rifattorizzazione
+
+---
+
+<img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+
+Ad ogni step si eseguono i test per verificare che tutto funzioni ancora
+<!-- .element class="align-left"  -->
+
+Se non funziona si torna indietro e si corregge
+<!-- .element class="fragment align-left"  -->
+
+---
+
+A forza di rifattorizzare...
+
+---
 
 ## Giovedi'
 
 ---
 
 Implementazione della funzionalita'
+
+---
+
+TODO: testing per la nuova funzionalita'
+
+---
+
+TODO: aggiunta del codice per la nuova funzionalita'
 
 ---
 
@@ -569,10 +798,10 @@ Implementazione della funzionalita'
 - **Martedi'** - Analisi del codice e del sistema
 <!-- .element class="fragment" -->
 
-- **Mercoledi'** - scrittura dei test e rifattorizzazione
+- **Mercoledi'** - Characterization test e rifattorizzazione
 <!-- .element class="fragment" -->
 
-- **Giovedi'** - TDD per implementazione 
+- **Giovedi'** - TDD per nuove funzionalita'
 <!-- .element class="fragment" -->
 
 - **Venerdi'** - Consegna del progetto 🎉
