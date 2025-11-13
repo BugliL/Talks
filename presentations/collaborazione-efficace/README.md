@@ -2,7 +2,7 @@
 title: Collaborazione Efficace tra Team di Sviluppo e Stakeholder
 author: Lorenzo Bugli
 footer: 2024-11-27 - Nana Bianca, Firenze
-footerIconUrl: https://www.schroedinger-hat.org/assets/sh-logo-big-UQdXK547.png
+footerIconUrl: './sh-logo.png'
 presentationLink: https://buglil.github.io/Talks/collaborazione-efficace/#/
 revealOptions:
   transition: none
@@ -13,7 +13,7 @@ source-code: https://github.com/BugliL/ATTD_TALK
 Costruire Software Funzionante  
 con approccio ATDD
 
-<img class="w-25" src="./slide-qr-code.png" />
+<img class="w-50" src="./slide-qr-code.png" />
 
 ---
 
