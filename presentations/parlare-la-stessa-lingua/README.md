@@ -383,6 +383,13 @@ sono convinto che andremo meglio!"
 `Bob` e' scettico \
 ma tanto vale provarci
 
+# 🧑🏻‍💼 👩🏻‍💼
+<!-- .element class="fs-30" -->
+
+Da quando `Bob` e `Alice` \
+hanno imparato ad usare \
+le `user stories` 
+
 ---
 
 ```text[]
