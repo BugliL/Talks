@@ -240,13 +240,25 @@ di uno sviluppatore
 # 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
 
+```text[]
+Il sistema deve associare a tutti i documenti firmati 
+digitalmente il colore verde.  
+
+Tutti i documenti di tipo distinte materiale devono 
+essere associati al colore giallo.  
+
+I documenti in lavorazione devono essere associati al 
+colore rosso a meno che non siano di tipo disegno tecnico, 
+in quel caso devono avere il colore blu.
+```
+
 ```[]
 Documento:
   - stato: str # es. in lavorazione, firmato digitalmente, ...
   - tipo: str # es. distinta materiale, disegno tecnico, ...
   - is_firmato_digitalmente: bool # true/false 
 ```
-<!-- .element class="fs-08" -->
+<!-- .element class="fs-08 fragment" -->
 
 ---
 
