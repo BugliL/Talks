@@ -255,6 +255,18 @@ colore rosso a meno che non siano di tipo disegno tecnico,
 in quel caso devono avere il colore blu.
 ```
 
+```text[]
+Il sistema deve associare a tutti i documenti firmati 
+digitalmente il colore verde.  
+
+Tutti i documenti di tipo distinte materiale devono 
+essere associati al colore giallo.  
+
+I documenti in lavorazione devono essere associati al 
+colore rosso a meno che non siano di tipo disegno tecnico, 
+in quel caso devono avere il colore blu.
+```
+
 ```[]
 Documento:
   - stato: str # es. in lavorazione, firmato digitalmente, ...
