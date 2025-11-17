@@ -30,6 +30,10 @@
   width: 60%;
 }
 
+.mt-05 {
+  margin-top: 0.5em !important;
+}
+
 .mt-1 {
   margin-top: 1em !important;
 }
@@ -111,8 +115,36 @@
   border-radius: 50%;
 }
 
+.fs-05 {
+  font-size: 0.5em !important;
+}
+
 .fs-06 {
-  font-size: 0.6em;
+  font-size: 0.6em !important;
+}
+
+.fs-08 {
+  font-size: 0.8em !important;
+}
+
+.fs-10 {
+  font-size: 1em !important;
+}
+
+.fs-15 {
+  font-size: 1.5em !important;
+}
+
+.fs-20 {
+  font-size: 2em !important;
+}
+
+.fs-30 {
+  font-size: 3em !important;
+}
+
+.utf8-icon {
+  font-size: 3.5em !important;
 }
 
 p code {
@@ -149,4 +181,21 @@ p code {
   white-space: nowrap; /* prevent wrapping */
   padding-left: 0.2em; /* space around text */
   padding-right: 0.2em; /* space around text */
+}
+
+.hide-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 }
