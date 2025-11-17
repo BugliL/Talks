@@ -4,7 +4,6 @@ author: Lorenzo Bugli
 footer: 2025-11-26 - TSH - Firenze
 footerIconUrl: './imgs/sh-logo.png'
 link: https://buglil.github.io/Talks/from-zero-to-tested/#/
-
 revealOptions:
   transition: none
 
@@ -20,12 +19,14 @@ quali test scrivere per primi e come usare mock e altre tecniche che ho trovato
 utili per integrare il TDD in progetti già esistenti"
 ---
 
+<img class="w-10 mb-1" width="25%" src="./imgs/sh-logo.png" />
+
 # From Zero to Tested
 
-<img class="w-25" width="25%" src="./imgs/slide-qr-code.png" />
-
 Come aggiungere test a un progetto esistente
-https://buglil.github.io/Talks/from-zero-to-tested/#/
+<!-- https://buglil.github.io/Talks/from-zero-to-tested/#/ -->
+
+<img class="w-25 mt-1" width="25%" src="./imgs/slide-qr-code.png" />
 
 ---
 
@@ -57,17 +58,6 @@ L'azienda che lo ha sviluppato è `fallita` e dobbiamo assolutamente occuparcene
         faccio parte della community di <span class="text-blue-highlight">Schroedinger Hat</span>
     </div>
 </div>
-<br />
-<div class="flex">
-    <div class="align-left">
-        Schroedinger Hat è un'associazione no profit che promuove l'opensource 
-        attraverso progetti di sviluppo software ed eventi
-    </div>
-    <div class="w-75">
-        <img src="./imgs/sh-logo.png" />
-    </div>
-</div>
-
 
 ---
 
@@ -94,7 +84,7 @@ L'azienda che lo ha sviluppato è `fallita` e dobbiamo assolutamente occuparcene
 
 ---
 
-Cos'e' che devo fare esattamente?
+Cos'è che devo fare esattamente?
 
 ---
 
@@ -135,7 +125,7 @@ aggiornare il sistema per gestire delle `nuove regole personalizzate`
 
 ---
 
-Alla fine la richiesta del cliente e' semplice, no?
+Alla fine la richiesta del cliente è semplice, no?
 
 ---
 
@@ -239,7 +229,7 @@ Si ricerca nel codice `dove` e `come` le funzionalita' sono state implementate
 ---
 
 
-Lo scopo e' comprendere le `dipendenze` tra i componenti e `trovare`
+Lo scopo è comprendere le `dipendenze` tra i componenti e `trovare`
 i punti impattati da un eventuale cambiamento
 <!-- .element class="align-left" -->
 
@@ -361,7 +351,7 @@ def update_products_end_of_day():
 ---
 
 L'analisi del codice porta a identificare la funzione critica 
-da modificare ma ormai si e' fatta sera
+da modificare ma ormai si è fatta sera
 <!-- .element class="align-left"  -->
 
 ---
@@ -430,7 +420,7 @@ Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
 
 ---
 
-```python[|3,4,33-37|5-32]
+```python[|2-4,32-37|5-32]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
   items = cursor.fetchall()
@@ -504,7 +494,7 @@ Potrei tirarmi su un database di test e fare le prove...
 
 ---
 
-## Cos'e' un mock?
+## Cos'è un mock?
 
 ---
 
@@ -512,12 +502,12 @@ Potrei tirarmi su un database di test e fare le prove...
 
 ---
 
-Un `mock` e' un oggetto che puo' simulare `qualsiasi comportamento` e
+Un `mock` è un oggetto che puo' simulare `qualsiasi comportamento` e
 sostituirlo in ogni contesto
 
 ---
 
-Tutto quello che e' una `dipendenza` nel codice puo' essere rappresentata da un `mock`
+Tutto quello che è una `dipendenza` nel codice puo' essere rappresentata da un `mock`
 
 ---
 
@@ -649,14 +639,14 @@ Il `mock` elimina il bisogno di un database e permette di `isolare` il codice
 
 ---
 
-L'idea di base del test e' usare il codice esistente per definire il
+L'idea di base del test è usare il codice esistente per definire il
 `comportamento atteso`
 <!-- .element class="align-left"  -->
 
 ---
 
 I `test` diventano il `codice da scrivere`
-<!-- .element class="align-left fragment"  -->
+<!-- .element class="align-left"  -->
 
 Il `codice` diventa la `sorgente di verita'`
 <!-- .element class="align-left fragment"  -->
@@ -697,11 +687,6 @@ class UpdateProductsEndOfDayShould(TestCase):
         self.assertEqual(product.quality, 4)
 ```
 <!-- .element class="fullscreen fontsize-small"  -->
-
----
-
-Osservando il codice si scrivono i test e si verifica la loro correttezza
-<!-- .element class="align-left"  -->
 
 ---
 
@@ -831,7 +816,7 @@ La `coverage` ci aiuta a rispondere a questa domanda
 
 ---
 
-## Cos'e' la coverage?
+## Cos'è la coverage?
 
 Qta di codice coperto dai test, espressa in percentuale
 
@@ -853,7 +838,7 @@ Indica quali e `quante righe` di codice sono state `eseguite` durante il run dei
 
 ---
 
-Il report ci dice che non tutto il codice e' coperto dai test, ci sono parti che
+Il report ci dice che non tutto il codice è coperto dai test, ci sono parti che
 non sono state considerate
 <!-- .element class="align-left"  -->
 
@@ -945,7 +930,7 @@ Manca ancora la riga 32
 
 ---
 
-```python[|10]
+```python[|5,9,10]
 def update_products_end_of_day():
     # ... 
     if item.exp_days < 0:
@@ -964,15 +949,13 @@ def update_products_end_of_day():
 <!-- .element class=""  -->
 ---
 
-```python[|1,8|17-25]
-def test_update_promozione_speciale_exp_date_lt_11_gt_6_when_called(
-        self, mock_cursor: Mock
-    ) -> None:
+```python [|1,6|15-20]
+ def test_update_promozione_speciale_scaduto_when_called(self, mock_cursor: Mock) -> None:
         # Arrange
         special_promotion = Product(
             id=2,
             name="Promozione Speciale",
-            exp_days=10,
+            exp_days=-1,
             quality=10,
         )
 
@@ -982,33 +965,8 @@ def test_update_promozione_speciale_exp_date_lt_11_gt_6_when_called(
         update_products_end_of_day()
 
         # Assert
-        self.assertEqual(special_promotion.exp_days, 9)
-        self.assertEqual(special_promotion.quality, 12)
-```
-<!-- .element class="fontsize-small h-35"  -->
-
----
-
-```python[1,8|17-25]
-def test_update_promozione_speciale_exp_date_lt_6_when_called(
-        self, mock_cursor: Mock
-    ) -> None:
-        # Arrange
-        special_promotion = Product(
-            id=2,
-            name="Promozione Speciale",
-            exp_days=5,
-            quality=10,
-        )
-
-        mock_cursor.fetchall.return_value = [special_promotion]
-
-        # Act
-        update_products_end_of_day()
-
-        # Assert
-        self.assertEqual(special_promotion.exp_days, 4)
-        self.assertEqual(special_promotion.quality, 13)
+        self.assertEqual(special_promotion.exp_days, -2)
+        self.assertEqual(special_promotion.quality, 0)
 ```
 <!-- .element class="fontsize-small h-35"  -->
 
@@ -1026,7 +984,7 @@ Coverage al 100% del metodo `update_products_end_of_day`
 
 ---
 
-Ma non e' sufficiente...
+Ma non è sufficiente...
 
 ---
 
@@ -1044,7 +1002,7 @@ def update_products_end_of_day():
 
 ---
 
-Cosa succede se la qualita' e' 50 oppure di piu'?
+Cosa succede se la qualita' è 50 oppure di piu'?
 
 ---
 
@@ -1501,7 +1459,9 @@ def update_lenticchie_product(item: Product):
 
 ---
 
-```python[|18]
+## Unit Test
+
+```python [|3,18|]
 from unittest import TestCase
 
 from src.update_products_end_of_day import update_lenticchie_product
@@ -1526,7 +1486,7 @@ class TestLenticchieUpdate(TestCase):
         self.assertEqual(product.exp_days, 4)
 
 ```
-<!-- .element class="fontsize-small h-40"  -->
+<!-- .element class="fontsize-small h-35"  -->
 
 ---
 
@@ -1552,7 +1512,9 @@ def update_lenticchie_product(item: Product):
 
 ---
 
-```python[]
+## Integration Test
+
+```python [|4,22|]
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
@@ -1588,7 +1550,7 @@ class UpdateProductsEndOfDayShould(TestCase):
 
 ---
 
-```python[|18-20]
+```python [|18-20]
 def update_products_end_of_day():
     cursor.execute("SELECT id, name, exp_days, quality FROM products")
     items = cursor.fetchall()
@@ -1631,7 +1593,7 @@ Da dove eravamo partiti?
 
 ---
 
-```python[]
+```python []
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
   items = cursor.fetchall()
@@ -1728,7 +1690,7 @@ Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
 
 ---
 
-## Come si e' svolto il progetto?
+## Come si è svolto il progetto?
 
 - **Lunedi'** - L'arrivo della patata bollente 💀
 <!-- .element class="fragment" -->
@@ -1747,7 +1709,7 @@ Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
 
 ---
 
-## Com'e' andata a finire?
+## Com'è andata a finire?
 
 - Consegnate tutte le modifiche
 <!-- .element class="fragment" -->
@@ -1804,10 +1766,20 @@ Lorenzo Bugli - @BugliL
 
 # Riferimenti
 
+<div class="flex">
+    <div>
+        <img class="w-25" src="./imgs/linkedin.png" /><br />
+        <a href="https://www.linkedin.com/in/buglil/">Linkedin</a>
+    </div>
+    <div>
+        <img class="w-25" src="./imgs/schroedinger-hat-qr-code.png" /><br />
+        <a href="https://schroedinger-hat.org/">Schrödinger Hat</a>
+    </div>
+</div>
+
 - [Gilded Rose Kata](https://github.com/NotMyself/GildedRose)
-- Working Effectively with Legacy Code <br/>
+- [Working Effectively with Legacy Code](https://a.co/d/0exgjaJ) <br/>
   *Michael Feathers*
 
-- Refactoring: Improving the Design of Existing Code <br/>
+- [Refactoring: Improving the Design of Existing Code](https://a.co/d/a0SPwMl) <br/>
   *Martin Fowler*
-
