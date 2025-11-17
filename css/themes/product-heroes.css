@@ -1,0 +1,69 @@
+@import url("../base.css");
+@import url("../code.css");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap");
+@import url("../highlightjs-themes/catppuccin.css");
+
+body {
+  font-family: "Lexend", sans-serif !important;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.backgrounds {
+  background: linear-gradient(to bottom, #000036 0%, #0a0066 40%, #3300b3 100%);
+
+  /* Original color scheme */
+  /* background: linear-gradient(to bottom, #02024f 0%, #12009b 40%, #4c00ff 100%); */
+  /* background-color: black; */
+}
+
+p {
+  font-weight: 700;
+  color: white;
+  font-family: "Lexend", sans-serif !important;
+}
+
+div {
+  color: black;
+}
+
+p code {
+  color: #56cfe0; /* light text color */
+  background: none;
+  font-size: 1em;
+  font-family: "Lexend", sans-serif !important;
+  text-transform: uppercase !important;
+}
+
+.text-blue-highlight {
+  color: darkblue;
+}
+
+ul li::marker,
+ol li::marker {
+  color: #56cfe0; /* your bullet color */
+  font-size: 1.2em; /* optional */
+}
+
+ul li {
+  color: white;
+}
+
+p.negative {
+  background-color: #56cfe0;
+  color: black;
+  width: fit-content;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+section p.negative {
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+h1 {
+  color: #56cfe0 !important;
+}
+
