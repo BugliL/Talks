@@ -139,7 +139,7 @@ il `software` .
 
 ---
 
-## Martedi' 
+## Martedì 
 ## 3gg alla scadenza
 
 ---
@@ -218,11 +218,11 @@ Come si affronta un mostro del genere?
 
 ---
 
-Si capisce la `funzionalita' alto livello` del sistema anche provando 
+Si capisce la `funzionalità alto livello` del sistema anche provando 
 fisicamente l'applicazione
 <!-- .element class="align-left" -->
 
-Si ricerca nel codice `dove` e `come` le funzionalita' sono state implementate
+Si ricerca nel codice `dove` e `come` le funzionalità sono state implementate
 <!-- .element class="fragment align-left" -->
 
 ---
@@ -246,11 +246,11 @@ graph TB
         subgraph CORE["Business Logic"]
             UPD["update_products_end_of_day<br/><br/>
                  Funzione critica legacy per la gestione
-                 delle scadenze e qualita' prodotti"]
+                 delle scadenze e qualità prodotti"]
 
             INV["process_supplier_invoices<br/><br/>
                  Funzione gestione fatture per calcolo importi 
-                 e gestione delle priorita'"]
+                 e gestione delle priorità"]
         end
         subgraph REP["Reporting System"]
             DSR["daily_sales_report
@@ -355,7 +355,7 @@ da modificare ma ormai si è fatta sera
 
 ---
 
-## Mercoledi' 
+## Mercoledì 
 ## 2gg alla scadenza
 
 ---
@@ -367,12 +367,12 @@ Capito il punto in cui intervenire, come si va avanti?
 Va costruita una `rete di sicurezza` per modificare il codice dell'applicazione
 <!-- .element class="align-left"  -->
 
-Una `batteria di test` che rappresenta le funzionalita' del programma
+Una `batteria di test` che rappresenta le funzionalità del programma
 <!-- .element class="fragment align-left"  -->
 
 ---
 
-Ogni modifica al codice puo' `rompere qualcosa`, ma se si verifica il 
+Ogni modifica al codice può `rompere qualcosa`, ma se si verifica il 
 comportamento del codice con i test si controlla se tutto funziona  `come dovrebbe`
 <!-- .element class="align-left"  -->
 
@@ -408,13 +408,13 @@ Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
 
 ## Characterization tests - process
 
-- Si scrivono dei test `verdi`, senza toccare la funzionalita'
+- Si scrivono dei test `verdi`, senza toccare la funzionalità
 <!-- .element class="fragment align-left" -->
 
 - Si `rifattorizza` il codice mantenendo i test `verdi`
 <!-- .element class="fragment align-left" -->
 
-- Si aggiunge la `nuova funzionalita'` usando il TDD
+- Si aggiunge la `nuova funzionalità` usando il TDD
 <!-- .element class="fragment align-left" -->
 
 ---
@@ -481,7 +481,7 @@ def update_products_end_of_day():
 
 ---
 
-Come si testa del codice `accoppiato` cosi' tanto al db?
+Come si testa del codice `accoppiato` così tanto al db?
 
 ---
 
@@ -501,12 +501,12 @@ Potrei tirarmi su un database di test e fare le prove...
 
 ---
 
-Un `mock` è un oggetto che puo' simulare `qualsiasi comportamento` e
+Un `mock` è un oggetto che può simulare `qualsiasi comportamento` e
 sostituirlo in ogni contesto
 
 ---
 
-Tutto quello che è una `dipendenza` nel codice puo' essere rappresentata da un `mock`
+Tutto quello che è una `dipendenza` nel codice può essere rappresentata da un `mock`
 
 ---
 
@@ -521,7 +521,7 @@ Si usano
 - `Dipendenze da altri moduli`: funzioni, classi, metodi....
 <!-- .element class="fragment"  --> 
 
-- `Funzionalita' costose` da eseguire: calcoli complessi, algoritmi....
+- `Funzionalità costose` da eseguire: calcoli complessi, algoritmi....
 <!-- .element class="fragment"  -->
 
 ---
@@ -647,7 +647,7 @@ L'idea di base del test è usare il codice esistente per definire il
 I `test` diventano il `codice da scrivere`
 <!-- .element class="align-left"  -->
 
-Il `codice` diventa la `sorgente di verita'`
+Il `codice` diventa la `sorgente di verità`
 <!-- .element class="align-left fragment"  -->
 
 ---
@@ -665,7 +665,7 @@ from src.update_products_end_of_day import update_products_end_of_day
 class UpdateProductsEndOfDayShould(TestCase):
     def test_update_miele_data_when_called(self, mock_cursor: Mock) -> None:
         """
-        Il Miele non degrada mai di qualita' e non scade mai
+        Il Miele non degrada mai di qualità e non scade mai
         """
 
         # Arrange
@@ -696,7 +696,7 @@ class UpdateProductsEndOfDayShould(TestCase):
 Il run del test ha dato esito `rosso` ma ha fornito un'informazione preziosa
 <!-- .element class="align-left"  -->
 
-Il `Miele` non diminuisce mai di qualita'!
+Il `Miele` non diminuisce mai di qualità!
 <!-- .element class="fragment align-left"  -->
 
 ---
@@ -1001,7 +1001,7 @@ def update_products_end_of_day():
 
 ---
 
-Cosa succede se la qualita' è 50 oppure di piu'?
+Cosa succede se la qualità è 50 oppure di più?
 
 ---
 
@@ -1429,7 +1429,7 @@ A forza di rifattorizzare...
 
 ---
 
-## Giovedi'
+## Giovedì
 ## 1gg alla scadenza
 
 ---
@@ -1438,7 +1438,7 @@ A forza di rifattorizzare...
 
 ---
 
-Implementazione della funzionalita'
+Implementazione della funzionalità
 
 ---
 
@@ -1675,7 +1675,7 @@ def update_products_end_of_day():
 ---
 
 Abbiamo affiancato ai `characterization test` il processo di `TDD` per 
-implementare nuove funzionalita'
+implementare nuove funzionalità
 <!-- .element class="align-left"  -->
 
 ---
@@ -1684,26 +1684,26 @@ Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
 
 ---
 
-## Venerdi' 
+## Venerdì 
 ## D-Day
 
 ---
 
 ## Come si è svolto il progetto?
 
-- **Lunedi'** - L'arrivo della patata bollente 💀
+- **Lunedì** - L'arrivo della patata bollente 💀
 <!-- .element class="fragment" -->
 
-- **Martedi'** - Analisi del codice e del sistema
+- **Martedì** - Analisi del codice e del sistema
 <!-- .element class="fragment" -->
 
-- **Mercoledi'** - Characterization test e rifattorizzazione
+- **Mercoledì** - Characterization test e rifattorizzazione
 <!-- .element class="fragment" -->
 
-- **Giovedi'** - TDD per nuove funzionalita'
+- **Giovedì** - TDD per nuove funzionalità
 <!-- .element class="fragment" -->
 
-- **Venerdi'** - Consegna del progetto 🎉
+- **Venerdì** - Consegna del progetto 🎉
 <!-- .element class="fragment" -->
 
 ---
