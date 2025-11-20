@@ -4,8 +4,8 @@ author: Lorenzo Bugli
 footer: 2025-11-27 - Impact Hub, Firenze
 footerIconUrl: ./imgs/product-heroes-squad-logo.png
 theme: black
-css:
-  - css/themes/product-heroes.css
+css: 
+  - "css/themes/product-heroes.css"
 
 revealOptions:
   transition: none
