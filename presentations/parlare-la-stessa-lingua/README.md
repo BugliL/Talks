@@ -666,19 +666,43 @@ per portargli le specifiche riscritte
 <!-- .element class="utf8-icon" -->
 
 `Franco` finisce il lavoro in meta' tempo
-
-e sopratutto `senza errori`
 <!-- .element: class="fragment" -->
 
 ---
 
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Bob non ci crede
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+"Impossibile! \
+Come ha fatto?"
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+"Sara' sicuramente codice spazzatura! \
+Sarà pieno di bug!"
+
+---
+
+Non ci sono bug e tutto funziona 
+
+---
 
 # La faccia di Bob
 <img class="w-50" src="./imgs/the-what-face.png" />
 
 ---
 
-Ma come ha fatto?
+Ma come ha fatto davvero?
 
 ---
 
@@ -835,8 +859,11 @@ la `Gherkin syntax`
 
 ---
 
+# Come funziona il processo?
 
-# 1️⃣ Requisiti chiari
+---
+
+# 1️⃣ Requisiti completi e comprensibili
 
 Scritti in un linguaggio \
 comprensibile a tutti
@@ -852,30 +879,70 @@ in verifiche automatiche
 
 # 3️⃣ Sviluppo guidato
 
-Gli sviluppatori sanno \
-esattamente cosa implementare
+Il codice implementa \
+esattamente i test
 
 ---
 
 # 4️⃣ Validazione continua
 
-I test verificano che il codice \
-rispetti i requisiti
+I test verificano che tutto \
+funzioni come richiesto
 
 ---
 
-Con questo approccio tutti vincono:
+# E chi ci guadagna?
 
-- Il `business` ha requisiti chiari
+---
+
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il business
+
+<br/>
+
+Ha requisiti `chiari` e `condivisi` \
+con tutto il team
 <!-- .element: class="fragment" -->
 
-- Gli `sviluppatori` sanno cosa fare
+---
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
+## Gli sviluppatori
+
+<br/>
+
+Sanno `esattamente` cosa implementare \
+senza ambiguità
 <!-- .element: class="fragment" -->
 
-- I `test` verificano automaticamente
+---
+
+# 🤖
+<!-- .element: class="utf8-icon" -->
+
+## I test
+
+<br/>
+
+Verificano `automaticamente` \
+che il software faccia ciò che deve
 <!-- .element: class="fragment" -->
 
-- Il `cliente` ottiene ciò che vuole
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il cliente
+
+<br/>
+
+Ottiene un prodotto che \
+`rispecchia le sue richieste`
 <!-- .element: class="fragment" -->
 
 ---
