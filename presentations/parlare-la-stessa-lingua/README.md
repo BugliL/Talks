@@ -43,6 +43,10 @@ Membro community di `Schrödinger Hat`
 
 ---
 
+Ci sono sviluppatori in sala?
+
+---
+
 #  🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
@@ -239,7 +243,6 @@ di uno sviluppatore
 
 # 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
-
 ```text[]
 Il sistema deve associare a tutti i documenti firmati 
 digitalmente il colore verde.  
@@ -915,7 +918,7 @@ Ogni mattina `Franco` si sveglia
 
 ---
 
-# 👩🏻‍💼
+# 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
 
 `Franco` sa che puo' lavorare \
