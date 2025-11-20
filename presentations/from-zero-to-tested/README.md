@@ -2,7 +2,9 @@
 title: From Zero to Tested
 author: Lorenzo Bugli
 footer: 2025-11-26 - TSH - Firenze
+footerIconUrl: './imgs/sh-logo.png'
 link: https://buglil.github.io/Talks/from-zero-to-tested/#/
+
 revealOptions:
   transition: none
 
