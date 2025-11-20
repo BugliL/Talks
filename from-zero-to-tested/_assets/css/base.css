@@ -163,6 +163,22 @@
   font-size: 3.5em !important;
 }
 
+.fs-15 {
+  font-size: 1.5em !important;
+}
+
+.fs-20 {
+  font-size: 2em !important;
+}
+
+.fs-30 {
+  font-size: 3em !important;
+}
+
+.utf8-icon {
+  font-size: 3.5em !important;
+}
+
 p code {
   background-color: #7ca7dd; /* dark gray background */
   color: #d1d5da; /* light text color */
