@@ -36,21 +36,23 @@ rispecchi le specifiche."
 
 <img class="w-25" src="./imgs/qr.png" />
 
+<br/>
+
+<div class="centered-elements">
+<img class="circular-img w-10 mr-1" src="./imgs/profile.jpg" />
+
 `Lorenzo Bugli`  \
 Senior software engineer presso `Fiscozen` \
 Membro community di `Schrödinger Hat` 
-<!-- .element: class="fs-06" -->
-
----
-
-Ci sono sviluppatori in sala?
+<!-- .element: class="fs-06 align-left" -->
+</div>
 
 ---
 
 #  🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
-Questo e' `Bob`
+Anche `Bob` lo ha pensato spesso
 
 ---
 
@@ -113,10 +115,48 @@ Bob inizia ad organizzare \
 
 ---
 
-# 🧑🏻‍💼 🪧 🙋🏻🙋🏽‍♀️🙋🏼‍♂️
+# 🧑🏻‍💼 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
 <!-- .element class="utf8-icon" -->
-Il team lo bombarda di domande \
-perche' non capiscono 
+
+Cosa succede  \
+in quei meeting?
+
+---
+
+# 🧑🏻‍💻 
+<!-- .element class="utf8-icon" -->
+
+"E se l'utente fa X prima di Y, \
+cosa succede?"
+
+---
+
+# 👩🏽‍💻 
+<!-- .element class="utf8-icon" -->
+
+"Questo campo è obbligatorio \
+solo a volte... quando esattamente?"
+
+---
+
+# 👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+
+"Aspetta, ma quindi se... \
+no, non ho capito..."
+
+---
+
+# 🙍🏻 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+`Bob` e' sommerso dalle domande
+
+---
+
+# 🙍🏻 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+
+I meeting si allungano
 
 ---
 
@@ -677,88 +717,67 @@ Solo dopo scrivi il codice che \
 
 ---
 
-```gherkin[]
-Given un documento firmato digitalmente
-When il sistema assegna un colore al documento
-Then il documento deve essere verde
-
-Given un documento di tipo "distinta materiale"
-When il sistema assegna un colore al documento
-Then il documento deve essere giallo
-
-Given un documento in lavorazione di tipo "disegno tecnico"
-When il sistema assegna un colore al documento
-Then il documento deve essere rosso
-
-Given un documento in lavorazione di tipo "disegno tecnico"
-When il sistema assegna un colore al documento
-Then il documento deve essere blu
-```
-<!-- .element class="fs-08 h-35" -->
-
----
-
 Ogni `specifica` diventa un `test`
 
----
-
 ```gherkin[]
-Given documento di tipo distinta materiale non firmata digitalmente
-When il sistema assegna un colore al documento
-Then il colore associato è il GIALLO
+Dato un documento di tipo "distinta materiale"
+Quando il sistema assegna un colore al documento
+Allora il colore associato al documento e' il "giallo"
 ```
-```python [|5-12|13-15|17-19]
-from behave import given, then, when
-from document import Colori, Documento, StatoDocumento, TipoDocumento
-from system import System
+<!-- .element class="fs-08" -->
 
-@given("documento di tipo distinta materiale non firmata digitalmente")
-def given_documento_distinta_materiale_non_firmata_digitalmente(context):
-    context.distinta = Documento(
-        tipo=TipoDocumento.DISTINTA_MATERIALI,
-        stato=StatoDocumento.INVIATO,
-        firmato=False,
-    )
-
-@when("il sistema assegna un colore al documento")
-def when_sistema_assegna_colore(context):
-    System.assign_color(context.distinta)
-
-@then("il colore associato è il GIALLO")
-def then_colore_associato_is_yellow(context):
-    assert context.distinta.colore == Colori.GIALLO
-```
-<!-- .element class="fs-06 hide-scrollbar" -->
 
 ---
 
-```gherkin []
-Given un documento in lavorazione di tipo "disegno tecnico"
-When il sistema assegna un colore al documento
-Then il documento deve essere BLU
+```gherkin
+Dato documento di tipo distinta materiale
 ```
-```python [|5-11|13-15|17-19]
-from behave import given, when, then
-from document import Colori, Documento, StatoDocumento, TipoDocumento
-from system import System
+<!-- .element: class="fs-10" -->
 
-@given('un documento in lavorazione di tipo "disegno tecnico"')
-def given_documento_in_lavorazione_disegno_tecnico(context):
-    context.documento = Documento(
-        tipo=TipoDocumento.DISEGNO_TECNICO,
-        stato=StatoDocumento.LAVORAZIONE,
-        firmato=False
-    )
 
+```python
+@given("documento di tipo distinta materiale")
+def crea_documento_distinta():
+    # codice per creare il documento
+```
+<!-- .element: class="fs-10" -->
+
+Vedete la corrispondenza?
+<!-- .element: class="fragment" -->
+
+---
+
+```gherkin
+Quando il sistema assegna un colore al documento
+```
+<!-- .element: class="fs-10" -->
+
+```python
 @when("il sistema assegna un colore al documento")
-def when_sistema_assegna_colore(context):
-    System.assign_color(context.documento)
-
-@then("il documento deve essere blu")
-def then_documento_deve_essere_blu(context):
-    assert context.documento.colore == Colori.BLU
+def assegna_colore():
+    # codice per assegnare il colore
 ```
-<!-- .element class="fs-06 hide-scrollbar" -->
+<!-- .element: class="fs-10" -->
+
+La specifica diventa codice eseguibile
+<!-- .element: class="fragment" -->
+
+---
+
+```gherkin
+Allora il colore associato è il GIALLO
+```
+<!-- .element: class="fs-10" -->
+
+```python
+@then("il colore associato è il GIALLO")
+def verifica_giallo():
+    assert documento.colore == GIALLO
+```
+<!-- .element: class="fs-10" -->
+
+Il test verifica automaticamente!
+<!-- .element: class="fragment" -->
 
 ---
 
