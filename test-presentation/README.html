@@ -196,7 +196,7 @@ This is an hidden text and the real text is not visible.
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"static":"docs/test-presentation"}, queryOptions);
+      var options = extend(defaultOptions, {"transition":"fade","_":["presentations/test-presentation/README.md"],"disable-puppeteer":true,"disablePuppeteer":true,"static":"docs/test-presentation"}, queryOptions);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
