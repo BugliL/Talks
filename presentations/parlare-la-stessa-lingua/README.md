@@ -702,46 +702,65 @@ Non ci sono bug e tutto funziona
 
 ---
 
-Ma come ha fatto davvero?
+Ma come ha fatto?
 
 ---
 
-Ha usato il \
-`Test Driven Development (TDD)` \
-per scrivere il codice
+## Quando si sviluppa del software
 
----
-
-# Il Test Driven Development
-
-<div class="left-col">
-    <img class="" src="./imgs/tdd.png" />
-</div>
-<div class="right-col">
-
-- Prima si scrivono i `test`
+- Si scrive il `codice` del programma
 <!-- .element: class="fragment" -->
 
-- Poi si scrive il `codice`
-<!-- .element: class="fragment" -->
-
-</div>
-
-
----
-
-Prima definisci \
-`come deve comportarsi` il software, 
-
-<br>
-
-Solo dopo scrivi il codice che \
-`soddisfa quei comportamenti`.
+- Si fanno dei `test manuali` per verificare il funzionamento
 <!-- .element: class="fragment" -->
 
 ---
 
-Ogni `specifica` diventa un `test`
+# 🧑🏻‍💻
+<!-- .element class="utf8-icon" -->
+
+`Franco` usa uno sviluppo inverso:
+
+- Configura dei `test automatici`
+<!-- .element: class="fragment" -->
+
+- Scrive il `codice` del programma
+<!-- .element: class="fragment" -->
+
+---
+
+I `test automatici` \
+definiscono il `funzionamento atteso` \
+prima che le funzionalità siano create
+<!-- .element: class="align-left" -->
+
+---
+
+Ogni volta che una `funzionalità` viene implementata 
+si eseguono i `test automatici`
+<!-- .element: class="align-left" -->
+
+- Se i `test` non mostrano `anomalie` il programma funziona correttamente
+<!-- .element: class="fragment align-left" -->
+
+- Se qualcosa si rompe, i test lo dicono `subito` e si puo' correggere l'errore
+<!-- .element: class="fragment align-left" -->
+
+---
+
+I test permettono a `Franco` \
+di lavorare `velocemente`
+<!-- .element: class="" -->
+
+---
+
+Ma cosa c'entra tutto questo discorso la Gherkin syntax?
+<!-- .element: class="" -->
+
+---
+
+`Bob` ha gia' fatto meta' \
+del lavoro di `Franco`
 
 ```gherkin[]
 Dato un documento di tipo "distinta materiale"
@@ -750,6 +769,9 @@ Allora il colore associato al documento e' il "giallo"
 ```
 <!-- .element class="fs-08" -->
 
+Ogni `specifica` può essere trasformata \
+in un `test automatico`
+<!-- .element class="fragment" -->
 
 ---
 
