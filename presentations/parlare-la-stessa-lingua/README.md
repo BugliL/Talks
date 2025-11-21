@@ -4,8 +4,8 @@ author: Lorenzo Bugli
 footer: 2025-11-27 - Impact Hub, Firenze
 footerIconUrl: ./imgs/product-heroes-squad-logo.png
 theme: black
-css:
-  - css/themes/product-heroes.css
+css: 
+  - "css/themes/product-heroes.css"
 
 revealOptions:
   transition: none
@@ -36,35 +36,185 @@ rispecchi le specifiche."
 
 <img class="w-25" src="./imgs/qr.png" />
 
+<br/>
+
+<div class="centered-elements">
+<img class="circular-img w-10 mr-1" src="./imgs/profile.jpg" />
+
 `Lorenzo Bugli`  \
 Senior software engineer presso `Fiscozen` \
 Membro community di `Schrödinger Hat` 
-<!-- .element: class="fs-06" -->
+<!-- .element: class="fs-06 align-left" -->
+</div>
 
 ---
 
-Ci sono sviluppatori in sala?
+# In ogni progetto software ci sono 3 ruoli
+
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Lo stakeholder / cliente
+
+---
+
+Chi ha l'idea e i requisiti di business
+
+- Vuole un `risultato` che risolva \
+un problema di business
+<!-- .element: class="fragment align-left" -->
+
+- Pensa in termini di: \
+`obiettivi`, `benefici`, `costi`, `tempi`
+<!-- .element: class="fragment align-left" -->
+
+- Non conosce (o non considera) \
+i `vincoli tecnici`
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il product manager
+
+---
+
+Chi traduce i requisiti in specifiche
+
+
+- È la "voce del prodotto": \
+decide `cosa fare` e `perché farlo`
+<!-- .element: class="fragment align-left" -->
+
+- Traduce i bisogni del business \
+in `requisiti di prodotto`
+<!-- .element: class="fragment align-left" -->
+
+- Bilancia `valore`, `costi`, `priorità`, \
+`visione` e `fattibilità`
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
+## Gli sviluppatori
+
+---
+
+Chi trasforma le specifiche in codice
+
+- Lavora sul `prodotto reale`
+<!-- .element: class="fragment align-left" -->
+
+- Pensa in termini di: \
+`requisiti tecnici`, `architettura`, `complessità`
+<!-- .element: class="fragment align-left" -->
+
+- È influenzato da `vincoli reali`: \
+`tecnologia`, `codice legacy`, `tempo`
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# Il problema
+
+---
+
+Le stesse parole hanno \
+`significati diversi` a seconda dei `ruoli`
+
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+"Serve una dashboard `semplice`"
+
+---
+
+## Per lo stakeholder
+
+Deve essere `intuitiva` e `piacevole`
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+Interpreta come:
+
+"Dashboard `minimale` con pochi KPI, \
+entro la release"
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
+Capisce:
+
+"Implementare `grafici`, `filtri`, `API`, \
+`caching`, `gestione permessi`..."
+<!-- .element: class="fragment align-left" -->
+
+---
+
+Background e personalita' diverse \
+hanno modi di approcciarsi e di ragionare in modo diverso
+
+---
+
+![develop tree](./imgs/tree-1.jpg)
+<!-- .element: class="w-100" -->
 
 ---
 
 #  🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
-Questo e' `Bob`
+Ma `Bob` potrebbe aver trovato \
+una `Stele di Rosetta`
+
+---
+
+# Chi e' Bob?
 
 ---
 
 #  🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
-Bob è un `project manager` che \
-ha ricevuto una richiesta dal `cliente` \
+Bob è un `product manager` che \
+lavora in un'azienda di consulenza software
+
+---
+
+#  🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Ha ricevuto una richiesta da un `cliente` \
 per una `nuova funzionalità`
 
 ---
 
-Bob scrive le `specifiche` e le passa \
-al team di `sviluppo` che inizia a lavorarci
+#  🧑🏻‍💼 📝
+<!-- .element class="utf8-icon" -->
+Bob scrive le `specifiche` 
+
+---
+
+# 🧑🏻‍💼 📃 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+Le passa al team di `sviluppo` \
+che inizia subito a lavorarci
 
 ---
 
@@ -80,13 +230,13 @@ arriva la demo
 
 ---
 
-- Gli sviluppatori sono `confusi`
+- Il software non fa quello che `dovrebbe`
 <!-- .element class="fragment" -->
 
-- I rilasci si `bloccano`
+- `Rework` in emergenza
 <!-- .element class="fragment" -->
 
-- Il cliente e' `scontento`
+- Il cliente e' `scontento` per non dire di peggio
 <!-- .element class="fragment" -->
 
 ---
@@ -113,17 +263,58 @@ Bob inizia ad organizzare \
 
 ---
 
-# 🧑🏻‍💼 🪧 🙋🏻🙋🏽‍♀️🙋🏼‍♂️
+# 🧑🏻‍💼 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
 <!-- .element class="utf8-icon" -->
-Il team lo bombarda di domande \
-perche' non capiscono 
+
+Cosa succede  \
+in quei meeting?
 
 ---
 
-- Le `stime` diventano `inaffidabili`
+# 🧑🏻‍💻 
+<!-- .element class="utf8-icon" -->
+
+"E se l'utente fa X prima di Y, \
+cosa succede?"
+
+---
+
+# 👩🏽‍💻 
+<!-- .element class="utf8-icon" -->
+
+"Questo campo è obbligatorio \
+solo a volte... quando esattamente?"
+
+---
+
+# 👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+
+"Aspetta, ma quindi se... \
+no, non ho capito..."
+
+---
+
+# 🙍🏻 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+`Bob` e' sommerso dalle domande
+
+---
+
+# 🙍🏻 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+
+I meeting si allungano
+
+---
+
+- `Incertezza` sullo sviluppo
 <!-- .element class="fragment" -->
 
-- I rilasci `slittano`
+- L'inizio dei lavori viene `rimandato`
+<!-- .element class="fragment" -->
+
+- I tempi si `allungano`
 <!-- .element class="fragment" -->
 
 - Di nuovo, il cliente e' `scontento`
@@ -279,30 +470,6 @@ colore rosso a meno che non siano di tipo disegno tecnico,
 in quel caso devono avere il colore blu.
 ```
 
-```[]
-Documento:
-  - stato: str # es. in lavorazione, firmato digitalmente, ...
-  - tipo: str # es. distinta materiale, disegno tecnico, ...
-  - is_firmato_digitalmente: bool # true/false 
-```
-<!-- .element class="fs-08 fragment" -->
-
----
-
-# 🧑🏻‍💻
-<!-- .element class="utf8-icon" -->
-```text[]
-Il sistema deve associare a tutti i documenti firmati 
-digitalmente il colore verde.  
-
-Tutti i documenti di tipo distinte materiale devono 
-essere associati al colore giallo.  
-
-I documenti in lavorazione devono essere associati al 
-colore rosso a meno che non siano di tipo disegno tecnico, 
-in quel caso devono avere il colore blu.
-```
-
 <br/>
 
 "Di che `colore` sono le \
@@ -409,13 +576,6 @@ sono convinto che andremo meglio!"
 <!-- .element class="utf8-icon" -->
 `Bob` e' scettico \
 ma tanto vale provarci
-
-# 🧑🏻‍💼 👩🏻‍💼
-<!-- .element class="fs-30" -->
-
-Da quando `Bob` e `Alice` \
-hanno imparato ad usare \
-le `user stories` 
 
 ---
 
@@ -657,12 +817,36 @@ per portargli le specifiche riscritte
 <!-- .element class="utf8-icon" -->
 
 `Franco` finisce il lavoro in meta' tempo
-
-e sopratutto `senza errori`
 <!-- .element: class="fragment" -->
 
 ---
 
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Bob non ci crede
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+"Impossibile! \
+Come ha fatto?"
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+"Sara' sicuramente codice spazzatura! \
+Sarà pieno di bug!"
+
+---
+
+Non ci sono bug e tutto funziona 
+
+---
 
 # La faccia di Bob
 <img class="w-50" src="./imgs/the-what-face.png" />
@@ -673,123 +857,124 @@ Ma come ha fatto?
 
 ---
 
-Ha usato il \
-`Test Driven Development (TDD)` \
-per scrivere il codice
+## Quando si sviluppa del software
 
----
-
-# Il Test Driven Development
-
-<div class="left-col">
-    <img class="" src="./imgs/tdd.png" />
-</div>
-<div class="right-col">
-
-- Prima si scrivono i `test`
+- Si scrive il `codice` del programma
 <!-- .element: class="fragment" -->
 
-- Poi si scrive il `codice`
-<!-- .element: class="fragment" -->
-
-</div>
-
-
----
-
-Prima definisci \
-`come deve comportarsi` il software, 
-
-<br>
-
-Solo dopo scrivi il codice che \
-`soddisfa quei comportamenti`.
+- Si fanno dei `test manuali` per verificare il funzionamento
 <!-- .element: class="fragment" -->
 
 ---
+
+# 🧑🏻‍💻
+<!-- .element class="utf8-icon" -->
+
+`Franco` usa uno sviluppo inverso:
+
+- Configura dei `test automatici`
+<!-- .element: class="fragment" -->
+
+- Scrive il `codice` del programma
+<!-- .element: class="fragment" -->
+
+---
+
+I `test automatici` \
+definiscono il `funzionamento atteso` \
+prima che le funzionalità siano create
+<!-- .element: class="align-left" -->
+
+---
+
+Ogni volta che una `funzionalità` viene implementata 
+si eseguono i `test automatici`
+<!-- .element: class="align-left" -->
+
+- Se i `test` non mostrano `anomalie` il programma funziona correttamente
+<!-- .element: class="fragment align-left" -->
+
+- Se qualcosa si rompe, i test lo dicono `subito` e si puo' correggere l'errore
+<!-- .element: class="fragment align-left" -->
+
+---
+
+I test permettono a `Franco` \
+di lavorare `velocemente`
+<!-- .element: class="" -->
+
+---
+
+Ma cosa c'entra tutto questo discorso la Gherkin syntax?
+<!-- .element: class="" -->
+
+---
+
+`Bob` ha gia' fatto meta' \
+del lavoro di `Franco`
 
 ```gherkin[]
-Given un documento firmato digitalmente
-When il sistema assegna un colore al documento
-Then il documento deve essere verde
-
-Given un documento di tipo "distinta materiale"
-When il sistema assegna un colore al documento
-Then il documento deve essere giallo
-
-Given un documento in lavorazione di tipo "disegno tecnico"
-When il sistema assegna un colore al documento
-Then il documento deve essere rosso
-
-Given un documento in lavorazione di tipo "disegno tecnico"
-When il sistema assegna un colore al documento
-Then il documento deve essere blu
+Dato un documento di tipo "distinta materiale"
+Quando il sistema assegna un colore al documento
+Allora il colore associato al documento e' il "giallo"
 ```
-<!-- .element class="fs-08 h-35" -->
+<!-- .element class="fs-08" -->
+
+Ogni `specifica` può essere trasformata \
+in un `test automatico`
+<!-- .element class="fragment" -->
 
 ---
 
-Ogni `specifica` diventa un `test`
+```gherkin
+Dato documento di tipo distinta materiale
+```
+<!-- .element: class="fs-10" -->
+
+
+```python
+@given("documento di tipo distinta materiale")
+def crea_documento_distinta():
+    # codice per creare il documento
+```
+<!-- .element: class="fs-10" -->
+
+Vedete la corrispondenza?
+<!-- .element: class="fragment" -->
 
 ---
 
-```gherkin[]
-Given documento di tipo distinta materiale non firmata digitalmente
-When il sistema assegna un colore al documento
-Then il colore associato è il GIALLO
+```gherkin
+Quando il sistema assegna un colore al documento
 ```
-```python [|5-12|13-15|17-19]
-from behave import given, then, when
-from document import Colori, Documento, StatoDocumento, TipoDocumento
-from system import System
+<!-- .element: class="fs-10" -->
 
-@given("documento di tipo distinta materiale non firmata digitalmente")
-def given_documento_distinta_materiale_non_firmata_digitalmente(context):
-    context.distinta = Documento(
-        tipo=TipoDocumento.DISTINTA_MATERIALI,
-        stato=StatoDocumento.INVIATO,
-        firmato=False,
-    )
-
+```python
 @when("il sistema assegna un colore al documento")
-def when_sistema_assegna_colore(context):
-    System.assign_color(context.distinta)
+def assegna_colore():
+    # codice per assegnare il colore
+```
+<!-- .element: class="fs-10" -->
 
+La specifica diventa codice eseguibile
+<!-- .element: class="fragment" -->
+
+---
+
+```gherkin
+Allora il colore associato è il GIALLO
+```
+<!-- .element: class="fs-10" -->
+
+```python
 @then("il colore associato è il GIALLO")
-def then_colore_associato_is_yellow(context):
-    assert context.distinta.colore == Colori.GIALLO
+def verifica_giallo():
+    assert documento.colore == GIALLO
 ```
-<!-- .element class="fs-06 hide-scrollbar" -->
+<!-- .element: class="fs-10" -->
 
----
-
-```gherkin []
-Given un documento in lavorazione di tipo "disegno tecnico"
-When il sistema assegna un colore al documento
-Then il documento deve essere BLU
-```
-```python [|5-11|13-15|17-19]
-from behave import given, when, then
-from document import Colori, Documento, StatoDocumento, TipoDocumento
-from system import System
-
-@given('un documento in lavorazione di tipo "disegno tecnico"')
-def given_documento_in_lavorazione_disegno_tecnico(context):
-    context.documento = Documento(
-        tipo=TipoDocumento.DISEGNO_TECNICO,
-        stato=StatoDocumento.LAVORAZIONE,
-        firmato=False
-    )
-
-@when("il sistema assegna un colore al documento")
-def when_sistema_assegna_colore(context):
-    System.assign_color(context.documento)
-
-@then("il documento deve essere blu")
-def then_documento_deve_essere_blu(context):
-    assert context.documento.colore == Colori.BLU
-```
-<!-- .element class="fs-06 hide-scrollbar" -->
+Il test verifica automaticamente!
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -847,8 +1032,11 @@ la `Gherkin syntax`
 
 ---
 
+# Come funziona il processo?
 
-# 1️⃣ Requisiti chiari
+---
+
+# 1️⃣ Requisiti completi e comprensibili
 
 Scritti in un linguaggio \
 comprensibile a tutti
@@ -864,30 +1052,70 @@ in verifiche automatiche
 
 # 3️⃣ Sviluppo guidato
 
-Gli sviluppatori sanno \
-esattamente cosa implementare
+Il codice implementa \
+esattamente i test
 
 ---
 
 # 4️⃣ Validazione continua
 
-I test verificano che il codice \
-rispetti i requisiti
+I test verificano che tutto \
+funzioni come richiesto
 
 ---
 
-Con questo approccio tutti vincono:
+# E chi ci guadagna?
 
-- Il `business` ha requisiti chiari
+---
+
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il business
+
+<br/>
+
+Ha requisiti `chiari` e `condivisi` \
+con tutto il team
 <!-- .element: class="fragment" -->
 
-- Gli `sviluppatori` sanno cosa fare
+---
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
+## Gli sviluppatori
+
+<br/>
+
+Sanno `esattamente` cosa implementare \
+senza ambiguità
 <!-- .element: class="fragment" -->
 
-- I `test` verificano automaticamente
+---
+
+# 🤖
+<!-- .element: class="utf8-icon" -->
+
+## I test
+
+<br/>
+
+Verificano `automaticamente` \
+che il software faccia ciò che deve
 <!-- .element: class="fragment" -->
 
-- Il `cliente` ottiene ciò che vuole
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il cliente
+
+<br/>
+
+Ottiene un prodotto che \
+`rispecchia le sue richieste`
 <!-- .element: class="fragment" -->
 
 ---
@@ -941,9 +1169,23 @@ in `test` per i software
 # 🧑🏻‍💼 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
 
-Che tu sia `Bob` oppure `Franco` \
-l'importante è che tu sappia comunicare \
-con `Gherkin` per lavorare meglio 
+Che tu sia `Bob` oppure `Franco`
+
+---
+
+L'importante è che quando ti svegli  
+tu sappia riscrivere la specifica più confusa  
+del tuo backlog nel formato:
+<!-- .element: class="align-left" -->
+
+<br/>
+
+## Dato → Quando → Allora
+
+<br/>
+
+E condividerla col tuo team
+<!-- .element: class="fragment align-left" -->
 
 ---
 
