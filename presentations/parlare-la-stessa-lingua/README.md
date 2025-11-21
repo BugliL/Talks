@@ -996,9 +996,23 @@ in `test` per i software
 # 🧑🏻‍💼 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
 
-Che tu sia `Bob` oppure `Franco` \
-l'importante è che tu sappia comunicare \
-con `Gherkin` per lavorare meglio 
+Che tu sia `Bob` oppure `Franco`
+
+---
+
+L'importante è che quando ti svegli  
+tu sappia riscrivere la specifica più confusa  
+del tuo backlog nel formato:
+<!-- .element: class="align-left" -->
+
+<br/>
+
+## Dato → Quando → Allora
+
+<br/>
+
+E condividerla col tuo team
+<!-- .element: class="fragment align-left" -->
 
 ---
 
