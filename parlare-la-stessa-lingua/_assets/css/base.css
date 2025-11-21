@@ -231,3 +231,9 @@ p code {
     background-color: transparent;
   }
 }
+
+.centered-elements {
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: center; /* vertical centering */
+}
