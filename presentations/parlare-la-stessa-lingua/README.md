@@ -49,24 +49,172 @@ Membro community di `Schrödinger Hat`
 
 ---
 
-#  🧑🏻‍💼
-<!-- .element class="utf8-icon" -->
+# In ogni progetto software ci sono 3 ruoli
 
-Anche `Bob` lo ha pensato spesso
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Lo stakeholder / cliente
+
+---
+
+Chi ha l'idea e i requisiti di business
+
+- Vuole un `risultato` che risolva \
+un problema di business
+<!-- .element: class="fragment align-left" -->
+
+- Pensa in termini di: \
+`obiettivi`, `benefici`, `costi`, `tempi`
+<!-- .element: class="fragment align-left" -->
+
+- Non conosce (o non considera) \
+i `vincoli tecnici`
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il product manager
+
+---
+
+Chi traduce i requisiti in specifiche
+
+
+- È la "voce del prodotto": \
+decide `cosa fare` e `perché farlo`
+<!-- .element: class="fragment align-left" -->
+
+- Traduce i bisogni del business \
+in `requisiti di prodotto`
+<!-- .element: class="fragment align-left" -->
+
+- Bilancia `valore`, `costi`, `priorità`, \
+`visione` e `fattibilità`
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
+## Gli sviluppatori
+
+---
+
+Chi trasforma le specifiche in codice
+
+- Lavora sul `prodotto reale`
+<!-- .element: class="fragment align-left" -->
+
+- Pensa in termini di: \
+`requisiti tecnici`, `architettura`, `complessità`
+<!-- .element: class="fragment align-left" -->
+
+- È influenzato da `vincoli reali`: \
+`tecnologia`, `codice legacy`, `tempo`
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# Il problema
+
+---
+
+Le stesse parole hanno \
+`significati diversi` a seconda dei `ruoli`
+
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+"Serve una dashboard `semplice`"
+
+---
+
+## Per lo stakeholder
+
+Deve essere `intuitiva` e `piacevole`
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+Interpreta come:
+
+"Dashboard `minimale` con pochi KPI, \
+entro la release"
+<!-- .element: class="fragment align-left" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
+Capisce:
+
+"Implementare `grafici`, `filtri`, `API`, \
+`caching`, `gestione permessi`..."
+<!-- .element: class="fragment align-left" -->
+
+---
+
+Background e personalita' diverse \
+hanno modi di approcciarsi e di ragionare in modo diverso
+
+---
+
+![develop tree](./imgs/tree-1.jpg)
+<!-- .element: class="w-100" -->
 
 ---
 
 #  🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
-Bob è un `project manager` che \
-ha ricevuto una richiesta dal `cliente` \
+Ma `Bob` potrebbe aver trovato \
+una `Stele di Rosetta`
+
+---
+
+# Chi e' Bob?
+
+---
+
+#  🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Bob è un `product manager` che \
+lavora in un'azienda di consulenza software
+
+---
+
+#  🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Ha ricevuto una richiesta da un `cliente` \
 per una `nuova funzionalità`
 
 ---
 
-Bob scrive le `specifiche` e le passa \
-al team di `sviluppo` che inizia a lavorarci
+#  🧑🏻‍💼 📝
+<!-- .element class="utf8-icon" -->
+Bob scrive le `specifiche` 
+
+---
+
+# 🧑🏻‍💼 📃 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
+<!-- .element class="utf8-icon" -->
+Le passa al team di `sviluppo` \
+che inizia subito a lavorarci
 
 ---
 
@@ -82,13 +230,13 @@ arriva la demo
 
 ---
 
-- Gli sviluppatori sono `confusi`
+- Il software non fa quello che `dovrebbe`
 <!-- .element class="fragment" -->
 
-- I rilasci si `bloccano`
+- `Rework` in emergenza
 <!-- .element class="fragment" -->
 
-- Il cliente e' `scontento`
+- Il cliente e' `scontento` per non dire di peggio
 <!-- .element class="fragment" -->
 
 ---
@@ -160,10 +308,13 @@ I meeting si allungano
 
 ---
 
-- Le `stime` diventano `inaffidabili`
+- `Incertezza` sullo sviluppo
 <!-- .element class="fragment" -->
 
-- I rilasci `slittano`
+- L'inizio dei lavori viene `rimandato`
+<!-- .element class="fragment" -->
+
+- I tempi si `allungano`
 <!-- .element class="fragment" -->
 
 - Di nuovo, il cliente e' `scontento`
