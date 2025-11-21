@@ -1211,3 +1211,9 @@ Riferimenti
 
 <img class="w-25" src="./imgs/cucumber-qr-code.png" />
 
+<br/>
+<br/>
+<br/>
+<br/>
+
+<img class="w-50" src="./imgs/product-heroes-squad-logo.png" />
