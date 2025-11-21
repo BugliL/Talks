@@ -1,13 +1,13 @@
 {
-    "name": "talks",
-    "version": "1.0.0",
-    "main": "index.js",
-    "scripts": {
-        "build": "for dir in presentations/*; do reveal-md $dir/*.md --static docs/$(basename $dir); done && cp -r css docs/css && cp -r plugins docs/plugins && cp -r preprocessors docs/preprocessors",
-        "start": "reveal-md presentations/collaborazione-efficace/README.md --watch"
-    },
-    "author": "Lorenzo Bugli",
-    "dependencies": {
-        "reveal-md": "^6.1.3"
-    }
+  "name": "talks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "for dir in presentations/*; do reveal-md $dir/*.md --disable-puppeteer --static docs/$(basename $dir); done && cp -r css docs/css && cp -r plugins docs/plugins && cp -r preprocessors docs/preprocessors",
+    "start": "reveal-md presentations/collaborazione-efficace/README.md --watch"
+  },
+  "author": "Lorenzo Bugli",
+  "dependencies": {
+    "reveal-md": "^6.1.3"
+  }
 }
