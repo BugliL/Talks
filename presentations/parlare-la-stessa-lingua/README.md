@@ -167,7 +167,7 @@ Capisce:
 
 ---
 
-Background e personalita' diverse \
+Background e personalità diverse \
 hanno modi di approcciarsi e di ragionare in modo diverso
 
 ---
@@ -185,7 +185,7 @@ una `Stele di Rosetta`
 
 ---
 
-# Chi e' Bob?
+# Chi è Bob?
 
 ---
 
@@ -236,7 +236,7 @@ arriva la demo
 - `Rework` in emergenza
 <!-- .element class="fragment" -->
 
-- Il cliente e' `scontento` per non dire di peggio
+- Il cliente è `scontento` per non dire di peggio
 <!-- .element class="fragment" -->
 
 ---
@@ -251,7 +251,7 @@ chiedo!"
 
 # 🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
-"Faro' degli `schemi semplici` per farmi capire meglio!"
+"Farò degli `schemi semplici` per farmi capire meglio!"
 
 ---
 
@@ -297,7 +297,7 @@ no, non ho capito..."
 
 # 🙍🏻 🪧 🧑🏻‍💻👩🏽‍💻👨🏼‍💻
 <!-- .element class="utf8-icon" -->
-`Bob` e' sommerso dalle domande
+`Bob` è sommerso dalle domande
 
 ---
 
@@ -317,7 +317,7 @@ I meeting si allungano
 - I tempi si `allungano`
 <!-- .element class="fragment" -->
 
-- Di nuovo, il cliente e' `scontento`
+- Di nuovo, il cliente è `scontento`
 <!-- .element class="fragment" -->
 
 ---
@@ -342,14 +342,14 @@ Serve un modo per scrivere requisiti che:
 
 ---
 
-Questa e' la storia di come la \
+Questa è la storia di come la \
 `Gherkin syntax` ha aiutato `Bob`
 
 ---
 
 # 👨🏻‍💼
 <!-- .element class="utf8-icon" -->
-`Mario` e' un imprenditore e vuole \
+`Mario` è un imprenditore e vuole \
 un `software` per la sua azienda
 
 ---
@@ -372,13 +372,13 @@ per raccogliere le informazioni
 # 📑
 <!-- .element class="utf8-icon" -->
 
-Il software richiesto e' un `documentale` \
+Il software richiesto è un `documentale` \
 per la gestione dei documenti aziendali
 
 ---
 
 Tra le tante specifiche \
-c'e' anche la `gestione dei colori` \
+c'è anche la `gestione dei colori` \
 per identificare meglio i documenti
 
 ---
@@ -525,7 +525,7 @@ Problema del telefono senza fili
 
 # 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
-`Franco` e' uno dei programmatori Bob
+`Franco` è uno dei programmatori Bob
 
 ---
 
@@ -574,7 +574,7 @@ sono convinto che andremo meglio!"
 
 # 🙍🏻
 <!-- .element class="utf8-icon" -->
-`Bob` e' scettico \
+`Bob` è scettico \
 ma tanto vale provarci
 
 ---
@@ -603,7 +603,7 @@ digitalmente il colore verde.
 ```gherkin[|1|2|3|]
 Dato un documento "firmato digitalmente"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "verde"
+Allora il colore associato al documento è il "verde"
 ```
 <!-- .element class="fs-08" -->
 
@@ -618,7 +618,7 @@ essere associati al colore giallo.
 ```gherkin[|1|2|3|]
 Dato un documento di tipo "distinta materiale"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "giallo"
+Allora il colore associato al documento è il "giallo"
 ```
 <!-- .element class="fs-08" -->
 
@@ -634,11 +634,11 @@ in quel caso devono avere il colore blu.
 ```gherkin[|1|2|3|5|6|7|8|9|]
 Dato un documento in lavorazione NON di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "rosso"
+Allora il colore associato al documento è il "rosso"
 
 Dato un documento in lavorazione di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "blu"
+Allora il colore associato al documento è il "blu"
 ```
 <!-- .element class="fs-08" -->
 
@@ -647,19 +647,19 @@ Allora il colore associato al documento e' il "blu"
 ```gherkin[]
 Dato un documento "firmato digitalmente"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "verde"
+Allora il colore associato al documento è il "verde"
 
 Dato un documento di tipo "distinta materiale"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "giallo"
+Allora il colore associato al documento è il "giallo"
 
 Dato un documento in lavorazione NON di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "rosso"
+Allora il colore associato al documento è il "rosso"
 
 Dato un documento in lavorazione di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "blu"
+Allora il colore associato al documento è il "blu"
 ```
 <!-- .element class="fs-06 h-25 hide-scrollbar" -->
 
@@ -676,18 +676,18 @@ e inizia a scriverne `un altro` per completare il quadro
 ```gherkin []
 Dato un documento in lavorazione NON di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "rosso"
+Allora il colore associato al documento è il "rosso"
 
 Dato un documento in lavorazione di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "blu"
+Allora il colore associato al documento è il "blu"
 ```
 <!-- .element class="fs-08" -->
 
 ```gherkin [|1|2|3|]
 Dato un documento di tipo "disegno tecnico" NON in lavorazione
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il  "????"
+Allora il colore associato al documento è il  "????"
 ```
 <!-- .element class="fs-08" -->
 
@@ -751,12 +751,12 @@ ha scritto, fornisce subito le risposte
 ---
 
 Anche se risulta `meccanico` e `artificiale`
-e' molto `efficace`
+è molto `efficace`
 
 ```gherkin []
 Dato un documento di tipo "disegno tecnico" NON in lavorazione
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il  "????"
+Allora il colore associato al documento è il  "????"
 ```
 <!-- .element class="fs-08" -->
 
@@ -779,8 +779,8 @@ Allora il colore associato al documento e' il  "????"
 # 🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
-`Bob` e' molto soddisfatto \
-il rapporto con il cliente e' molto `facilitato`
+`Bob` è molto soddisfatto \
+il rapporto con il cliente è molto `facilitato`
 
 ---
 
@@ -794,7 +794,7 @@ Tutti i dubbi si sono risolti
 # 🙎🏻
 <!-- .element class="utf8-icon" -->
 
-`Bob` e' comunque scettico verso gli sviluppatori
+`Bob` è comunque scettico verso gli sviluppatori
 
 ---
 
@@ -816,7 +816,7 @@ per portargli le specifiche riscritte
 # 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
 
-`Franco` finisce il lavoro in meta' tempo
+`Franco` finisce il lavoro in metà tempo
 <!-- .element: class="fragment" -->
 
 ---
@@ -839,7 +839,7 @@ Come ha fatto?"
 # 🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
-"Sara' sicuramente codice spazzatura! \
+"Sarà sicuramente codice spazzatura! \
 Sarà pieno di bug!"
 
 ---
@@ -894,7 +894,7 @@ si eseguono i `test automatici`
 - Se i `test` non mostrano `anomalie` il programma funziona correttamente
 <!-- .element: class="fragment align-left" -->
 
-- Se qualcosa si rompe, i test lo dicono `subito` e si puo' correggere l'errore
+- Se qualcosa si rompe, i test lo dicono `subito` e si può correggere l'errore
 <!-- .element: class="fragment align-left" -->
 
 ---
@@ -910,13 +910,13 @@ Ma cosa c'entra tutto questo discorso la Gherkin syntax?
 
 ---
 
-`Bob` ha gia' fatto meta' \
+`Bob` ha già fatto metà \
 del lavoro di `Franco`
 
 ```gherkin[]
 Dato un documento di tipo "distinta materiale"
 Quando il sistema assegna un colore al documento
-Allora il colore associato al documento e' il "giallo"
+Allora il colore associato al documento è il "giallo"
 ```
 <!-- .element class="fs-08" -->
 
@@ -1149,7 +1149,7 @@ Ogni mattina `Franco` si sveglia
 # 🧑🏻‍💻
 <!-- .element class="utf8-icon" -->
 
-`Franco` sa che puo' lavorare \
+`Franco` sa che può lavorare \
 trasformando i `requisiti` di `Bob` \
 in `test` per i software
 
@@ -1161,7 +1161,7 @@ in `test` per i software
 - I rilasci sono `nei tempi`
 <!-- .element: class="fragment" -->
 
-- Il cliente e' `soddisfatto`
+- Il cliente è `soddisfatto`
 <!-- .element: class="fragment" -->
 
 ---
