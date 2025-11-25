@@ -85,3 +85,14 @@ pre.h-20 {
 pre.fullscreen code {
   max-height: none;
 }
+
+p code {
+  /* background-color: red; */
+  color: black;
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: white; /* purple */
+}

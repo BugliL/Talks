@@ -1,0 +1,13 @@
+@import url("../base.css");
+@import url("../code.css");
+
+p code {
+  /* background-color: red; */
+  color: black;
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: white; /* purple */
+}
