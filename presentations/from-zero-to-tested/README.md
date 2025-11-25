@@ -5,6 +5,8 @@ footer: 2025-11-26 - TSH - Firenze
 footerIconUrl: './imgs/sh-logo.png'
 link: https://buglil.github.io/Talks/from-zero-to-tested/#/
 
+theme: black
+
 revealOptions:
   transition: none
 
@@ -242,53 +244,7 @@ Si cerca di capire come ha `ragionato` il programmatore
 
 ---
 
-```mermaid
-graph TB
-    subgraph ACME["ACME Supermarket System"]
-        subgraph CORE["Business Logic"]
-            UPD["update_products_end_of_day<br/><br/>
-                 Funzione critica legacy per la gestione
-                 delle scadenze e qualità prodotti"]
-
-            INV["process_supplier_invoices<br/><br/>
-                 Funzione gestione fatture per calcolo importi 
-                 e gestione delle priorità"]
-        end
-        subgraph REP["Reporting System"]
-            DSR["daily_sales_report
-            Sistema di reportistica giornaliera su db"]
-        end
-        
-        subgraph DATA["Data Layer"]
-            DB[("MySQL Database<br/>products, sales<br/>customers, stats")]
-        end
-        
-        subgraph EXT["External Systems"]
-            EMAIL["Email Server<br/>manager@acme.com"]
-        end
-        
-        subgraph RULES["Business Rules Implicite"]
-            BR["Regole di Business<br/>Quality: 0-50<br/>VIP discount: 10%<br/>Card discount: 5%<br/>Exp_days countdown"]
-        end
-    end
-    
-    UPD --> DB
-    DSR --> DB
-    INV --> DB
-    DSR --> EMAIL
-    
-    UPD -.-> BR
-    DSR -.-> BR
-    
-    style UPD fill:pink,stroke:#fff,stroke-width:2px,color:black
-    style INV fill:orange,stroke:#fff,stroke-width:2px,color:black
-    style DSR fill:pink,stroke:#fff,stroke-width:2px,color:black
-    style BR fill:#ffd93d,stroke:#fff,stroke-width:2px,color:#000
-    style DB fill:#6bcf7f,stroke:#fff,stroke-width:2px,color:#000
-    style EMAIL fill:purple,stroke:#fff,stroke-width:2px,color:white
-
-```
-<!-- .element class="fullscreen"  -->
+<img class="w-75" src="./imgs/system-architecture.png" />
 
 ---
 
@@ -421,49 +377,13 @@ Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
 
 ---
 
-```python[|2-4,32-37|5-32]
-def update_products_end_of_day():
-  cursor.execute("SELECT id, name, exp_days, quality FROM products")
-  items = cursor.fetchall()
-  for item in items:
-    if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
-      if item.quality > 0:
-        if item.name != "Miele":
-          item.quality = item.quality - 1
-    else:
-      if item.quality < 50:
-        item.quality = item.quality + 1
-        if item.name == "Promozione Speciale":
-          if item.exp_days < 11:
-            if item.quality < 50:
-                            item.quality = item.quality + 1
-          if item.exp_days < 6:
-            if item.quality < 50:
-                            item.quality = item.quality + 1
-    if item.name != "Miele":
-      item.exp_days = item.exp_days - 1
-    if item.exp_days < 0:
-      if item.name != "Formaggio Brie":
-        if item.name != "Promozione Speciale":
-          if item.quality > 0:
-            if item.name != "Miele":
-                            item.quality = item.quality - 1
-        else:
-          item.quality = item.quality - item.quality
-      else:
-        if item.quality < 50:
-          item.quality = item.quality + 1
-  for item in items:
-    cursor.execute(
-      "UPDATE products SET exp_days = ?, quality = ? WHERE id = ?",
-      (item.exp_days, item.quality, item.id)
-    )
-  connection.commit()
-```
-<!-- .element class="fullscreen"  -->
+I `test` diventano il `codice da scrivere`
+<!-- .element class="align-left"  -->
+
+Il `codice` diventa la `sorgente di verità`
+<!-- .element class="align-left fragment"  -->
 
 ---
-
 
 ```python[|2-3|4-6|7-20]
 def update_products_end_of_day():
@@ -530,7 +450,7 @@ Si usano
 
 Esempio di mock di un file system
 
-```python[|5-9|12|13-22]
+```python[|5-9|12|13-22|]
 from unittest.mock import mock_open, patch
 from unittest import TestCase
 
@@ -556,7 +476,7 @@ class TestFileRead(TestCase):
 
 Esempio di mock di una libreria `random`
 
-```python[|8|9-13|13]
+```python[|8|9-13|]
 from unittest.mock import Mock, patch
 from unittest import TestCase
 
@@ -569,21 +489,7 @@ class TestRandom(TestCase):
         result = random.randint(10, 20)
         assert result == 5
 
-        mock_random.assert_called_once()
 ```
-
----
-
-Mock vs stub vs fake
-
-- `Mock`: simula & verifica 
-<!-- .element class="fragment"  -->
-
-- `Stub`: produce valori 
-<!-- .element class="fragment"  -->
-
-- `Fake`: implementazione semplificata 
-<!-- .element class="fragment"  -->
 
 ---
 
@@ -591,11 +497,7 @@ Come usare i mock per testare `update_products_end_of_day`?
 
 ---
 
-Il primo test
-
----
-
-```python[|6|9|11-31|16-24|26-27|29-35]
+```python[|6|9|11-35|16-23|24-28|28-29|30-35]
 from unittest import TestCase
 from unittest.mock import patch, Mock
 
@@ -619,6 +521,8 @@ class UpdateProductsEndOfDayShould(TestCase):
             quality=10,
         )
 
+        # Impostazione del valore di ritorno del mock
+        # in modo che simuli il fetch dei prodotti
         mock_cursor.fetchall.return_value = [normal_product]
 
         # Act
@@ -643,14 +547,6 @@ Il `mock` elimina il bisogno di un database e permette di `isolare` il codice
 L'idea di base del test è usare il codice esistente per definire il
 `comportamento atteso`
 <!-- .element class="align-left"  -->
-
----
-
-I `test` diventano il `codice da scrivere`
-<!-- .element class="align-left"  -->
-
-Il `codice` diventa la `sorgente di verità`
-<!-- .element class="align-left fragment"  -->
 
 ---
 
@@ -1339,7 +1235,7 @@ item.exp_days = item.exp_days - 1
 <div class="reveal">
   <div class="right-col" style="top: 20vh;">
 
-```python[|1-4|5-13|16-30|32-40|]
+```python [|1-4|5-13|16-30|32-40|]
 
 def update_miele(item: Product):
     return
@@ -1385,7 +1281,7 @@ def update_product(item: Product):
   </div>
   <div class="w-50 align-left">
 
-```python[5-18|6-8|10-12|14-16|18]
+```python [5-18]
 def update_products_end_of_day():
     cursor.execute("SELECT ... FROM products")
     items = cursor.fetchall()
@@ -1416,6 +1312,10 @@ def update_products_end_of_day():
 ---
 
 <img class="w-100" src="./imgs/coverage-run-4.png" />
+
+---
+
+<img class="w-60" src="./imgs/pleasure.jpg" />
 
 ---
 
@@ -1641,7 +1541,7 @@ Dove siamo arrivati?
 
 ---
 
-```python[|18-20]
+```python [|18-20]
 def update_products_end_of_day():
     cursor.execute("SELECT id, name, exp_days, quality FROM products")
     items = cursor.fetchall()
@@ -1784,5 +1684,3 @@ Lorenzo Bugli - @BugliL
 
 - [Refactoring: Improving the Design of Existing Code](https://a.co/d/a0SPwMl) <br/>
   *Martin Fowler*
-
----
