@@ -49,6 +49,9 @@ Membro community di `Schrödinger Hat`
 
 ---
 
+# 👨🏻‍💼 🧑🏻‍💼 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
 # In ogni progetto software ci sono 3 ruoli
 
 ---
@@ -60,7 +63,11 @@ Membro community di `Schrödinger Hat`
 
 ---
 
-Chi ha l'idea e i requisiti di business
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+Lo stakeholder / cliente
+
 
 - Vuole un `risultato` che risolva \
 un problema di business
@@ -83,7 +90,9 @@ i `vincoli tecnici`
 
 ---
 
-Chi traduce i requisiti in specifiche
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+Il product manager
 
 
 - È la "voce del prodotto": \
@@ -107,7 +116,11 @@ in `requisiti di prodotto`
 
 ---
 
-Chi trasforma le specifiche in codice
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+Gli sviluppatori
+
 
 - Lavora sul `prodotto reale`
 <!-- .element: class="fragment align-left" -->
@@ -126,8 +139,8 @@ Chi trasforma le specifiche in codice
 
 ---
 
-Le stesse parole hanno \
-`significati diversi` a seconda dei `ruoli`
+Le stesse parole assumono
+`significati diversi` a seconda del proprio `ruolo`
 
 ---
 
@@ -152,7 +165,7 @@ Interpreta come:
 
 "Dashboard `minimale` con pochi KPI, \
 entro la release"
-<!-- .element: class="fragment align-left" -->
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -163,12 +176,7 @@ Capisce:
 
 "Implementare `grafici`, `filtri`, `API`, \
 `caching`, `gestione permessi`..."
-<!-- .element: class="fragment align-left" -->
-
----
-
-Background e personalità diverse \
-hanno modi di approcciarsi e di ragionare in modo diverso
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -631,7 +639,7 @@ in quel caso devono avere il colore blu.
 ```
 <!-- .element class="fs-08" -->
 
-```gherkin[|1|2|3|5|6|7|8|9|]
+```gherkin[|1|2|3|5|6|7|8]
 Dato un documento in lavorazione NON di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
 Allora il colore associato al documento è il "rosso"
@@ -662,6 +670,49 @@ Quando il sistema assegna un colore al documento
 Allora il colore associato al documento è il "blu"
 ```
 <!-- .element class="fs-06 h-25 hide-scrollbar" -->
+
+---
+
+# 🧑🏻‍💼 📝📝📝
+<!-- .element class="utf8-icon" -->
+
+Scenario dopo scenario...
+
+---
+
+# 🙍🏻
+<!-- .element class="utf8-icon" -->
+
+"Sto impiegando il `doppio del tempo` \
+rispetto a prima!"
+
+---
+
+# 🙍🏻
+<!-- .element class="utf8-icon" -->
+
+Scrivere in Gherkin richiede \
+`più sforzo` all'inizio
+
+- Devi pensare a `tutti i casi possibili`
+<!-- .element: class="fragment" -->
+
+- Devi essere `preciso` e `specifico`
+<!-- .element: class="fragment" -->
+
+- Non puoi più essere `vago`
+<!-- .element: class="fragment" -->
+
+---
+
+"Ma ne vale davvero la pena?"
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Bob decide di continuare...
 
 ---
 
@@ -711,6 +762,7 @@ Legge una riga alla volta e va avanti reputandola corretta
 # 🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 `Bob` continua a scrivere
+
 
 ---
 
@@ -978,6 +1030,91 @@ Il test verifica automaticamente!
 
 ---
 
+## Lo scenario Gherkin
+
+```gherkin[]
+Feature: Gestione Colori documenti
+
+  Scenario: Distinta materiale in lavorazione
+    Dato un documento di tipo "distinta materiale"
+    Quando il sistema assegna un colore
+    Allora il colore deve essere "giallo"
+```
+<!-- .element: class="fs-08" -->
+
+---
+
+## Il test in Python (Behave)
+
+```python [|3,7,11|]
+from behave import given, when, then
+
+@given('un documento di tipo "{tipo}"')
+def crea_documento(context, tipo):
+    context.documento = Documento(tipo=tipo)
+
+@when('il sistema assegna un colore')
+def assegna_colore(context):
+    context.colore = assegna_colore_documento(context.documento)
+
+@then('il colore deve essere "{colore_atteso}"')
+def verifica_colore(context, colore_atteso):
+    assert context.colore == colore_atteso, \
+        f"Atteso {colore_atteso}, ottenuto {context.colore}"
+
+
+```
+<!-- .element: class="fs-06 h-30" -->
+
+---
+
+## Esecuzione del test
+
+```bash []
+$ behave features/colori_documenti.feature
+
+Feature: Colori documenti
+
+  Scenario: Distinta materiale in lavorazione
+    Dato un documento di tipo "distinta materiale"  ✓
+    Quando il sistema assegna un colore             ✓
+    Allora il colore deve essere "giallo"           ✓
+
+1 feature passed, 0 failed
+1 scenario passed, 0 failed
+4 steps passed, 0 failed
+```
+<!-- .element: class="fs-07" -->
+
+Il test `passa` ✅ \
+Il requisito è `implementato correttamente`
+<!-- .element: class="fragment" -->
+
+---
+
+## E se il test fallisce?
+
+```bash [|8|]
+$ behave features/colori_documenti.feature
+
+Feature: Colori documenti
+
+  Scenario: Distinta materiale in lavorazione
+    Dato un documento di tipo "distinta materiale"  ✓
+    Quando il sistema assegna un colore             ✓
+    Allora il colore deve essere "giallo"           ✗
+
+Assertion Failed: Atteso giallo, ottenuto rosso
+
+FAILED (1 scenario failed)
+```
+<!-- .element: class="fs-07" -->
+
+Il test dice `esattamente` dove e `cosa` non funziona
+<!-- .element: class="fragment" -->
+
+---
+
 Ogni `scenario` descrive \
 un `comportamento specifico` \
 senza ambiguità
@@ -1025,46 +1162,147 @@ Then il documento deve essere BLU
 
 ---
 
-Tutti parlano la `stessa lingua`
+# ⏱️ 
+<!-- .element class="utf8-icon" -->
 
-la `Gherkin syntax`
-<!-- .element class="fragment" -->
-
----
-
-# Come funziona il processo?
+Tre settimane dopo...
 
 ---
 
-# 1️⃣ Requisiti completi e comprensibili
+# 👨🏻‍💼 💬 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
 
-Scritti in un linguaggio \
-comprensibile a tutti
+`Mario` chiama `Bob`:
 
----
-
-# 2️⃣ Test verificabili
-
-Che traducono i requisiti \
-in verifiche automatiche
+"Ho ripensato ai colori dei documenti..."
 
 ---
 
-# 3️⃣ Sviluppo guidato
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
 
-Il codice implementa \
-esattamente i test
-
----
-
-# 4️⃣ Validazione continua
-
-I test verificano che tutto \
-funzioni come richiesto
+"Oh no, `di nuovo`..."
+<!-- .element: class="fragment" -->
 
 ---
 
-# E chi ci guadagna?
+# 🙍🏻
+<!-- .element class="utf8-icon" -->
+
+"I documenti in `lavorazione` dovrebbero essere
+`arancioni`, non `rossi`"
+
+---
+
+Con il vecchio sistema 
+
+- Bob deve `riscrivere` tutto il paragrafo
+<!-- .element: class="fragment" -->
+
+- Rischio di introdurre `nuove ambiguità`
+<!-- .element: class="fragment" -->
+
+- Gli sviluppatori dovrebbero \
+   `rileggere tutto`
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+## Con Gherkin
+
+```gherkin [|3|]
+Dato un documento in lavorazione NON di tipo "disegno tecnico"
+Quando il sistema assegna un colore al documento
+Allora il colore associato al documento è il "rosso"
+```
+<!-- .element: class="fs-08" -->
+
+Cambio `chirurgico` su una sola riga
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+## Con Gherkin
+
+```gherkin [|3|]
+Dato un documento in lavorazione NON di tipo "disegno tecnico"
+Quando il sistema assegna un colore al documento
+Allora il colore associato al documento è il "arancione"
+```
+<!-- .element: class="fs-08" -->
+
+Modifica precisa, zero ambiguità
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element class="utf8-icon" -->
+
+`Franco` aggiorna il test
+
+```python[|3|]
+@then('il colore deve essere "{colore_atteso}"')
+def verifica_colore(context, colore_atteso):
+    assert context.colore == colore_atteso
+```
+<!-- .element: class="fs-08" -->
+
+Il test `fallisce` subito: \
+"Atteso arancione, ottenuto rosso"
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element class="ut8-icon" -->
+
+`Franco` corregge il codice
+
+```python
+if documento.stato == "in_lavorazione":
+    return ARANCIONE  # era ROSSO
+```
+<!-- .element: class="fs-10" -->
+
+Esegue i test: `tutto verde` ✅
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element class="utf8-icon" -->
+
+I test verificano `automaticamente` \
+che il cambio non abbia rotto altro
+
+- 15 scenari ancora funzionanti ✅
+<!-- .element: class="fragment" -->
+
+- Tempo totale: `10 minuti`
+<!-- .element: class="fragment" -->
+
+- Zero regressioni
+<!-- .element: class="fragment" -->
+
+---
+
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+## Il cliente
+
+<br/>
+
+Ottiene un prodotto che \
+`rispecchia le sue richieste`
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -1103,19 +1341,6 @@ senza ambiguità
 
 Verificano `automaticamente` \
 che il software faccia ciò che deve
-<!-- .element: class="fragment" -->
-
----
-
-# 👨🏻‍💼
-<!-- .element: class="utf8-icon" -->
-
-## Il cliente
-
-<br/>
-
-Ottiene un prodotto che \
-`rispecchia le sue richieste`
 <!-- .element: class="fragment" -->
 
 ---
