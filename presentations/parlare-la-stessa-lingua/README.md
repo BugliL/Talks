@@ -53,6 +53,9 @@ Membro community di `Schrödinger Hat`
 
 ---
 
+# 👨🏻‍💼 🧑🏻‍💼 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+
 # In ogni progetto software ci sono 3 ruoli
 
 ---
@@ -64,7 +67,11 @@ Membro community di `Schrödinger Hat`
 
 ---
 
-Chi ha l'idea e i requisiti di business
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+
+Lo stakeholder / cliente
+
 
 - Vuole un `risultato` che risolva \
 un problema di business
@@ -87,7 +94,9 @@ i `vincoli tecnici`
 
 ---
 
-Chi traduce i requisiti in specifiche
+# 🧑🏻‍💼
+<!-- .element: class="utf8-icon" -->
+Il product manager
 
 
 - È la "voce del prodotto": \
@@ -111,7 +120,11 @@ in `requisiti di prodotto`
 
 ---
 
-Chi trasforma le specifiche in codice
+
+# 🧑🏻‍💻
+<!-- .element: class="utf8-icon" -->
+Gli sviluppatori
+
 
 - Lavora sul `prodotto reale`
 <!-- .element: class="fragment align-left" -->
@@ -130,8 +143,8 @@ Chi trasforma le specifiche in codice
 
 ---
 
-Le stesse parole hanno \
-`significati diversi` a seconda dei `ruoli`
+Le stesse parole assumono
+`significati diversi` a seconda del proprio `ruolo`
 
 ---
 
@@ -156,7 +169,7 @@ Interpreta come:
 
 "Dashboard `minimale` con pochi KPI, \
 entro la release"
-<!-- .element: class="fragment align-left" -->
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -167,12 +180,7 @@ Capisce:
 
 "Implementare `grafici`, `filtri`, `API`, \
 `caching`, `gestione permessi`..."
-<!-- .element: class="fragment align-left" -->
-
----
-
-Background e personalità diverse \
-hanno modi di approcciarsi e di ragionare in modo diverso
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -669,6 +677,49 @@ Allora il colore associato al documento è il "blu"
 
 ---
 
+# 🧑🏻‍💼 📝📝📝
+<!-- .element class="utf8-icon" -->
+
+Scenario dopo scenario...
+
+---
+
+# 🙍🏻
+<!-- .element class="utf8-icon" -->
+
+"Sto impiegando il `doppio del tempo` \
+rispetto a prima!"
+
+---
+
+# 🙍🏻
+<!-- .element class="utf8-icon" -->
+
+Scrivere in Gherkin richiede \
+`più sforzo` all'inizio
+
+- Devi pensare a `tutti i casi possibili`
+<!-- .element: class="fragment" -->
+
+- Devi essere `preciso` e `specifico`
+<!-- .element: class="fragment" -->
+
+- Non puoi più essere `vago`
+<!-- .element: class="fragment" -->
+
+---
+
+"Ma ne vale davvero la pena?"
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+Bob decide di continuare...
+
+---
+
 # 🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 
@@ -715,6 +766,7 @@ Legge una riga alla volta e va avanti reputandola corretta
 # 🧑🏻‍💼
 <!-- .element class="utf8-icon" -->
 `Bob` continua a scrivere
+
 
 ---
 
