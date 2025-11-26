@@ -5,6 +5,10 @@ footer: 2025-11-27 - Impact Hub, Firenze
 footerIconUrl: ./imgs/product-heroes-squad-logo.png
 theme: black
 css: 
+  - "css/base.css"
+  - "css/code.css"
+  - "https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+  - "css/highlightjs-themes/catppuccin.css"
   - "css/themes/product-heroes.css"
 
 revealOptions:
