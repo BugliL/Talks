@@ -635,7 +635,7 @@ in quel caso devono avere il colore blu.
 ```
 <!-- .element class="fs-08" -->
 
-```gherkin[|1|2|3|5|6|7|8|9|]
+```gherkin[|1|2|3|5|6|7|8]
 Dato un documento in lavorazione NON di tipo "disegno tecnico"
 Quando il sistema assegna un colore al documento
 Allora il colore associato al documento è il "rosso"
@@ -982,6 +982,91 @@ Il test verifica automaticamente!
 
 ---
 
+## Lo scenario Gherkin
+
+```gherkin[]
+Feature: Gestione Colori documenti
+
+  Scenario: Distinta materiale in lavorazione
+    Dato un documento di tipo "distinta materiale"
+    Quando il sistema assegna un colore
+    Allora il colore deve essere "giallo"
+```
+<!-- .element: class="fs-08" -->
+
+---
+
+## Il test in Python (Behave)
+
+```python [|3,7,11|]
+from behave import given, when, then
+
+@given('un documento di tipo "{tipo}"')
+def crea_documento(context, tipo):
+    context.documento = Documento(tipo=tipo)
+
+@when('il sistema assegna un colore')
+def assegna_colore(context):
+    context.colore = assegna_colore_documento(context.documento)
+
+@then('il colore deve essere "{colore_atteso}"')
+def verifica_colore(context, colore_atteso):
+    assert context.colore == colore_atteso, \
+        f"Atteso {colore_atteso}, ottenuto {context.colore}"
+
+
+```
+<!-- .element: class="fs-06 h-30" -->
+
+---
+
+## Esecuzione del test
+
+```bash []
+$ behave features/colori_documenti.feature
+
+Feature: Colori documenti
+
+  Scenario: Distinta materiale in lavorazione
+    Dato un documento di tipo "distinta materiale"  ✓
+    Quando il sistema assegna un colore             ✓
+    Allora il colore deve essere "giallo"           ✓
+
+1 feature passed, 0 failed
+1 scenario passed, 0 failed
+4 steps passed, 0 failed
+```
+<!-- .element: class="fs-07" -->
+
+Il test `passa` ✅ \
+Il requisito è `implementato correttamente`
+<!-- .element: class="fragment" -->
+
+---
+
+## E se il test fallisce?
+
+```bash [|8|]
+$ behave features/colori_documenti.feature
+
+Feature: Colori documenti
+
+  Scenario: Distinta materiale in lavorazione
+    Dato un documento di tipo "distinta materiale"  ✓
+    Quando il sistema assegna un colore             ✓
+    Allora il colore deve essere "giallo"           ✗
+
+Assertion Failed: Atteso giallo, ottenuto rosso
+
+FAILED (1 scenario failed)
+```
+<!-- .element: class="fs-07" -->
+
+Il test dice `esattamente` dove e `cosa` non funziona
+<!-- .element: class="fragment" -->
+
+---
+
 Ogni `scenario` descrive \
 un `comportamento specifico` \
 senza ambiguità
@@ -1029,46 +1114,16 @@ Then il documento deve essere BLU
 
 ---
 
-Tutti parlano la `stessa lingua`
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
 
-la `Gherkin syntax`
-<!-- .element class="fragment" -->
+## Il cliente
 
----
+<br/>
 
-# Come funziona il processo?
-
----
-
-# 1️⃣ Requisiti completi e comprensibili
-
-Scritti in un linguaggio \
-comprensibile a tutti
-
----
-
-# 2️⃣ Test verificabili
-
-Che traducono i requisiti \
-in verifiche automatiche
-
----
-
-# 3️⃣ Sviluppo guidato
-
-Il codice implementa \
-esattamente i test
-
----
-
-# 4️⃣ Validazione continua
-
-I test verificano che tutto \
-funzioni come richiesto
-
----
-
-# E chi ci guadagna?
+Ottiene un prodotto che \
+`rispecchia le sue richieste`
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -1107,19 +1162,6 @@ senza ambiguità
 
 Verificano `automaticamente` \
 che il software faccia ciò che deve
-<!-- .element: class="fragment" -->
-
----
-
-# 👨🏻‍💼
-<!-- .element: class="utf8-icon" -->
-
-## Il cliente
-
-<br/>
-
-Ottiene un prodotto che \
-`rispecchia le sue richieste`
 <!-- .element: class="fragment" -->
 
 ---
