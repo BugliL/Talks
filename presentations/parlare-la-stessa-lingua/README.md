@@ -1166,6 +1166,137 @@ Then il documento deve essere BLU
 
 ---
 
+# ⏱️ 
+<!-- .element class="utf8-icon" -->
+
+Tre settimane dopo...
+
+---
+
+# 👨🏻‍💼 💬 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+`Mario` chiama `Bob`:
+
+"Ho ripensato ai colori dei documenti..."
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+"Oh no, `di nuovo`..."
+<!-- .element: class="fragment" -->
+
+---
+
+# 🙍🏻
+<!-- .element class="utf8-icon" -->
+
+"I documenti in `lavorazione` dovrebbero essere
+`arancioni`, non `rossi`"
+
+---
+
+Con il vecchio sistema 
+
+- Bob deve `riscrivere` tutto il paragrafo
+<!-- .element: class="fragment" -->
+
+- Rischio di introdurre `nuove ambiguità`
+<!-- .element: class="fragment" -->
+
+- Gli sviluppatori dovrebbero \
+   `rileggere tutto`
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+## Con Gherkin
+
+```gherkin [|3|]
+Dato un documento in lavorazione NON di tipo "disegno tecnico"
+Quando il sistema assegna un colore al documento
+Allora il colore associato al documento è il "rosso"
+```
+<!-- .element: class="fs-08" -->
+
+Cambio `chirurgico` su una sola riga
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💼
+<!-- .element class="utf8-icon" -->
+
+## Con Gherkin
+
+```gherkin [|3|]
+Dato un documento in lavorazione NON di tipo "disegno tecnico"
+Quando il sistema assegna un colore al documento
+Allora il colore associato al documento è il "arancione"
+```
+<!-- .element: class="fs-08" -->
+
+Modifica precisa, zero ambiguità
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element class="utf8-icon" -->
+
+`Franco` aggiorna il test
+
+```python[|3|]
+@then('il colore deve essere "{colore_atteso}"')
+def verifica_colore(context, colore_atteso):
+    assert context.colore == colore_atteso
+```
+<!-- .element: class="fs-08" -->
+
+Il test `fallisce` subito: \
+"Atteso arancione, ottenuto rosso"
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element class="ut8-icon" -->
+
+`Franco` corregge il codice
+
+```python
+if documento.stato == "in_lavorazione":
+    return ARANCIONE  # era ROSSO
+```
+<!-- .element: class="fs-10" -->
+
+Esegue i test: `tutto verde` ✅
+<!-- .element: class="fragment" -->
+
+---
+
+# 🧑🏻‍💻
+<!-- .element class="utf8-icon" -->
+
+I test verificano `automaticamente` \
+che il cambio non abbia rotto altro
+
+- 15 scenari ancora funzionanti ✅
+<!-- .element: class="fragment" -->
+
+- Tempo totale: `10 minuti`
+<!-- .element: class="fragment" -->
+
+- Zero regressioni
+<!-- .element: class="fragment" -->
+
+---
+
 # 👨🏻‍💼
 <!-- .element: class="utf8-icon" -->
 
