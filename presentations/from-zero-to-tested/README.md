@@ -156,7 +156,7 @@ Prendiamo un pezzo a caso del codice
 
 ---
 
-```python[]
+```python []
 def process_supplier_invoices():
     global connection, cursor, total_amount, email_server
     cursor.execute("SELECT * FROM supplier_invoices WHERE status != 'PROCESSED'")
@@ -204,6 +204,9 @@ def process_supplier_invoices():
 ---
 
 ## Caratteristiche principali del codice
+
+- `Clean code` violato in ogni sua regola
+<!-- .element class="fragment" -->
 
 - Wall of code unico `non strutturato`
 <!-- .element class="fragment" -->
@@ -260,7 +263,7 @@ Osserviamo il codice della funzione `update_products_end_of_day`
 
 ---
 
-```python[]
+```python []
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
   items = cursor.fetchall()
@@ -307,7 +310,7 @@ def update_products_end_of_day():
 
 ---
 
-L'analisi del codice porta a identificare la funzione critica 
+L'`analisi del codice` porta a identificare la funzione critica 
 da modificare ma ormai si è fatta sera
 <!-- .element class="align-left"  -->
 
@@ -360,10 +363,6 @@ Testano blocchi di codice `grandi` oppure `sezioni intere` del sistema
 
 ---
 
-<img class="w-60" src="./imgs/tdd.png" />
-
----
-
 ## Characterization tests - process
 
 - Si scrivono dei test `verdi`, senza toccare la funzionalità
@@ -385,7 +384,7 @@ Il `codice` diventa la `sorgente di verità`
 
 ---
 
-```python[|2-3|4-6|7-20]
+```python [|2-3|4-6|7-20]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
   items = cursor.fetchall()
@@ -450,7 +449,7 @@ Si usano
 
 Esempio di mock di un file system
 
-```python[|5-9|12|13-22|]
+```python [|5-9|12|13-22|]
 from unittest.mock import mock_open, patch
 from unittest import TestCase
 
@@ -476,7 +475,7 @@ class TestFileRead(TestCase):
 
 Esempio di mock di una libreria `random`
 
-```python[|8|9-13|]
+```python [|8|9-13|]
 from unittest.mock import Mock, patch
 from unittest import TestCase
 
@@ -497,14 +496,12 @@ Come usare i mock per testare `update_products_end_of_day`?
 
 ---
 
-```python[|6|9|11-35|16-23|24-28|28-29|30-35]
+```python [|5|7|9-35|14-21|22-24|24-25|26-35]
 from unittest import TestCase
 from unittest.mock import patch, Mock
-
 from src.interfaces import Product
 
 from src.update_products_end_of_day import update_products_end_of_day
-
 
 @patch("src.update_products_end_of_day.cursor")
 class UpdateProductsEndOfDayShould(TestCase):
@@ -521,8 +518,6 @@ class UpdateProductsEndOfDayShould(TestCase):
             quality=10,
         )
 
-        # Impostazione del valore di ritorno del mock
-        # in modo che simuli il fetch dei prodotti
         mock_cursor.fetchall.return_value = [normal_product]
 
         # Act
@@ -550,7 +545,7 @@ L'idea di base del test è usare il codice esistente per definire il
 
 ---
 
-```python[|6|9|11-31|16-24|26-27|29-35]
+```python [|6|9|11-31|16-24|26-27|29-35]
 from unittest import TestCase
 from unittest.mock import patch, Mock
 
@@ -600,7 +595,7 @@ Il `Miele` non diminuisce mai di qualità!
 ---
 
 
-```python[|5-10]
+```python [|5-10]
 @patch("src.update_products_end_of_day.cursor")
 class UpdateProductsEndOfDayShould(TestCase):
     def test_update_miele_data_when_called(self, mock_cursor: Mock) -> None:
@@ -629,7 +624,7 @@ Altri test per gli altri prodotti
 
 ---
 
-```python[]
+```python []
 from unittest import TestCase
 from unittest.mock import patch, Mock
 
@@ -666,7 +661,7 @@ class UpdateProductsEndOfDayShould(TestCase):
 
 ---
 
-```pythonp[]
+```python []
 @patch("src.update_products_end_of_day.cursor")
 class UpdateProductsEndOfDayShould(TestCase):
     def test_update_promozione_speciale_data_when_called(
@@ -747,7 +742,7 @@ Il report indica dalla riga 26 alla 35
 
 ---
 
-```python[|3]
+```python [|3]
 def update_products_end_of_day():
     # ... 
     if item.exp_days < 0:
@@ -767,7 +762,7 @@ def update_products_end_of_day():
 
 ---
 
-```python[|10|19-25]
+```python [|10|19-25]
 def test_update_expired_normal_product_when_called(self, mock_cursor: Mock) -> None:
     """
     Un prodotto normale diminuisce di quality di 2 dopo la scadenza
@@ -794,7 +789,7 @@ def test_update_expired_normal_product_when_called(self, mock_cursor: Mock) -> N
 
 ---
 
-```python[|10-11|19-25]
+```python [|10-11|19-25]
 def test_update_formaggio_brie_scaduto_when_called(self, mock_cursor: Mock) -> None:
     """
     Il Formaggio Brie aumenta di quality di 2 dopo la scadenza
@@ -827,7 +822,7 @@ Manca ancora la riga 32
 
 ---
 
-```python[|5,9,10]
+```python [|5,9,10]
 def update_products_end_of_day():
     # ... 
     if item.exp_days < 0:
@@ -865,7 +860,7 @@ def update_products_end_of_day():
         self.assertEqual(special_promotion.exp_days, -2)
         self.assertEqual(special_promotion.quality, 0)
 ```
-<!-- .element class="fontsize-small h-35"  -->
+<!-- .element class="h-30"  -->
 
 ---
 
@@ -885,7 +880,7 @@ Ma non è sufficiente...
 
 ---
 
-```python[3,7]
+```python [3,7]
 def update_products_end_of_day():
     # ...
       if item.quality < 50:
@@ -915,7 +910,7 @@ o meglio...
 
 ---
 
-```python[|1,8,9|17-25]
+```python [|1,8,9|17-25]
 def test_update_promozione_speciale_quality_max_50_when_called(
     self, mock_cursor: Mock
 ) -> None:
@@ -936,7 +931,7 @@ def test_update_promozione_speciale_quality_max_50_when_called(
     self.assertEqual(special_promotion.exp_days, 4)
     self.assertEqual(special_promotion.quality, 55)
 ```
-<!-- .element class="fontsize-small h-35"  -->
+<!-- .element class="h-35"  -->
 
 ---
 
@@ -984,7 +979,7 @@ def update_products_end_of_day():
 
 ---
 
-```python[]
+```python []
 if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
     if item.quality > 0:
         if item.name != "Miele":
@@ -1021,7 +1016,7 @@ if item.exp_days < 0:
 
 ---
 
-```python[]
+```python []
 if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
     if item.quality > 0:
         if item.name != "Miele":
@@ -1074,7 +1069,7 @@ if item.exp_days < 0:
 
 ---
 
-```python[]
+```python []
 if item.name == "Miele":
     continue
 
@@ -1123,7 +1118,7 @@ Si ripristina il codice precedente
 ---
 
 
-```python[]
+```python []
 if item.name != "Formaggio Brie" and item.name != "Promozione Speciale":
     if item.quality > 0:
         if item.name != "Miele":
@@ -1186,7 +1181,7 @@ ha `impedito` di introdurre `bug`
 
 ---
 
-```python[]
+```python []
 if item.name == "Miele":
     continue
 
@@ -1232,14 +1227,15 @@ item.exp_days = item.exp_days - 1
 
 ---
 
-<div class="reveal">
-  <div class="right-col" style="top: 20vh;">
-
-```python [|1-4|5-13|16-30|32-40|]
+```python []
 
 def update_miele(item: Product):
     return
+```
 
+---
+
+```python []
 
 def update_formaggio_brie(item: Product):
     if item.quality < 50:
@@ -1250,7 +1246,11 @@ def update_formaggio_brie(item: Product):
 
     item.exp_days = item.exp_days - 1
 
+```
 
+---
+
+```python []
 def update_promozione_speciale(item: Product):
     if item.quality < 50:
         item.quality = item.quality + 1
@@ -1265,8 +1265,11 @@ def update_promozione_speciale(item: Product):
         item.quality = 0
 
     item.exp_days = item.exp_days - 1
+```
 
+---
 
+```python []
 def update_product(item: Product):
     if item.quality > 0:
         item.quality = item.quality - 1
@@ -1276,12 +1279,10 @@ def update_product(item: Product):
 
     item.exp_days = item.exp_days - 1
 ```
-<!-- .element class="fontsize-ultra-tiny h-40"  -->
 
-  </div>
-  <div class="w-50 align-left">
+---
 
-```python [5-18]
+```python []
 def update_products_end_of_day():
     cursor.execute("SELECT ... FROM products")
     items = cursor.fetchall()
@@ -1305,9 +1306,7 @@ def update_products_end_of_day():
         cursor.execute("UPDATE ...")
     connection.commit()
 ```
-<!-- .element class="fontsize-tiny h-30"  -->
-  </div>
-</div>
+<!-- .element class="h-35"  -->
 
 ---
 
@@ -1315,7 +1314,7 @@ def update_products_end_of_day():
 
 ---
 
-<img class="w-60" src="./imgs/pleasure.jpg" />
+<img class="w-100" src="./imgs/pleasure.jpg" />
 
 ---
 
@@ -1327,7 +1326,7 @@ Se non funziona si torna indietro e si corregge
 
 ---
 
-A forza di rifattorizzare...
+A forza di `rifattorizzare`...
 
 ---
 
@@ -1353,7 +1352,7 @@ Implementazione della funzionalità
 
 ---
 
-```python[]
+```python []
 def update_lenticchie_product(item: Product):
     pass
 ```
@@ -1395,7 +1394,7 @@ class TestLenticchieUpdate(TestCase):
 
 ---
 
-```python[]
+```python []
 def update_lenticchie_product(item: Product):
     if item.quality > 0:
         item.quality = item.quality - 2
@@ -1413,7 +1412,9 @@ def update_lenticchie_product(item: Product):
 
 ---
 
-## Integration Test
+Ho costruito la funzione, adesso va integrata nel sistema principale
+
+---
 
 ```python [|4,22|]
 from unittest import TestCase
@@ -1582,7 +1583,7 @@ implementare nuove funzionalità
 
 ---
 
-Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
+...ma il tempo passa 
 
 ---
 
@@ -1591,7 +1592,7 @@ Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
 
 ---
 
-## Come si è svolto il progetto?
+## Recap
 
 - **Lunedì** - L'arrivo della patata bollente 💀
 <!-- .element class="fragment" -->
@@ -1603,9 +1604,6 @@ Il tempo a disposizione era limitato e arrivò il momento di tirare le somme.
 <!-- .element class="fragment" -->
 
 - **Giovedì** - TDD per nuove funzionalità
-<!-- .element class="fragment" -->
-
-- **Venerdì** - Consegna del progetto 🎉
 <!-- .element class="fragment" -->
 
 ---
