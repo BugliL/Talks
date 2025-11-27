@@ -63,14 +63,14 @@ Membro community di `Schrödinger Hat`
 # 👨🏻‍💼
 <!-- .element: class="utf8-icon" -->
 
-## Lo stakeholder / cliente
+## Cliente
 
 ---
 
 # 👨🏻‍💼
 <!-- .element: class="utf8-icon" -->
 
-Lo stakeholder / cliente
+Cliente
 
 
 - Vuole un `risultato` che risolva \
@@ -90,13 +90,13 @@ i `vincoli tecnici`
 # 🧑🏻‍💼
 <!-- .element: class="utf8-icon" -->
 
-## Il product manager
+## Prodotto
 
 ---
 
 # 🧑🏻‍💼
 <!-- .element: class="utf8-icon" -->
-Il product manager
+Prodotto
 
 
 - È la "voce del prodotto": \
@@ -116,15 +116,14 @@ in `requisiti di prodotto`
 # 🧑🏻‍💻
 <!-- .element: class="utf8-icon" -->
 
-## Gli sviluppatori
+## Sviluppo
 
 ---
 
 
 # 🧑🏻‍💻
 <!-- .element: class="utf8-icon" -->
-Gli sviluppatori
-
+Sviluppo
 
 - Lavora sul `prodotto reale`
 <!-- .element: class="fragment align-left" -->
@@ -148,14 +147,12 @@ Le stesse parole assumono
 
 ---
 
-# 👨🏻‍💼
-<!-- .element: class="utf8-icon" -->
-
 "Serve una dashboard `semplice`"
 
 ---
-
-## Per lo stakeholder
+# 👨🏻‍💼
+<!-- .element: class="utf8-icon" -->
+Cliente
 
 Deve essere `intuitiva` e `piacevole`
 <!-- .element: class="fragment" -->
@@ -164,8 +161,7 @@ Deve essere `intuitiva` e `piacevole`
 
 # 🧑🏻‍💼
 <!-- .element: class="utf8-icon" -->
-
-Interpreta come:
+Prodotto
 
 "Dashboard `minimale` con pochi KPI, \
 entro la release"
@@ -175,10 +171,9 @@ entro la release"
 
 # 🧑🏻‍💻
 <!-- .element: class="utf8-icon" -->
+Sviluppo
 
-Capisce:
-
-"Implementare `grafici`, `filtri`, `API`, \
+"`grafici`, `filtri`, `API`, \
 `caching`, `gestione permessi`..."
 <!-- .element: class="fragment" -->
 
