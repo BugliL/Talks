@@ -1,8 +1,6 @@
 ---
 title: From Zero to Tested
 author: Lorenzo Bugli
-footer: 2025-11-26 - TSH - Firenze
-footerIconUrl: './imgs/sh-logo.png'
 link: https://buglil.github.io/Talks/from-zero-to-tested/#/
 
 theme: black
@@ -22,14 +20,10 @@ quali test scrivere per primi e come usare mock e altre tecniche che ho trovato
 utili per integrare il TDD in progetti già esistenti"
 ---
 
-<img class="w-10 mb-1" width="25%" src="./imgs/sh-logo.png" />
-
 # From Zero to Tested
 
 Come aggiungere test a un progetto esistente
 <!-- https://buglil.github.io/Talks/from-zero-to-tested/#/ -->
-
-<img class="w-25 mt-1" width="25%" src="./imgs/slide-qr-code.png" />
 
 ---
 
@@ -54,13 +48,7 @@ L'azienda che lo ha sviluppato è `fallita` e dobbiamo assolutamente occuparcene
 
 ---
 
-<div class="flex">
-    <div class="w-50"><img class="circular-img" src="./imgs/profile.jpg" /></div>
-    <div class="align-left mt-1 ml-1">
-        <b>Lorenzo Bugli</b> - Senior software engineer presso <span class="text-blue-highlight">Fiscozen</span>
-        faccio parte della community di <span class="text-blue-highlight">Schroedinger Hat</span>
-    </div>
-</div>
+"..occuparmene io..."
 
 ---
 
@@ -412,87 +400,7 @@ Potrei tirarmi su un database di test e fare le prove...
 
 ...ma i mock sono nostri amici
 
----
-
-## Cos'è un mock?
-
----
-
 <img class="w-50" src="./imgs/ditto.png" />
-
----
-
-Un `mock` è un oggetto che può simulare `qualsiasi comportamento` e
-sostituirlo in ogni contesto
-
----
-
-Tutto quello che è una `dipendenza` nel codice può essere rappresentata da un `mock`
-
----
-
-Si usano
-
-- `Sistema esterno`: db, email, file system, network....
-<!-- .element class="fragment"  -->
-
-- `Librerie`: logging, network, GUI....
-<!-- .element class="fragment"  -->
-
-- `Dipendenze da altri moduli`: funzioni, classi, metodi....
-<!-- .element class="fragment"  --> 
-
-- `Funzionalità costose` da eseguire: calcoli complessi, algoritmi....
-<!-- .element class="fragment"  -->
-
----
-
-Esempio di mock di un file system
-
-```python [|5-9|12|13-22|]
-from unittest.mock import mock_open, patch
-from unittest import TestCase
-
-
-def read_file_content(filepath):
-    """Funzione che legge un file e ritorna il contenuto"""
-    with open(filepath, "r") as f:
-        return f.read()
-
-
-class TestFileRead(TestCase):
-    @patch("builtins.open", mock_open(read_data="contenuto mockato del file"))
-    def test_read_file_with_mock_open(self):
-        """Esempio 1: Uso di mock_open per simulare lettura file"""
-
-        content = read_file_content("file.txt")
-
-        self.assertEqual(content, "contenuto mockato del file")
-```
-<!-- .element class="h-30"  -->
-
----
-
-Esempio di mock di una libreria `random`
-
-```python [|8|9-13|]
-from unittest.mock import Mock, patch
-from unittest import TestCase
-
-import random
-
-
-class TestRandom(TestCase):
-    @patch("random.randint", return_value=5)
-    def test_random(self, mock_random: Mock):
-        result = random.randint(10, 20)
-        assert result == 5
-
-```
-
----
-
-Come usare i mock per testare `update_products_end_of_day`?
 
 ---
 
@@ -705,16 +613,10 @@ Quando ci si ferma nello scrivere i test?
 ---
 
 La `coverage` ci aiuta a rispondere a questa domanda
-
----
-
-## Cos'è la coverage?
-
-Qta di codice coperto dai test, espressa in percentuale
-
----
+<!-- .element class="align-left"  -->
 
 Indica quali e `quante righe` di codice sono state `eseguite` durante il run dei test
+<!-- .element class="align-left fragment"  -->
 
 ---
 
@@ -1625,25 +1527,6 @@ Cliente molto soddisfatto!
 
 ---
 
-Il mio capo ha avuto un aumento!
-
----
-
-Io una pacca sulla spalla
-
----
-
-Ma sono ugualmente soddisfatto...
-
----
-
-Quella sfida ha portato ad un `framework` utile 
-per `combattere` codice `legacy privo di test` <br>
-in decine di occasioni
-<!-- .element class="align-left" -->
-
----
-
 ... in ogni caso
 
 ---
@@ -1652,29 +1535,11 @@ in decine di occasioni
 
 ---
 
-
-
-# Grazie!
-
-<img class="w-25" width="25%" src="./imgs/slide-qr-code.png" />
-
-Lorenzo Bugli - @BugliL
-<!-- .element class="fragment" -->
+# Grazie dell'attenzione!
 
 ---
 
 # Riferimenti
-
-<div class="flex">
-    <div>
-        <img class="w-25" src="./imgs/linkedin.png" /><br />
-        <a href="https://www.linkedin.com/in/buglil/">Linkedin</a>
-    </div>
-    <div>
-        <img class="w-25" src="./imgs/schroedinger-hat-qr-code.png" /><br />
-        <a href="https://schroedinger-hat.org/">Schrödinger Hat</a>
-    </div>
-</div>
 
 - [Gilded Rose Kata](https://github.com/NotMyself/GildedRose)
 - [Working Effectively with Legacy Code](https://a.co/d/0exgjaJ) <br/>
