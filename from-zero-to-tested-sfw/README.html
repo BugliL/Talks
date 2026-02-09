@@ -375,6 +375,55 @@ Il `codice` diventa la `sorgente di verità`
 
 ---
 
+## Characterization TDD VS Classic TDD
+
+---
+
+## Stato iniziale del codice
+
+`CTDD`: Codice gia' esistente
+<!-- .element class="align-left fragment"  -->
+
+`TDD`: Codice assente, ma esiste un requisito 
+<!-- .element class="align-left fragment"  -->
+
+---
+
+## Stato iniziale dei test
+
+`CTDD` : **Verdi** fin da subito, per congelare il comportamento esistente
+<!-- .element class="align-left fragment"  -->
+
+`TDD`: **Rossi**, guidare l'implementazione
+<!-- .element class="align-left fragment"  -->
+
+---
+
+## Refactoring
+
+- `CTDD`: Dopo la caratterizzazione, non prima
+<!-- .element class="align-left fragment"  -->
+
+- `TDD`: Continuo, dopo ogni implementazione
+<!-- .element class="align-left fragment"  -->
+
+---
+
+## Feedback
+
+- `CTDD`: Ho rotto qualcosa che funziona
+<!-- .element class="align-left fragment"  -->
+
+- `TDD`: Sto implementando la cosa giusta
+<!-- .element class="align-left fragment"  -->
+
+---
+
+"Talk is cheap, show me the process" semicit.
+<!-- .element class="align-left" -->
+
+---
+
 ```python [|2-3|4-6|7-20]
 def update_products_end_of_day():
   cursor.execute("SELECT id, name, exp_days, quality FROM products")
@@ -506,15 +555,31 @@ Il `Miele` non diminuisce mai di qualità!
 ---
 
 
-```python [|5-10]
+```python [|22,23,12-13]
 @patch("src.update_products_end_of_day.cursor")
 class UpdateProductsEndOfDayShould(TestCase):
     def test_update_miele_data_when_called(self, mock_cursor: Mock) -> None:
-        # ...
+        """
+        Il Miele non degrada mai di qualità e non scade mai
+        """
+
+        # Arrange
+        product = Product(
+            id=2,
+            name="Miele",
+            exp_days=10,
+            quality=5,
+        )
+
+        mock_cursor.fetchall.return_value = [product]
+
+        # Act
+        update_products_end_of_day()
 
         # Assert
         self.assertEqual(product.exp_days, 10)
         self.assertEqual(product.quality, 5)
+
 ```
 
 ---
